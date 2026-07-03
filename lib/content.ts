@@ -11,7 +11,7 @@ export const site = {
   url: "https://ianjohnson.io",
   email: "contact@ianjohnson.io",
   // TODO(ian): confirm real profile URLs — placeholders pending
-  substackUrl: "https://ianwd.substack.com",
+  substackUrl: "https://ianwdj.substack.com",
   linkedinUrl: "#",
   letterboxdUrl: "#",
 };
@@ -115,5 +115,42 @@ export type Essay = {
 };
 
 export const essays: Essay[] = [
-  // populated during migration from the Substack archive
+  {
+    slug: "pre-product-sales-sprint",
+    title: "The Pre-Product Sales Sprint",
+    date: "2024-04-10",
+    displayDate: "Apr 2024",
+    summary:
+      "Closing $1,000-per-user sales with only a Notion page and phone calls — a five-day sprint for validating demand before building anything.",
+    canonicalUrl: "https://ianwdj.substack.com/p/the-pre-product-sales-sprint",
+  },
+  {
+    slug: "shortlisting-startup-ideas",
+    title: "A Concise Guide to Shortlisting Startup Ideas",
+    date: "2023-12-05",
+    displayDate: "Dec 2023",
+    summary:
+      "A weighted scorecard for deciding what to build next — with a brutally honest worked example scoring my own AI-product idea.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/a-concise-guide-to-shortlisting-startup",
+  },
+  {
+    slug: "pain-points-100-launches",
+    title: "Pain Points from 100 Product Launches",
+    date: "2023-07-19",
+    displayDate: "Jul 2023",
+    summary:
+      "Surveying builders across 100 Product Hunt launches to test whether selling shovels in the LLM gold rush is a real market.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/pain-points-experienced-from-100",
+  },
+  {
+    slug: "lasso",
+    title: "Lasso: The Problem We Solved For",
+    date: "2023-06-14",
+    displayDate: "Jun 2023",
+    summary:
+      "A candid post-mortem of building and selling Lasso — why LOIs mean nothing, and why a 10% better product dies in a platform-controlled market.",
+    canonicalUrl: "https://ianwdj.substack.com/p/lasso",
+  },
 ];

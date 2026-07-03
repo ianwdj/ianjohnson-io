@@ -172,6 +172,13 @@
   font-weight: 500;
   color: var(--ink-strong);
 }
+.prose-letter img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+}
 .prose-letter hr {
   margin: 2.5rem auto;
   border: 0;
