@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="volt.fm">
-  <!-- volt = a lightning bolt. currentColor so it inherits per location. -->
-  <path fill="currentColor" d="M13.7 1.5 4.2 13.4a.7.7 0 0 0 .55 1.14h4.62l-1.4 7.43a.55.55 0 0 0 .98.43l9.6-11.96a.7.7 0 0 0-.55-1.14h-4.7l1.36-7.05a.55.55 0 0 0-.96-.45z"/>
-</svg>

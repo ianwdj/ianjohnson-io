@@ -1,6 +1,6 @@
 {
-  "name": "ianjohnson-notebook",
-  "version": "0.1.0",
+  "name": "ianjohnson-site",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,15 +11,15 @@
     "check": "next lint && tsc --noEmit && next build"
   },
   "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@radix-ui/react-tabs": "^1.1.1",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "14.2.18",
+    "@types/mdx": "^2.0.13",
     "clsx": "^2.1.1",
     "next": "14.2.18",
-    "next-themes": "^0.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,21 +1,23 @@
-import { Notebook } from "@/components/notebook/notebook";
-import { SketchDefs } from "@/components/sketch-defs";
-import { Hello } from "@/components/sections/hello";
-import { Work } from "@/components/sections/work";
-import { SectionStub } from "@/components/sections/stub";
+import { SiteHeader } from "@/components/site-header";
+import { Hero } from "@/components/sections/hero";
+import { WorkSection } from "@/components/sections/work";
+import { ThinkingSection } from "@/components/sections/thinking";
+import { WritingSection } from "@/components/sections/writing";
+import { NowSection } from "@/components/sections/now";
+import { SiteFooter } from "@/components/site-footer";
 
-export default function Page() {
+export default function Home() {
   return (
-    <main className="relative flex min-h-[100dvh] items-start justify-center px-4 py-12 sm:py-[7vh]">
-      <SketchDefs />
-      <Notebook
-        sections={{
-          hello: <Hello />,
-          work: <Work />,
-          words: <SectionStub num="02" title="Words & Notebooks" />,
-          elsewhere: <SectionStub num="03" title="Elsewhere" />,
-        }}
-      />
-    </main>
+    <div className="relative z-10">
+      <SiteHeader />
+      <main>
+        <Hero />
+        <WorkSection />
+        <ThinkingSection />
+        <WritingSection />
+        <NowSection />
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
