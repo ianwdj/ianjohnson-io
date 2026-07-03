@@ -24,6 +24,8 @@ export const hero = {
     "I build products at the intersection of customer truth, workflow design, GTM systems, and measurable adoption.",
 };
 
+export type LogoId = "globale" | "shopify" | "alibaba";
+
 export type Project = {
   slug: string; // reserves /work/[slug] for future case studies
   name: string;
@@ -31,17 +33,18 @@ export type Project = {
   period: string;
   teaser: string;
   proof?: string;
+  logos?: LogoId[]; // acquirer/partner marks rendered under the proof line
   status: "current" | "acquired";
 };
 
 export const workIntro =
-  "Ten years building AI products that drive revenue. The last three companies were acquired.";
+  "Ten years building AI products that drive revenue. The last two companies were acquired.";
 
 export const projects: Project[] = [
   {
     slug: "aida",
     name: "Aida",
-    category: "Agentic revenue workflows",
+    category: "Agentic revenue system of action",
     period: "2024–now",
     teaser:
       "From account signals to next-best action, with durable usage as the test.",
@@ -53,8 +56,9 @@ export const projects: Project[] = [
     category: "Commerce infrastructure",
     period: "2018–2021",
     teaser:
-      "Growth, experimentation, merchant-of-record, and checkout at scale.",
-    proof: "Acquired by Global-e for $500M",
+      "Growth, experimentation, merchant-of-record, and checkout at scale — the white-label engine behind Shopify Markets.",
+    proof: "Acquired by Global-e for $500M · Shopify Markets",
+    logos: ["globale", "shopify"],
     status: "acquired",
   },
   {
@@ -65,6 +69,7 @@ export const projects: Project[] = [
     teaser:
       "Entity resolution and marketable customer understanding across markets.",
     proof: "Alibaba Pictures JV · 26 countries",
+    logos: ["alibaba"],
     status: "acquired",
   },
   {
