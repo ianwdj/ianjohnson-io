@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ian Johnson</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* paper variants (interior pages) */
+    --paper-cream:   #F1E7C7;
+    --paper-warm:    #EDE0B5;
+    --paper-cool:    #ECE6CF;
+    --paper: var(--paper-cream);
+
+    /* cover stock */
+    --kraft: #C2A878;
+    --band:  #B59770;
+
+    --ink: #1B170F;
+    --ink-soft: #45402F;
+    --ink-mute: #8a7e60;
+    --rule: color-mix(in oklab, var(--paper), #6b5a30 26%);
+
+    /* pencil colors — muted, used in sketched elements */
+    --pencil-graphite: #3F3625;
+    --pencil-red:      #A8331C;
+    --pencil-blue:     #3F5E78;
+    --pencil-green:    #5E7046;
+    --pencil-orange:   #A8611B;
+    --pencil-mute:     #6f6242;
+
+    --accent: var(--pencil-red);
+
+    --serif: "Source Serif 4", "Spectral", Georgia, serif;
+    --mono:  "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --hand:  "Caveat", "Source Serif 4", cursive;
+
+    --line: 28px;
+    --col: 680px;            /* single A5-ish portrait page */
+    --col-pad-x: 76px;
+    --col-pad-top: 92px;
+    --col-pad-bot: 116px;
+
+    /* warm walnut desk */
+    --desk: #6E4A2C;
+
+    /* sticky note colors */
+    --tab-1: #F0E2A6;
+    --tab-2: #E8C8C0;
+    --tab-3: #C7DAC0;
+    --tab-4: #C0CDD7;
+  }
+
+  body[data-pairing="b"] {
+    --serif: "Spectral", "Source Serif 4", Georgia, serif;
+    --mono:  "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+  body[data-paper="warm"] { --paper: var(--paper-warm); }
+  body[data-paper="cool"] { --paper: var(--paper-cool); }
+  body[data-accent="off"] { --accent: var(--ink); }
+  body[data-desk="off"] { --desk: var(--paper); background-image: none; }
+  body[data-desk="off"] .paper { box-shadow: none; }
+  body[data-desk="off"] .ribbon { display: none; }
+  body[data-desk="off"] .paper-stack-shadow { display: none; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: var(--desk); }
+  body {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: var(--line);
+    font-feature-settings: "kern", "liga", "onum";
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background-color: var(--desk);
+    /* warm wood surface: ambient top light, shadowed far corner, wood grain */
+    background-image:
+      radial-gradient(1300px 850px at 28% -8%, rgba(255,238,205,0.22), transparent 60%),
+      radial-gradient(1100px 950px at 102% 108%, rgba(0,0,0,0.42), transparent 62%),
+      url("/assets/textures/desk.jpg");
+    background-size: auto, auto, 760px auto;
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: center, center, center;
+    background-blend-mode: soft-light, multiply, normal;
+    padding: 56px 24px 110px;
+  }
+
+  /* ======= NOTEBOOK FRAME ======= */
+  .notebook {
+    position: relative;
+    max-width: var(--col);
+    margin: 0 auto;
+  }
+  /* ghost sheets underneath the top page */
+  .paper-stack-shadow::before,
+  .paper-stack-shadow::after {
+    content: "";
+    position: absolute;
+    background: color-mix(in oklab, var(--paper), #6b5a30 8%);
+    box-shadow: 0 12px 30px -12px rgba(40, 28, 10, 0.18);
+    pointer-events: none;
+  }
+  .paper-stack-shadow::before {
+    inset: 6px -4px -10px 4px;
+    transform: rotate(-0.2deg);
+    background: color-mix(in oklab, var(--paper), #6b5a30 6%);
+    z-index: 0;
+  }
+  .paper-stack-shadow::after {
+    inset: 3px -2px -5px 2px;
+    background: color-mix(in oklab, var(--paper), #6b5a30 3%);
+    z-index: 1;
+  }
+
+  .paper {
+    position: relative;
+    background: var(--paper);
+    padding: var(--col-pad-top) var(--col-pad-x) var(--col-pad-bot);
+    z-index: 2;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.35) inset,
+      0 0.5px 0 color-mix(in oklab, var(--paper), black 12%),
+      0 20px 26px -18px rgba(0, 0, 0, 0.55),     /* tight contact shadow on the desk */
+      0 46px 90px -34px rgba(0, 0, 0, 0.45);     /* soft ambient */
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  /* binding gutter shadow */
+  .paper::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 64px;
+    background: linear-gradient(to right,
+      color-mix(in oklab, var(--paper), #4a3a16 14%) 0,
+      color-mix(in oklab, var(--paper), #4a3a16 6%) 16px,
+      color-mix(in oklab, var(--paper), #4a3a16 1.5%) 40px,
+      transparent 64px);
+    pointer-events: none;
+    z-index: 3;
+  }
+  /* paper grain (turbulence noise) */
+  .paper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.42 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+  }
+
+  /* dot grid (default ruling) */
+  .ruling {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  body[data-ruling="dot"] .ruling {
+    opacity: 0.55;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--paper), #5a4a22 30%) 0.7px,
+      transparent 1.1px
+    );
+    background-size: 22px 22px;
+    background-position: var(--col-pad-x) calc(var(--col-pad-top) - 10px);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, transparent 54px, black 80px, black 100%);
+            mask-image: linear-gradient(to right, transparent 0, transparent 54px, black 80px, black 100%);
+  }
+  body[data-ruling="ruled"] .ruling {
+    opacity: 0.42;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line) - 1px),
+      color-mix(in oklab, var(--paper), #6b5a30 30%) calc(var(--line) - 1px),
+      color-mix(in oklab, var(--paper), #6b5a30 30%) var(--line)
+    );
+    background-position: 0 calc(var(--col-pad-top) - 12px);
+  }
+
+  /* ribbon bookmark — subtle short tail hanging from the top edge, never crosses text */
+  .ribbon {
+    position: absolute;
+    top: -4px;
+    right: 8%;
+    width: 5px;
+    height: 66px;
+    background: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--accent), black 28%) 0,
+      var(--accent) 45%,
+      color-mix(in oklab, var(--accent), white 16%) 70%,
+      color-mix(in oklab, var(--accent), black 18%) 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 1px rgba(0,0,0,0.18));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+  }
+
+  /* ======= SECTION TABS (sticky notes, always labelled) ======= */
+  .tabs {
+    position: absolute;
+    top: 78px;
+    right: -110px;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .tab {
+    pointer-events: auto;
+    width: 100%;
+    height: 34px;
+    background: var(--tab-bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 12px;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    transform: rotate(var(--rot, 0deg));
+    transform-origin: left center;
+    transition: transform .16s ease, filter .16s ease;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.45) inset,
+      0 -1px 0 rgba(60,40,10,0.08) inset,
+      3px 3px 8px -3px rgba(0,0,0,0.35);
+    border-radius: 0 3px 3px 0;
+    white-space: nowrap;
+  }
+  .tab:nth-of-type(1) { --tab-bg: var(--tab-1); --rot: -0.5deg; }
+  .tab:nth-of-type(2) { --tab-bg: var(--tab-2); --rot:  0.4deg; }
+  .tab:nth-of-type(3) { --tab-bg: var(--tab-3); --rot: -0.3deg; }
+  .tab:nth-of-type(4) { --tab-bg: var(--tab-4); --rot:  0.5deg; }
+  .tab:hover { transform: translateX(-4px) rotate(var(--rot, 0deg)); }
+  .tab[data-active] {
+    transform: translateX(-8px) rotate(var(--rot, 0deg));
+    filter: saturate(1.2);
+    font-weight: 600;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.5) inset,
+      0 -1px 0 rgba(60,40,10,0.1) inset,
+      5px 4px 10px -3px rgba(0,0,0,0.4);
+  }
+
+  /* ======= PAGES ======= */
+  .pages {
+    position: relative;
+    min-height: 760px;
+    perspective: 2200px;
+  }
+  .page {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .page[data-active] {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  /* ----- page-turn animation ----- */
+  .page.turning {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 6;
+    background: var(--paper);
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+  .hello.turning { background: var(--kraft); }
+  .page.turning > * { backface-visibility: hidden; }
+  .page.turn-fwd  { animation: pageTurnFwd  .35s ease-out forwards; }
+  .page.turn-back { animation: pageTurnBack .35s ease-out forwards; }
+  @keyframes pageTurnFwd  { from { transform: rotateY(0); }        to { transform: rotateY(-180deg); } }
+  @keyframes pageTurnBack { from { transform: rotateY(-180deg); } to { transform: rotateY(0); } }
+  .page.turning::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to left,
+      color-mix(in oklab, var(--paper), black 5%),
+      color-mix(in oklab, var(--paper), black 15%));
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    box-shadow: inset 0 0 80px rgba(40,28,10,0.14);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .page.turn-fwd, .page.turn-back { animation: none !important; }
+  }
+
+  /* hairline rule between sub-sections within a page */
+  hr.rule {
+    border: 0;
+    height: 1px;
+    background: var(--rule);
+    margin: calc(var(--line) * 1.6) 0 calc(var(--line) * 1);
+  }
+
+  /* ======= TYPE ======= */
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    margin-bottom: 14px;
+  }
+  h2.section-head {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: calc(var(--line) * 0.9);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    white-space: nowrap;
+  }
+  h2.section-head .num { color: var(--accent); }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  p { max-width: 58ch; }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(to top, var(--ink) 0, var(--ink) 1px, transparent 1px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 100%;
+    padding-bottom: 1px;
+    transition: color .15s ease, background-image .15s ease;
+  }
+  a:hover {
+    color: var(--accent);
+    background-image: linear-gradient(to top, var(--accent) 0, var(--accent) 1px, transparent 1px);
+  }
+  a.mono {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--ink-mute);
+    text-underline-offset: 3px;
+    background: none;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  a.mono:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  main { position: relative; z-index: 2; max-width: none; }
+
+  /* ======= FOLIO + PAGE NAV ======= */
+  .footer-nav {
+    position: absolute;
+    bottom: 34px;
+    left: var(--col-pad-x);
+    right: var(--col-pad-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    z-index: 6;
+  }
+  .footer-nav .folio em { color: var(--accent); font-style: normal; }
+  .footer-nav .prevnext button {
+    appearance: none; background: transparent; border: 0;
+    font: inherit; color: var(--ink-mute);
+    cursor: pointer; padding: 4px 8px;
+    letter-spacing: 0.06em;
+  }
+  .footer-nav .prevnext button:hover { color: var(--ink); }
+  .footer-nav .prevnext button:disabled { opacity: 0.3; cursor: default; }
+  .footer-nav .prevnext button + button { margin-left: 4px; }
+
+  /* ======= PAGE 1 — HELLO (cover) ======= */
+  body[data-on-cover] .ruling { opacity: 0 !important; }
+  /* kraft board cover stock: real texture over the kraft tint */
+  body[data-on-cover] .paper {
+    background-color: var(--kraft);
+    background-image: url("/assets/textures/board.jpg");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+  }
+  /* the cream binding-gutter gradient is for interior pages — hide on the kraft cover */
+  body[data-on-cover] .paper::before { display: none; }
+  /* repurpose the grain layer as a cover sheen + embossed edge thickness */
+  body[data-on-cover] .paper::after {
+    background-image: linear-gradient(118deg,
+      rgba(255,255,255,0.16) 0%,
+      rgba(255,255,255,0) 38%,
+      rgba(0,0,0,0.12) 100%);
+    opacity: 1;
+    mix-blend-mode: soft-light;
+    box-shadow:
+      inset 0 3px 0 rgba(255,255,255,0.18),
+      inset 0 -6px 14px rgba(0,0,0,0.26),
+      inset -6px 0 14px rgba(0,0,0,0.20),
+      inset 6px 0 16px rgba(0,0,0,0.22);
+  }
+
+  .cover {
+    min-height: 772px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 64px 0 48px;
+    max-width: none;
+    position: relative;
+  }
+  .cover-vol {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--ink-mute), black 16%);
+    margin-bottom: 26px;
+  }
+  .cover-name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 68px;
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin-bottom: 20px;
+    white-space: nowrap;
+  }
+  .cover-strap {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: calc(var(--line) * 1.2);
+  }
+
+  /* ----- kraft slipcover bellyband ----- */
+  .bellyband {
+    position: absolute;
+    left: calc(-1 * var(--col-pad-x));
+    right: calc(-1 * var(--col-pad-x));
+    top: 45%;
+    transform: translateY(-50%);
+    height: 82px;
+    z-index: 5;
+    background-color: var(--band);
+    background-image: url("/assets/textures/board.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    background-blend-mode: multiply;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 calc(var(--col-pad-x) + 12px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklab, var(--band), black 30%),
+      inset 22px 0 22px -22px rgba(40,28,10,0.45),
+      inset -22px 0 22px -22px rgba(40,28,10,0.45),
+      0 14px 26px -16px rgba(40,28,10,0.45);
+  }
+  .bellyband > span { position: relative; z-index: 1; }
+  .bb-name {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--band), black 60%);
+  }
+  .bb-date {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--band), black 48%);
+  }
+
+  /* ----- embossed monogram, bottom-right of the cover ----- */
+  .emboss {
+    position: absolute;
+    right: 4px;
+    bottom: 26px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 1px 3px rgba(0,0,0,0.30),
+      inset 0 -1px 2px rgba(255,255,255,0.45),
+      0 1px 0 rgba(255,255,255,0.25);
+  }
+  .emboss span {
+    font-family: var(--serif);
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    color: color-mix(in oklab, var(--kraft), black 14%);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+  }
+
+  /* Bookmarks: colored paper strips, hand-drawn pencil logos */
+  .bookmarks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 16px;
+    margin-top: auto;                          /* push to lower area, below the bellyband */
+    margin-bottom: calc(var(--line) * 2.2);
+  }
+  .bm {
+    --bm-bg: #F0E2A6;
+    display: inline-grid;
+    grid-template-columns: 30px auto;
+    align-items: center;
+    background: var(--bm-bg);
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    height: 30px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.4) inset,
+      1px 1px 0 rgba(60,40,10,0.05),
+      0 3px 8px -3px rgba(60,40,10,0.3);
+    transform: rotate(var(--bm-rot, 0deg));
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .bm .bm-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+  }
+  .bm .bm-logo svg { width: 18px; height: 18px; display: block; }
+  .bm .bm-logo.lb svg { width: 26px; height: auto; }
+  .bm .bm-text { padding: 0 14px 0 4px; }
+  .bm:hover {
+    transform: rotate(var(--bm-rot, 0deg)) translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.4) inset,
+      2px 2px 0 rgba(60,40,10,0.06),
+      0 6px 14px -4px rgba(60,40,10,0.32);
+  }
+  .bm[data-c="blue"]   { --bm-bg: #C9DCE6; --bm-rot: -1.2deg; }
+  .bm[data-c="orange"] { --bm-bg: #E8C9A0; --bm-rot:  0.8deg; }
+  .bm[data-c="green"]  { --bm-bg: #CADBC1; --bm-rot: -0.6deg; }
+  .bm[data-c="red"]    { --bm-bg: #E8C8C0; --bm-rot:  1.0deg; }
+  .bm[data-c="blue"]   .bm-logo { color: var(--pencil-blue); }
+  .bm[data-c="orange"] .bm-logo { color: var(--pencil-orange); }
+  .bm[data-c="green"]  .bm-logo { color: var(--pencil-green); }
+  .bm[data-c="red"]    .bm-logo { color: var(--pencil-red); }
+
+  /* "start here" — hand-drawn pointer toward the tabs */
+  .start-here {
+    position: absolute;
+    right: -22px;
+    bottom: 44px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--pencil-graphite);
+    transform: rotate(2deg);
+  }
+  .start-here span {
+    font-family: var(--hand);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--pencil-graphite);
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+
+  /* ======= PAGE 2 — WORK ======= */
+  .work-intro {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-bottom: calc(var(--line) * 0.6);
+  }
+  .work-intro strong { color: var(--ink); font-weight: 500; }
+
+  .work-timeline {
+    margin: calc(var(--line) * 0.6) 0 calc(var(--line) * 1.3);
+    position: relative;
+  }
+  .work-timeline svg { width: 100%; height: auto; display: block; }
+
+  .work-entries { display: flex; flex-direction: column; gap: 17px; }
+  .work-entry {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    column-gap: 14px;
+    align-items: start;
+  }
+  .work-entry .swatch {
+    width: 20px; height: 20px;
+    margin-top: 2px;
+    color: var(--swatch);
+  }
+  .work-entry .swatch svg { width: 20px; height: 20px; display: block; }
+  .work-entry[data-c="red"]    { --swatch: var(--pencil-red); }
+  .work-entry[data-c="blue"]   { --swatch: var(--pencil-blue); }
+  .work-entry[data-c="green"]  { --swatch: var(--pencil-green); }
+  .work-entry[data-c="orange"] { --swatch: var(--pencil-orange); }
+  .work-entry .head {
+    display: flex; flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 12px;
+    margin-bottom: 1px;
+  }
+  .work-entry .head h3 { font-size: 18px; }
+  .work-entry .head .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .work-entry .head .tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    text-transform: lowercase;
+  }
+  .work-entry .desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+  /* public "related writeup" link — always visible */
+  .work-entry .related { margin-top: 4px; }
+  .work-entry .related a {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    background: none; padding: 0;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--ink-mute);
+    text-underline-offset: 3px;
+  }
+  .work-entry .related a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  /* locked "request access" link — revealed on hover/focus */
+  .work-entry .request {
+    opacity: 0;
+    margin-top: 3px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-mute);
+    transition: opacity .2s ease;
+  }
+  .work-entry:hover .request,
+  .work-entry:focus-within .request { opacity: 1; }
+
+  /* ======= PAGE 3 — WORDS ======= */
+  .words-page .subhead {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: calc(var(--line) * 1.2) 0 6px;
+  }
+  .words-page .subhead.first { margin-top: calc(var(--line) * 0.4); }
+  ul.list { list-style: none; display: flex; flex-direction: column; }
+  ul.list li {
+    display: grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items: baseline;
+    gap: 8px 14px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  ul.list li:last-child { border-bottom: 0; }
+  ul.list .mark {
+    color: var(--pencil-graphite);
+    line-height: 1;
+    margin-top: 2px;
+    width: 22px; height: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ul.list .mark svg { display: block; }
+  ul.list .mark.substack svg { width: 12px; height: 12px; }
+  ul.list .t { font-family: var(--serif); font-size: 17px; line-height: 1.4; }
+  ul.list .t em { font-style: italic; color: var(--ink-mute); font-weight: 400; font-size: 0.85em; margin-left: 6px; }
+  ul.list .m { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-mute); white-space: nowrap; }
+
+  /* ======= PAGE 4 — ELSEWHERE ======= */
+  .elsewhere-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--line) * 1.1) 36px;
+    margin-bottom: calc(var(--line) * 1.2);
+  }
+  .elsewhere-grid .cell { display: grid; grid-template-columns: 34px 1fr; gap: 8px 14px; align-items: start; }
+  .elsewhere-grid .icon { margin-top: 2px; color: var(--pencil-mute); }
+  .elsewhere-grid .icon svg { display: block; }
+  .elsewhere-grid .cell[data-c="blue"]   .icon { color: var(--pencil-blue); }
+  .elsewhere-grid .cell[data-c="red"]    .icon { color: var(--pencil-red); }
+  .elsewhere-grid .cell[data-c="green"]  .icon { color: var(--pencil-green); }
+  .elsewhere-grid .cell[data-c="orange"] .icon { color: var(--pencil-orange); }
+  .elsewhere-grid h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+  }
+  .elsewhere-grid p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .contact-block {
+    margin-top: calc(var(--line) * 0.4);
+    padding-top: var(--line);
+    border-top: 1px solid var(--rule);
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    gap: 8px 14px;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .contact-row .icon { color: var(--pencil-graphite); }
+  .contact-row .icon svg { display: block; }
+  .contact-row .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .contact-row .val {
+    font-family: var(--serif);
+    font-size: 17px;
+  }
+  .colophon {
+    margin-top: calc(var(--line) * 1.2);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
+  /* ======= SKETCH SVG DEFAULTS ======= */
+  svg.sketch [data-stroke] {
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  svg.sketch text { fill: currentColor; }
+
+  /* ======= REQUEST DIALOG ======= */
+  dialog.request-dialog {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 420px;
+    width: calc(100% - 32px);
+    padding: 28px 28px 24px;
+    box-shadow: 0 30px 80px -20px rgba(40, 28, 10, 0.4);
+    font-family: var(--serif);
+    position: relative;
+    overflow: hidden;
+  }
+  dialog.request-dialog::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.18; mix-blend-mode: multiply; pointer-events: none;
+  }
+  dialog.request-dialog > * { position: relative; z-index: 1; }
+  dialog.request-dialog::backdrop { background: rgba(40, 28, 10, 0.45); }
+  dialog.request-dialog h4 { font-family: var(--serif); font-weight: 500; font-size: 20px; margin-bottom: 8px; }
+  dialog.request-dialog p { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; }
+  dialog.request-dialog .which { font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  dialog.request-dialog input, dialog.request-dialog textarea {
+    width: 100%; font-family: var(--serif); font-size: 16px;
+    background: transparent; color: var(--ink);
+    border: 0; border-bottom: 1px solid var(--rule);
+    padding: 8px 0; margin-bottom: 14px; outline: none;
+  }
+  dialog.request-dialog input:focus, dialog.request-dialog textarea:focus { border-bottom-color: var(--ink); }
+  dialog.request-dialog textarea { resize: vertical; min-height: 72px; font-family: var(--serif); }
+  dialog.request-dialog .actions { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+  dialog.request-dialog button {
+    appearance: none; background: transparent; border: 0;
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-mute); cursor: pointer; padding: 8px 0;
+  }
+  dialog.request-dialog button.primary { color: var(--ink); }
+  dialog.request-dialog button.primary:hover { color: var(--accent); }
+
+  /* ======= RESPONSIVE ======= */
+  /* Below 960px the tab stack would clip past the viewport — move tabs above the page */
+  @media (max-width: 960px) {
+    .tabs {
+      position: static;
+      width: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 0 0 14px;
+      padding: 0 2px;
+    }
+    .tab {
+      width: auto;
+      height: auto;
+      padding: 7px 14px;
+      transform: none !important;
+      border-radius: 3px;
+    }
+    .tab[data-active] { transform: none !important; outline: 1px solid rgba(0,0,0,0.15); }
+  }
+
+  @media (max-width: 820px) {
+    body { padding: 24px 12px 80px; font-size: 17px; }
+    .paper { padding: 60px 26px 104px; }
+    .paper::before { width: 20px; }
+    .ribbon { right: 9%; }
+    .bellyband { left: -26px; right: -26px; padding: 0 32px; }
+    h1 { font-size: 36px; }
+    .cover-name { font-size: 44px; white-space: normal; }
+    .cover { min-height: 560px; }
+    .work-entry .desc { font-size: 15px; }
+    .elsewhere-grid { grid-template-columns: 1fr; }
+    .footer-nav { left: 26px; right: 26px; bottom: 20px; }
+    .paper-stack-shadow::before, .paper-stack-shadow::after { display: none; }
+  }
+
+  @media print {
+    body { padding: 40px; background: white; }
+    .paper { box-shadow: none; padding: 40px; }
+    .paper::before, .paper::after, .ruling { display: none; }
+    .ribbon, .paper-stack-shadow, .tabs, .footer-nav { display: none; }
+    .page { position: relative !important; opacity: 1 !important; transform: none !important; page-break-after: always; }
+    a { color: var(--ink); background: none; }
+  }
+</style>
+</head>
+<body data-paper="cream" data-ruling="dot" data-pairing="a" data-accent="on" data-desk="on">
+
+<!-- Hidden SVG defs — rough filter shared by sketch elements -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="3" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="1.6"/>
+    </filter>
+    <filter id="rough-soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="0.9"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="notebook paper-stack-shadow">
+
+  <nav class="tabs" aria-label="Sections">
+    <button class="tab" data-pi="0"><span>Hello</span></button>
+    <button class="tab" data-pi="1"><span>Work</span></button>
+    <button class="tab" data-pi="2"><span>Words</span></button>
+    <button class="tab" data-pi="3"><span>Elsewhere</span></button>
+  </nav>
+
+  <article class="paper">
+    <div class="ruling"></div>
+    <div class="ribbon" aria-hidden="true"></div>
+
+    <div class="pages">
+
+      <!-- ===================== PAGE 1: HELLO (cover) ===================== -->
+      <section class="page hello" data-pi="0" data-screen-label="01 hello">
+
+        <div class="bellyband" aria-hidden="true">
+          <span class="bb-name">IAN JOHNSON</span>
+          <span class="bb-date">MAY 2026</span>
+        </div>
+
+        <div class="emboss" aria-hidden="true"><span>IJ</span></div>
+
+        <main class="cover">
+          <p class="cover-vol">No. 1 &nbsp;·&nbsp; May 2026</p>
+          <h1 class="cover-name">Ian Johnson</h1>
+          <p class="cover-strap">San Francisco</p>
+
+          <div class="bookmarks" aria-label="Personal bookmarks">
+            <a class="bm" href="#" data-c="blue">
+              <span class="bm-logo lb">
+                <svg class="sketch" viewBox="0 0 60 24" aria-hidden="true">
+                  <g filter="url(#rough-soft)" data-stroke stroke-width="1.6">
+                    <circle cx="12" cy="12" r="8"/><circle cx="30" cy="12" r="8"/><circle cx="48" cy="12" r="8"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="bm-text">Letterboxd</span>
+            </a>
+            <a class="bm" href="#" data-c="orange">
+              <span class="bm-logo">
+                <svg class="sketch" viewBox="0 0 24 24" aria-hidden="true">
+                  <g filter="url(#rough-soft)" data-stroke stroke-width="1.7">
+                    <path d="M4 6 H20 M4 12 H20 M4 12 L12 20 L20 12"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="bm-text">Substack</span>
+            </a>
+            <a class="bm" href="#" data-c="green">
+              <span class="bm-logo">
+                <svg class="sketch" viewBox="0 0 24 24" aria-hidden="true">
+                  <g filter="url(#rough-soft)" data-stroke stroke-width="1.6">
+                    <rect x="3" y="3" width="18" height="18" rx="3"/>
+                    <line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="7.5" r="0.6"/>
+                    <path d="M12 17 V11 M12 13 Q12.5 11 15 11 Q17 11 17 14 V17"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="bm-text">LinkedIn</span>
+            </a>
+            <a class="bm" href="#" data-c="red">
+              <span class="bm-logo">
+                <svg class="sketch" viewBox="0 0 24 24" aria-hidden="true">
+                  <g filter="url(#rough-soft)" data-stroke stroke-width="1.7">
+                    <path d="M14 2 L5 13 H11 L9 22 L19 9 H13 L14 2 Z"/>
+                  </g>
+                </svg>
+              </span>
+              <span class="bm-text">volt.fm</span>
+            </a>
+          </div>
+
+          <div class="start-here" aria-hidden="true">
+            <svg class="sketch" width="76" height="58" viewBox="0 0 76 58">
+              <g filter="url(#rough)" data-stroke stroke="#3F3625" stroke-width="1.3">
+                <path d="M 2 50 Q 14 42 26 32 Q 42 18 70 8"/>
+                <path d="M 70 8 L 58 10 M 70 8 L 66 18"/>
+              </g>
+            </svg>
+            <span>start here</span>
+          </div>
+        </main>
+      </section>
+
+      <!-- ===================== PAGE 2: WORK ===================== -->
+      <section class="page work-page" data-pi="1" data-screen-label="02 work">
+        <main>
+          <h2 class="section-head"><span class="num">01</span><span>Work, sketched out</span></h2>
+
+          <p class="work-intro">Ten years building AI products that drive revenue. Right now: <strong>Aida</strong>. Before that, three companies that were acquired.</p>
+
+          <!-- Hand-drawn career timeline -->
+          <div class="work-timeline">
+            <svg class="sketch" viewBox="0 0 620 220" aria-label="Career timeline 2014 to present">
+              <g filter="url(#rough)">
+
+                <!-- Baseline -->
+                <path data-stroke stroke="#3F3625" stroke-width="1.6"
+                      d="M 20 168 Q 200 166 320 168 T 600 168"/>
+
+                <!-- Year tick marks + labels -->
+                <g font-family="JetBrains Mono, monospace" font-size="10" fill="#6f6242" letter-spacing="0.05em">
+                  <g data-stroke stroke="#3F3625" stroke-width="1">
+                    <line x1="20"  y1="163" x2="20"  y2="173"/>
+                    <line x1="68"  y1="165" x2="68"  y2="171" stroke-width="0.7"/>
+                    <line x1="116" y1="165" x2="116" y2="171" stroke-width="0.7"/>
+                    <line x1="164" y1="165" x2="164" y2="171" stroke-width="0.7"/>
+                    <line x1="212" y1="163" x2="212" y2="173"/>
+                    <line x1="260" y1="165" x2="260" y2="171" stroke-width="0.7"/>
+                    <line x1="308" y1="165" x2="308" y2="171" stroke-width="0.7"/>
+                    <line x1="356" y1="163" x2="356" y2="173"/>
+                    <line x1="404" y1="165" x2="404" y2="171" stroke-width="0.7"/>
+                    <line x1="452" y1="163" x2="452" y2="173"/>
+                    <line x1="500" y1="165" x2="500" y2="171" stroke-width="0.7"/>
+                    <line x1="548" y1="165" x2="548" y2="171" stroke-width="0.7"/>
+                    <line x1="596" y1="163" x2="596" y2="173"/>
+                  </g>
+                  <text x="20"  y="190" text-anchor="middle">2014</text>
+                  <text x="212" y="190" text-anchor="middle">2018</text>
+                  <text x="356" y="190" text-anchor="middle">2021</text>
+                  <text x="452" y="190" text-anchor="middle">2024</text>
+                  <text x="596" y="190" text-anchor="middle">'26</text>
+                </g>
+
+                <!-- Showtime 2014-2018 (red) -->
+                <g>
+                  <path data-stroke stroke="#A8331C" stroke-width="9" opacity="0.32" d="M 22 104 Q 116 106 210 104"/>
+                  <path data-stroke stroke="#A8331C" stroke-width="1.6" d="M 22 104 Q 116 106 210 104"/>
+                  <circle cx="22"  cy="104" r="3" fill="#A8331C"/>
+                  <circle cx="210" cy="104" r="3" fill="#A8331C"/>
+                  <text x="116" y="90" text-anchor="middle" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#1B170F">Showtime Analytics</text>
+                  <text x="116" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em" fill="#6f6242">VP PRODUCT</text>
+                </g>
+
+                <!-- Flow 2018-2021 (blue) -->
+                <g>
+                  <path data-stroke stroke="#4A6B83" stroke-width="9" opacity="0.32" d="M 212 64 Q 286 62 354 64"/>
+                  <path data-stroke stroke="#4A6B83" stroke-width="1.6" d="M 212 64 Q 286 62 354 64"/>
+                  <circle cx="212" cy="64" r="3" fill="#4A6B83"/>
+                  <circle cx="354" cy="64" r="3" fill="#4A6B83"/>
+                  <text x="283" y="50" text-anchor="middle" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#1B170F">Flow</text>
+                  <text x="283" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em" fill="#6f6242">PRINCIPAL PM</text>
+                </g>
+
+                <!-- Lasso 2021-2023 (green) -->
+                <g>
+                  <path data-stroke stroke="#6A7B4F" stroke-width="9" opacity="0.32" d="M 356 124 Q 391 122 426 124"/>
+                  <path data-stroke stroke="#6A7B4F" stroke-width="1.6" d="M 356 124 Q 391 122 426 124"/>
+                  <circle cx="356" cy="124" r="3" fill="#6A7B4F"/>
+                  <circle cx="426" cy="124" r="3" fill="#6A7B4F"/>
+                  <text x="391" y="142" text-anchor="middle" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#1B170F">Lasso AI</text>
+                  <text x="391" y="156" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em" fill="#6f6242">FOUNDER</text>
+                </g>
+
+                <!-- Aida 2024-present (orange) -->
+                <g>
+                  <path data-stroke stroke="#B0691E" stroke-width="9" opacity="0.32" d="M 452 84 Q 525 82 596 84"/>
+                  <path data-stroke stroke="#B0691E" stroke-width="1.6" d="M 452 84 Q 525 82 596 84"/>
+                  <circle cx="452" cy="84" r="3" fill="#B0691E"/>
+                  <path data-stroke stroke="#B0691E" stroke-width="1.6" d="M 588 78 L 600 84 L 588 90"/>
+                  <text x="525" y="70" text-anchor="middle" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#1B170F">Aida</text>
+                  <text x="525" y="56" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em" fill="#6f6242">FOUNDING PRODUCT LEAD</text>
+                </g>
+
+                <g transform="translate(528, 196)">
+                  <text font-family="Caveat, cursive" font-size="18" fill="#3F3625" transform="rotate(-3)">now ↗</text>
+                </g>
+
+              </g>
+            </svg>
+          </div>
+
+          <div class="work-entries">
+
+            <div class="work-entry" data-c="orange">
+              <span class="swatch" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 20 20"><g filter="url(#rough-soft)" data-stroke stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1.5"/><path d="M5 13 L9 6 M8 15 L14 7 M11 16 L16 10" stroke-width="1"/></g></svg>
+              </span>
+              <div>
+                <div class="head">
+                  <h3>Aida</h3>
+                  <span class="meta">2024 — present</span>
+                  <span class="tag">[by request]</span>
+                </div>
+                <p class="desc">AI revenue intelligence. Meeting agents that handle the work between calls.</p>
+                <p class="related"><a href="#">Anatomy of a meeting: pre, during, post ↗</a></p>
+                <p class="request"><a href="#" class="mono" data-request="Aida">request access →</a></p>
+              </div>
+            </div>
+
+            <div class="work-entry" data-c="green">
+              <span class="swatch" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 20 20"><g filter="url(#rough-soft)" data-stroke stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1.5"/><path d="M5 13 L9 6 M8 15 L14 7 M11 16 L16 10" stroke-width="1"/></g></svg>
+              </span>
+              <div>
+                <div class="head">
+                  <h3>Lasso AI</h3>
+                  <span class="meta">2021 — 2023</span>
+                  <span class="tag">[by request]</span>
+                </div>
+                <p class="desc">Creator-economy matching. Bootstrapped, then acquired by Yard.</p>
+                <p class="request"><a href="#" class="mono" data-request="Lasso AI">request access →</a></p>
+              </div>
+            </div>
+
+            <div class="work-entry" data-c="blue">
+              <span class="swatch" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 20 20"><g filter="url(#rough-soft)" data-stroke stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1.5"/><path d="M5 13 L9 6 M8 15 L14 7 M11 16 L16 10" stroke-width="1"/></g></svg>
+              </span>
+              <div>
+                <div class="head">
+                  <h3>Flow</h3>
+                  <span class="meta">2018 — 2021</span>
+                  <span class="tag">[by request]</span>
+                </div>
+                <p class="desc">Cross-border checkout. Acquired by Global-e for $500M.</p>
+                <p class="request"><a href="#" class="mono" data-request="Flow">request access →</a></p>
+              </div>
+            </div>
+
+            <div class="work-entry" data-c="red">
+              <span class="swatch" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 20 20"><g filter="url(#rough-soft)" data-stroke stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1.5"/><path d="M5 13 L9 6 M8 15 L14 7 M11 16 L16 10" stroke-width="1"/></g></svg>
+              </span>
+              <div>
+                <div class="head">
+                  <h3>Showtime Analytics</h3>
+                  <span class="meta">2014 — 2018</span>
+                  <span class="tag">[by request]</span>
+                </div>
+                <p class="desc">Cinema analytics, in a joint venture with Alibaba Pictures. Scaled to 26 countries.</p>
+                <p class="request"><a href="#" class="mono" data-request="Showtime Analytics">request access →</a></p>
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </section>
+
+      <!-- ===================== PAGE 3: WORDS ===================== -->
+      <section class="page words-page" data-pi="2" data-screen-label="03 words">
+        <main>
+          <h2 class="section-head"><span class="num">02</span><span>Words &amp; Notebooks</span></h2>
+
+          <p class="subhead first">Essays</p>
+          <ul class="list">
+            <li>
+              <span class="mark substack" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.7"><path d="M4 6 H20 M4 12 H20 M4 12 L12 20 L20 12"/></g></svg>
+              </span>
+              <span class="t"><a href="#">Essay title goes here</a></span>
+              <span class="m">SUBSTACK &nbsp;·&nbsp; 2025</span>
+            </li>
+            <li>
+              <span class="mark substack" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.7"><path d="M4 6 H20 M4 12 H20 M4 12 L12 20 L20 12"/></g></svg>
+              </span>
+              <span class="t"><a href="#">A second essay, longer, on agents</a></span>
+              <span class="m">SUBSTACK &nbsp;·&nbsp; 2025</span>
+            </li>
+            <li>
+              <span class="mark substack" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.7"><path d="M4 6 H20 M4 12 H20 M4 12 L12 20 L20 12"/></g></svg>
+              </span>
+              <span class="t"><a href="#">Notes from building Lasso, in retrospect</a></span>
+              <span class="m">SUBSTACK &nbsp;·&nbsp; 2024</span>
+            </li>
+            <li>
+              <span class="mark substack" aria-hidden="true">
+                <svg class="sketch" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.7"><path d="M4 6 H20 M4 12 H20 M4 12 L12 20 L20 12"/></g></svg>
+              </span>
+              <span class="t"><a href="#">On checkout, cross-border, and why it&rsquo;s hard</a></span>
+              <span class="m">SUBSTACK &nbsp;·&nbsp; 2023</span>
+            </li>
+          </ul>
+          <p style="margin-top: 14px;"><a href="#" class="mono">all writing →</a></p>
+
+          <p class="subhead">Side projects</p>
+          <ul class="list">
+            <li>
+              <span class="mark" aria-hidden="true">
+                <svg class="sketch" width="14" height="14" viewBox="0 0 14 14"><g filter="url(#rough-soft)" data-stroke stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="5"/></g></svg>
+              </span>
+              <span class="t"><a href="#">Sketch tool for product flows</a> <em>public</em></span>
+              <span class="m">2025</span>
+            </li>
+            <li>
+              <span class="mark" aria-hidden="true">
+                <svg class="sketch" width="14" height="14" viewBox="0 0 14 14"><g filter="url(#rough-soft)" data-stroke stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="5"/></g></svg>
+              </span>
+              <span class="t"><a href="#">A small CLI for journaling</a> <em>public</em></span>
+              <span class="m">2024</span>
+            </li>
+            <li>
+              <span class="mark" aria-hidden="true">
+                <svg class="sketch" width="14" height="14" viewBox="0 0 14 14"><g filter="url(#rough-soft)" data-stroke stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="5"/></g></svg>
+              </span>
+              <span class="t"><a href="#">Letterboxd → markdown exporter</a> <em>public</em></span>
+              <span class="m">2024</span>
+            </li>
+          </ul>
+        </main>
+      </section>
+
+      <!-- ===================== PAGE 4: ELSEWHERE ===================== -->
+      <section class="page elsewhere-page" data-pi="3" data-screen-label="04 elsewhere">
+        <main>
+          <h2 class="section-head"><span class="num">03</span><span>Elsewhere</span></h2>
+
+          <div class="elsewhere-grid">
+            <div class="cell" data-c="blue">
+              <span class="icon" aria-hidden="true">
+                <!-- Letterboxd, pencil -->
+                <svg class="sketch" width="34" height="20" viewBox="0 0 60 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="30" cy="12" r="8"/><circle cx="48" cy="12" r="8"/></g></svg>
+              </span>
+              <div>
+                <h4>Films</h4>
+                <p><a href="#">Letterboxd</a>. A running film diary — mostly slow cinema, mid-career Hou Hsiao-hsien, and anything by Powell &amp; Pressburger.</p>
+              </div>
+            </div>
+
+            <div class="cell" data-c="red">
+              <span class="icon" aria-hidden="true">
+                <!-- volt.fm, pencil -->
+                <svg class="sketch" width="22" height="24" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke-width="1.7"><path d="M14 2 L5 13 H11 L9 22 L19 9 H13 L14 2 Z"/></g></svg>
+              </span>
+              <div>
+                <h4>Music</h4>
+                <p><a href="#">volt.fm</a>. Mostly ambient and dub techno, with a lot of ECM.</p>
+              </div>
+            </div>
+
+            <div class="cell" data-c="green">
+              <span class="icon" aria-hidden="true">
+                <!-- map pin -->
+                <svg class="sketch" width="30" height="26" viewBox="0 0 34 28"><g filter="url(#rough)" data-stroke stroke="currentColor" stroke-width="1.4"><path d="M 17 3 Q 9 3 9 11 Q 9 17 17 25 Q 25 17 25 11 Q 25 3 17 3 Z"/><circle cx="17" cy="11" r="3"/></g></svg>
+              </span>
+              <div>
+                <h4>Cities</h4>
+                <p>Lists of places worth eating, drinking, sitting in. <a href="#">SF</a>, <a href="#">Dublin</a>, <a href="#">Tokyo</a>, <a href="#">Lisbon</a>.</p>
+              </div>
+            </div>
+
+            <div class="cell" data-c="orange">
+              <span class="icon" aria-hidden="true">
+                <!-- wine glass -->
+                <svg class="sketch" width="30" height="26" viewBox="0 0 34 28"><g filter="url(#rough)" data-stroke stroke="currentColor" stroke-width="1.4"><path d="M 9 3 Q 9 13 17 16 Q 25 13 25 3 Z"/><line x1="17" y1="16" x2="17" y2="24"/><line x1="12" y1="25" x2="22" y2="25"/></g></svg>
+              </span>
+              <div>
+                <h4>Hospitality</h4>
+                <p>Co-founder of a natural wine bar and a coffee shop. Both still open, both still small.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-block">
+            <h2 class="section-head"><span class="num">04</span><span>Get in touch</span></h2>
+
+            <div class="contact-row">
+              <span class="icon" aria-hidden="true">
+                <!-- LinkedIn, pencil -->
+                <svg class="sketch" width="22" height="22" viewBox="0 0 24 24"><g filter="url(#rough-soft)" data-stroke stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="7.5" r="0.6"/><path d="M12 17 V11 M12 13 Q12.5 11 15 11 Q17 11 17 14 V17"/></g></svg>
+              </span>
+              <span class="val"><a href="#">LinkedIn</a></span>
+              <span class="label">Primary</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="icon" aria-hidden="true">
+                <!-- envelope -->
+                <svg class="sketch" width="30" height="26" viewBox="0 0 34 28"><g filter="url(#rough)" data-stroke stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="28" height="18" rx="1"/><path d="M 3 8 L 17 18 L 31 8"/></g></svg>
+              </span>
+              <span class="val"><a href="mailto:hello@ianjohnson.io">hello@ianjohnson.io</a></span>
+              <span class="label">Email</span>
+            </div>
+
+            <p class="colophon">Set in Source Serif 4 &amp; JetBrains Mono. Last touched, May 2026. &nbsp;·&nbsp; © Ian Johnson</p>
+          </div>
+        </main>
+      </section>
+
+    </div>
+
+    <!-- Folio + prev/next at bottom of paper -->
+    <div class="footer-nav">
+      <span class="folio"><em id="folio-num">i</em> &nbsp;/&nbsp; iv</span>
+      <span class="prevnext">
+        <button id="prev-btn" aria-label="Previous page">← prev</button>
+        <button id="next-btn" aria-label="Next page">next →</button>
+      </span>
+    </div>
+
+  </article>
+</div>
+
+<!-- Request-access dialog -->
+<dialog class="request-dialog" id="request-dialog">
+  <p class="which" id="request-which">Project</p>
+  <h4>Send a note, get the page.</h4>
+  <p>Most of my work writeups are password-protected. Tell me a bit about you and what you&rsquo;re working on, and I&rsquo;ll send the link.</p>
+  <form id="request-form" method="dialog">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="context" placeholder="What you&rsquo;re working on (optional)"></textarea>
+    <div class="actions">
+      <button type="button" id="request-cancel">Cancel</button>
+      <button type="submit" class="primary">Send →</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="tweaks-root"></div>
+
+<script>
+  // ===== Page switching (with paper page-turn) =====
+  (function() {
+    const pages = document.querySelectorAll('.page');
+    const tabs = document.querySelectorAll('.tab');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const folioNum = document.getElementById('folio-num');
+    const slugs = ['hello', 'work', 'words', 'elsewhere'];
+    const folioRomans = ['i', 'ii', 'iii', 'iv'];
+    let current = -1;
+    let pendingFinalize = null;
+
+    const reducedMotion = () =>
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function clearTurnClasses() {
+      pages.forEach(p => p.classList.remove('turning', 'turn-fwd', 'turn-back'));
+    }
+
+    function applyChrome(i) {
+      tabs.forEach((t, j) => {
+        if (j === i) t.setAttribute('data-active', '');
+        else t.removeAttribute('data-active');
+      });
+      if (i === 0) document.body.setAttribute('data-on-cover', '');
+      else document.body.removeAttribute('data-on-cover');
+      folioNum.textContent = folioRomans[i] || (i + 1);
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === pages.length - 1;
+      history.replaceState(null, '', '#' + slugs[i]);
+    }
+
+    function scrollToPaper() {
+      const paper = document.querySelector('.paper');
+      const y = paper.getBoundingClientRect().top + window.scrollY - 24;
+      if (window.scrollY > y + 100) window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    function showOnly(i) {
+      pages.forEach((p, j) => {
+        if (j === i) p.setAttribute('data-active', '');
+        else p.removeAttribute('data-active');
+      });
+    }
+
+    function setPage(i, animate = true) {
+      i = Math.max(0, Math.min(pages.length - 1, i));
+      const prev = current;
+      if (i === prev) return;
+
+      if (pendingFinalize) pendingFinalize();
+      clearTurnClasses();
+
+      current = i;
+      applyChrome(i);
+
+      if (!animate || reducedMotion() || prev < 0) {
+        showOnly(i);
+        scrollToPaper();
+        return;
+      }
+
+      const forward = i > prev;
+      const turner = forward ? pages[prev] : pages[i];
+
+      if (forward) {
+        pages[i].setAttribute('data-active', '');
+        pages.forEach((p, j) => { if (j !== i && j !== prev) p.removeAttribute('data-active'); });
+        turner.removeAttribute('data-active');
+        turner.classList.add('turning', 'turn-fwd');
+      } else {
+        pages[prev].setAttribute('data-active', '');
+        turner.classList.add('turning', 'turn-back');
+      }
+
+      let finished = false;
+      const finalize = () => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timer);
+        turner.removeEventListener('animationend', onEnd);
+        turner.classList.remove('turning', 'turn-fwd', 'turn-back');
+        showOnly(i);
+        if (pendingFinalize === finalize) pendingFinalize = null;
+        scrollToPaper();
+      };
+      const onEnd = () => finalize();
+      turner.addEventListener('animationend', onEnd);
+      const timer = setTimeout(finalize, 420);
+      pendingFinalize = finalize;
+      scrollToPaper();
+    }
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => setPage(i)));
+    prevBtn.addEventListener('click', () => setPage(current - 1));
+    nextBtn.addEventListener('click', () => setPage(current + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.matches('input, textarea')) return;
+      if (e.key === 'ArrowRight') { setPage(current + 1); e.preventDefault(); }
+      else if (e.key === 'ArrowLeft') { setPage(current - 1); e.preventDefault(); }
+    });
+
+    const initial = slugs.indexOf((location.hash || '').slice(1));
+    setPage(initial >= 0 ? initial : 0, false);
+
+    window.addEventListener('hashchange', () => {
+      const idx = slugs.indexOf((location.hash || '').slice(1));
+      if (idx >= 0 && idx !== current) setPage(idx);
+    });
+  })();
+
+  // ===== Request dialog =====
+  (function() {
+    const dlg = document.getElementById('request-dialog');
+    const which = document.getElementById('request-which');
+    document.querySelectorAll('[data-request]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        which.textContent = a.getAttribute('data-request');
+        if (dlg.showModal) dlg.showModal();
+      });
+    });
+    document.getElementById('request-cancel').addEventListener('click', () => dlg.close());
+    document.getElementById('request-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      dlg.innerHTML = '<p class="which">Sent</p><h4>Thanks. I’ll be in touch within a few days.</h4><div class="actions" style="justify-content:flex-end;margin-top:18px"><button type="button" class="primary" onclick="document.getElementById(\'request-dialog\').close()">Close</button></div>';
+    });
+  })();
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+
+</body>
+</html>

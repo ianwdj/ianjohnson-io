@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ian Johnson</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* paper variants */
+    --paper-cream:   #F1E9D2;
+    --paper-warm:    #ECE0BE;
+    --paper-cool:    #EFEBDD;
+
+    --paper: var(--paper-cream);
+    --paper-deep: color-mix(in oklab, var(--paper), #6b5a30 6%);
+    --ink: #1E1A12;
+    --ink-soft: #463E2C;
+    --ink-mute: #8a7a5c;
+    --rule: color-mix(in oklab, var(--paper), #6b5a30 22%);
+    --accent: #B23A1E;            /* MD ribbon red, used sparingly */
+
+    --serif: "Source Serif 4", "Spectral", Georgia, serif;
+    --mono:  "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --sans:  ui-sans-serif, -apple-system, "Helvetica Neue", system-ui;
+
+    --line: 28px;
+    --col: 640px;
+    --gutter: 96px;
+  }
+
+  /* font pairing tweak */
+  body[data-pairing="b"] {
+    --serif: "Spectral", "Source Serif 4", Georgia, serif;
+    --mono:  "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  /* paper tweak */
+  body[data-paper="warm"] { --paper: var(--paper-warm); }
+  body[data-paper="cool"] { --paper: var(--paper-cool); }
+
+  /* accent toggle */
+  body[data-accent="off"] { --accent: var(--ink); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--paper); }
+
+  body {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: var(--line);
+    font-feature-settings: "kern", "liga", "onum";
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 80px 24px 160px;
+  }
+
+  /* page = the notebook page itself.
+     subtle paper grain via a layered gradient on body::before */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(1200px 800px at 20% -10%, color-mix(in oklab, var(--paper), white 12%), transparent 60%),
+      radial-gradient(900px 700px at 110% 110%, color-mix(in oklab, var(--paper), black 6%), transparent 60%);
+    mix-blend-mode: multiply;
+    opacity: .55;
+    z-index: 0;
+  }
+
+  /* ruling tweak — applied to a fixed background underneath content */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  body[data-ruling="ruled"]::after {
+    opacity: 1;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line) - 1px),
+      color-mix(in oklab, var(--paper), #6b5a30 28%) calc(var(--line) - 1px),
+      color-mix(in oklab, var(--paper), #6b5a30 28%) var(--line)
+    );
+    background-position: 0 14px;
+    opacity: .35;
+  }
+  body[data-ruling="dot"]::after {
+    opacity: .6;
+    background-image: radial-gradient(circle, color-mix(in oklab, var(--paper), #6b5a30 40%) 1px, transparent 1.4px);
+    background-size: var(--line) var(--line);
+    background-position: 14px 14px;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: var(--col);
+    margin: 0 auto;
+  }
+
+  /* hairline rule between sections */
+  hr.rule {
+    border: 0;
+    height: 1px;
+    background: var(--rule);
+    margin: calc(var(--line) * 2.5) 0 calc(var(--line) * 1.5);
+  }
+
+  /* ── Type ── */
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: calc(var(--line) * 0.9);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2 .num { color: var(--accent); font-weight: 500; }
+  h2 .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rule); display: inline-block; transform: translateY(-2px); }
+
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+
+  p { max-width: 56ch; }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(to top, var(--ink) 0, var(--ink) 1px, transparent 1px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 100%;
+    padding-bottom: 1px;
+    transition: color .15s ease, background-image .15s ease;
+  }
+  a:hover {
+    color: var(--accent);
+    background-image: linear-gradient(to top, var(--accent) 0, var(--accent) 1px, transparent 1px);
+  }
+  /* monospace links don't get a baseline; they get a dotted underline */
+  a.mono {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--ink-mute);
+    text-underline-offset: 3px;
+    background: none;
+    padding: 0;
+  }
+  a.mono:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* ── Header ── */
+  header.masthead {
+    margin-bottom: calc(var(--line) * 3);
+  }
+  header.masthead .role {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin-bottom: 6px;
+  }
+  header.masthead .where {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── About prose ── */
+  section.about p + p { margin-top: var(--line); }
+  section.about p { font-size: 19px; line-height: calc(var(--line) + 2px); color: var(--ink-soft); }
+  section.about p strong { color: var(--ink); font-weight: 500; }
+
+  /* ── Work list ── */
+  .entries { display: flex; flex-direction: column; gap: calc(var(--line) * 1.1); }
+  .entry { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .entry .row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .entry h3 { display: inline; }
+  .entry .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .entry .desc {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .entry .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    color: var(--ink-mute);
+    margin-left: 8px;
+    font-style: normal;
+  }
+
+  /* Locked state: title not a link, [by request] in mono after.
+     Hovering the row exposes a quiet "request access" link. */
+  .entry.locked .request {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity .2s ease, transform .2s ease;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+  .entry.locked:hover .request,
+  .entry.locked:focus-within .request {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .entry.locked .request a { color: var(--ink-soft); }
+
+  /* ── Featured project plate ── */
+  .featured {
+    margin: calc(var(--line) * 0.4) 0 0;
+    display: grid;
+    gap: calc(var(--line) * 0.8);
+  }
+  .plate {
+    aspect-ratio: 16/10;
+    width: 100%;
+    background: color-mix(in oklab, var(--paper), black 4%);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    /* tipped-in plate feel: very slight shadow */
+    box-shadow:
+      0 1px 0 color-mix(in oklab, var(--paper), white 30%) inset,
+      0 1px 1px rgba(60, 40, 10, 0.04),
+      0 8px 24px -16px rgba(60, 40, 10, 0.18);
+  }
+  .plate::before {
+    /* placeholder pattern: subtle diagonal hatch */
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(135deg,
+      transparent 0, transparent 8px,
+      color-mix(in oklab, var(--paper), black 6%) 8px,
+      color-mix(in oklab, var(--paper), black 6%) 9px);
+    opacity: .35;
+  }
+  .plate .caption-overlay {
+    position: absolute;
+    bottom: 12px; left: 14px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+  .plate a.cover {
+    position: absolute; inset: 0;
+    background: none; padding: 0;
+  }
+  .featured .caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .featured .blurb {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+  .featured h3 a { font-weight: 500; }
+
+  /* ── Lists (writing / side / personal) ── */
+  ul.list { list-style: none; display: flex; flex-direction: column; }
+  ul.list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  ul.list li:last-child { border-bottom: 0; }
+  ul.list .t { font-family: var(--serif); font-size: 17px; }
+  ul.list .m { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--ink-mute); white-space: nowrap; }
+  ul.list .t em { font-style: italic; color: var(--ink-soft); font-weight: 400; }
+
+  /* ── Personal grid ── */
+  .personal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--line) * 1.2) 36px;
+  }
+  .personal h4 {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .personal p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* ── Contact ── */
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    font-size: 17px;
+  }
+  .contact .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  /* ── Colophon ── */
+  footer.colo {
+    margin-top: calc(var(--line) * 4);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+
+  /* ── Small screens ── */
+  @media (max-width: 640px) {
+    body { padding: 56px 22px 120px; font-size: 17px; }
+    h1 { font-size: 36px; }
+    .entry .row { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .entry .meta { white-space: normal; }
+    .personal { grid-template-columns: 1fr; }
+    footer.colo { flex-direction: column; gap: 6px; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { padding: 40px; background: white; }
+    body::before, body::after { display: none; }
+    a { color: var(--ink); background: none; }
+    h2 .num { color: var(--ink); }
+  }
+
+  /* In-page request-access dialog (very quiet, modal but warm) */
+  dialog.request-dialog {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 420px;
+    width: calc(100% - 32px);
+    padding: 28px 28px 24px;
+    box-shadow: 0 20px 60px -20px rgba(60, 40, 10, 0.3);
+    font-family: var(--serif);
+  }
+  dialog.request-dialog::backdrop {
+    background: color-mix(in oklab, var(--paper), black 30%);
+    opacity: 0.55;
+  }
+  dialog.request-dialog h4 {
+    font-family: var(--serif); font-weight: 500; font-size: 19px;
+    margin-bottom: 8px;
+  }
+  dialog.request-dialog p { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; }
+  dialog.request-dialog .which {
+    font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  dialog.request-dialog input, dialog.request-dialog textarea {
+    width: 100%; font-family: var(--serif); font-size: 16px;
+    background: transparent; color: var(--ink);
+    border: 0; border-bottom: 1px solid var(--rule);
+    padding: 8px 0; margin-bottom: 14px;
+    outline: none;
+  }
+  dialog.request-dialog input:focus, dialog.request-dialog textarea:focus {
+    border-bottom-color: var(--ink);
+  }
+  dialog.request-dialog textarea { resize: vertical; min-height: 72px; }
+  dialog.request-dialog .actions {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 4px;
+  }
+  dialog.request-dialog button {
+    appearance: none; background: transparent; border: 0;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-mute); cursor: pointer;
+    padding: 8px 0;
+  }
+  dialog.request-dialog button.primary { color: var(--ink); }
+  dialog.request-dialog button.primary:hover { color: var(--accent); }
+  dialog.request-dialog button:hover { color: var(--ink); }
+</style>
+</head>
+<body data-paper="cream" data-ruling="blank" data-pairing="a" data-accent="on">
+
+<main>
+
+  <header class="masthead" data-screen-label="masthead">
+    <h1>Ian Johnson</h1>
+    <p class="role">Founding Product Lead at Aida. Ten years building AI products that drive revenue.</p>
+    <p class="where">San Francisco, by way of Dublin.</p>
+  </header>
+
+  <section class="about" data-screen-label="about">
+    <h2><span class="num">01</span><span>About</span></h2>
+    <p>I build AI products that move the top line. Right now that means <strong>Aida</strong>, a seed-stage company figuring out what revenue intelligence looks like when meeting agents are real.</p>
+    <p>Before Aida I founded <strong>Lasso AI</strong> for the creator economy, bootstrapped to acquisition. Earlier I ran product at <strong>Flow</strong> through a $500M acquisition by Global-e, and led product at <strong>Showtime Analytics</strong>, an Alibaba Pictures joint venture that scaled into 26 countries.</p>
+    <p>Outside work I co-founded a natural wine bar and a coffee shop. I read, I watch, I keep too many lists.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="work">
+    <h2><span class="num">02</span><span>Selected work</span></h2>
+
+    <div class="entries">
+
+      <article class="entry locked">
+        <div class="row">
+          <h3>Aida <em class="tag">[by request]</em></h3>
+          <span class="meta">FOUNDING PRODUCT LEAD &nbsp;·&nbsp; 2024 –</span>
+        </div>
+        <p class="desc">AI revenue intelligence. Building meeting agents that actually do the work between calls.</p>
+        <p class="request"><a href="#" class="mono" data-request="Aida">request access →</a></p>
+      </article>
+
+      <article class="entry locked">
+        <div class="row">
+          <h3>Lasso AI <em class="tag">[by request]</em></h3>
+          <span class="meta">FOUNDER &nbsp;·&nbsp; 2021 – 2023</span>
+        </div>
+        <p class="desc">Creator-economy matching. Bootstrapped, acquired by Yard.</p>
+        <p class="request"><a href="#" class="mono" data-request="Lasso AI">request access →</a></p>
+      </article>
+
+      <article class="entry locked">
+        <div class="row">
+          <h3>Flow <em class="tag">[by request]</em></h3>
+          <span class="meta">PRINCIPAL PM &nbsp;·&nbsp; 2018 – 2021</span>
+        </div>
+        <p class="desc">Cross-border checkout. $500M acquisition by Global-e.</p>
+        <p class="request"><a href="#" class="mono" data-request="Flow">request access →</a></p>
+      </article>
+
+      <article class="entry locked">
+        <div class="row">
+          <h3>Showtime Analytics <em class="tag">[by request]</em></h3>
+          <span class="meta">VP PRODUCT &nbsp;·&nbsp; 2014 – 2018</span>
+        </div>
+        <p class="desc">Cinema analytics, in a joint venture with Alibaba Pictures. Scaled to 26 countries.</p>
+        <p class="request"><a href="#" class="mono" data-request="Showtime Analytics">request access →</a></p>
+      </article>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="featured">
+    <h2><span class="num">03</span><span>Featured</span></h2>
+
+    <div class="featured">
+      <a href="#" class="plate" aria-label="Open interactive canvas">
+        <span class="caption-overlay">Plate I &nbsp;·&nbsp; Interactive canvas</span>
+      </a>
+      <div>
+        <h3 style="margin-bottom: 8px;"><a href="#">A year of meeting agents, made explorable&nbsp;→</a></h3>
+        <p class="blurb">A year of building AI meeting agents for sales, made explorable. Three layers in one canvas: product, design decisions, architecture. Hand-drawn, pannable, guided tour.</p>
+      </div>
+      <div class="caption">
+        <span>Public &nbsp;·&nbsp; Best viewed wide</span>
+        <span>2025</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="writing">
+    <h2><span class="num">04</span><span>Writing</span></h2>
+    <ul class="list">
+      <li><span class="t"><a href="#">Essay title goes here</a></span><span class="m">SUBSTACK &nbsp;·&nbsp; 2025</span></li>
+      <li><span class="t"><a href="#">A second essay, longer, on agents</a></span><span class="m">SUBSTACK &nbsp;·&nbsp; 2025</span></li>
+      <li><span class="t"><a href="#">Notes from building Lasso, in retrospect</a></span><span class="m">SUBSTACK &nbsp;·&nbsp; 2024</span></li>
+      <li><span class="t"><a href="#">On checkout, cross-border, and why it&rsquo;s hard</a></span><span class="m">SUBSTACK &nbsp;·&nbsp; 2023</span></li>
+    </ul>
+    <p style="margin-top: 18px;"><a href="#" class="mono">all writing →</a></p>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="side">
+    <h2><span class="num">05</span><span>Side projects</span></h2>
+    <ul class="list">
+      <li><span class="t"><a href="#">Sketch tool for product flows</a> <em>&nbsp;public</em></span><span class="m">2025</span></li>
+      <li><span class="t"><a href="#">A small CLI for journaling</a> <em>&nbsp;public</em></span><span class="m">2024</span></li>
+      <li><span class="t"><a href="#">Letterboxd → markdown exporter</a> <em>&nbsp;public</em></span><span class="m">2024</span></li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="personal">
+    <h2><span class="num">06</span><span>Elsewhere</span></h2>
+
+    <div class="personal">
+      <div>
+        <h4>Films</h4>
+        <p><a href="#">Letterboxd</a>. A running diary. Heavy on slow cinema, mid-career Hou Hsiao-hsien, anything Powell &amp; Pressburger.</p>
+      </div>
+      <div>
+        <h4>Music</h4>
+        <p><a href="#">volt.fm</a>. Mostly ambient, dub techno, a lot of ECM.</p>
+      </div>
+      <div>
+        <h4>Cities</h4>
+        <p>Lists of places worth eating, drinking, sitting in. <a href="#">SF</a>, <a href="#">Dublin</a>, <a href="#">Tokyo</a>, <a href="#">Lisbon</a>.</p>
+      </div>
+      <div>
+        <h4>Hospitality</h4>
+        <p>Co-founder of a natural wine bar and a coffee shop. Both still open, both still small.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section data-screen-label="contact">
+    <h2><span class="num">07</span><span>Contact</span></h2>
+    <p class="contact">
+      <span><span class="label">Primary</span><a href="#">LinkedIn</a></span>
+      <span><span class="label">Email</span><a href="mailto:hello@example.com">hello@example.com</a></span>
+    </p>
+  </section>
+
+  <footer class="colo">
+    <span>Set in Source Serif 4 &amp; JetBrains Mono. Last touched, May 2026.</span>
+    <span>© Ian Johnson</span>
+  </footer>
+
+</main>
+
+<!-- Request-access dialog (locked work) -->
+<dialog class="request-dialog" id="request-dialog">
+  <p class="which" id="request-which">Project</p>
+  <h4>Send a note, get the page.</h4>
+  <p>Most of my work writeups are password-protected. Tell me a bit about you and what you&rsquo;re working on, and I&rsquo;ll send the link.</p>
+  <form id="request-form" method="dialog">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="context" placeholder="What you&rsquo;re working on (optional)"></textarea>
+    <div class="actions">
+      <button type="button" id="request-cancel">Cancel</button>
+      <button type="submit" class="primary">Send →</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="tweaks-root"></div>
+
+<script>
+  // Request-access dialog wiring
+  (function() {
+    var dlg = document.getElementById('request-dialog');
+    var which = document.getElementById('request-which');
+    document.querySelectorAll('[data-request]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        which.textContent = a.getAttribute('data-request');
+        if (dlg.showModal) dlg.showModal();
+      });
+    });
+    document.getElementById('request-cancel').addEventListener('click', function() {
+      dlg.close();
+    });
+    document.getElementById('request-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Quiet success state: replace dialog body
+      dlg.innerHTML = '<p class="which">Sent</p><h4>Thanks. I\u2019ll be in touch within a few days.</h4><div class="actions" style="justify-content:flex-end;margin-top:18px"><button type="button" class="primary" onclick="document.getElementById(\'request-dialog\').close()">Close</button></div>';
+    });
+  })();
+</script>
+
+<!-- React island for the Tweaks panel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+
+</body>
+</html>

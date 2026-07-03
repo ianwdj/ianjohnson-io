@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   TOKENS  (daylight default / lamplight = .dark)
+   ============================================================ */
+:root {
+  --paper: #f1e7c7;          /* warm cream cardstock */
+  --paper-2: #ece0b9;        /* faint second sheet under the top one */
+  --paper-edge: #d9caa0;
+  --ink: #1b170f;
+  --ink-soft: #45402f;
+  --ink-mute: #8a7e60;
+  --rule: #cdbf99;           /* hairline ≈ color-mix(paper, #6b5a30 26%) */
+
+  --accent: #a8331c;         /* the single warm highlight */
+
+  --pencil-graphite: #3f3625;
+  --pencil-red: #a8331c;
+  --pencil-blue: #3f5e78;
+  --pencil-green: #5e7046;
+  --pencil-orange: #a8611b;
+
+  /* desk: dark warm charcoal so the cream sheet is pushed firmly forward */
+  --desk: #2c2a26;
+  --desk-light: rgba(255, 244, 220, 0.1);
+  --desk-shadow: rgba(0, 0, 0, 0.55);
+
+  /* binder casing edge — leather cover the page sits inside */
+  --binder: #5b4a36;
+  --binder-dark: #3a2f22;
+  --tab-recessed: color-mix(in oklab, var(--paper), #4a3a16 14%);
+}
+
+.dark {
+  --paper: #2a2620;
+  --paper-2: #25211c;
+  --paper-edge: #1f1c17;
+  --ink: #ece3cf;
+  --ink-soft: #c8bfa9;
+  --ink-mute: #978c74;
+  --rule: #423c31;
+
+  --accent: #cf6243;
+
+  --pencil-graphite: #cabfa6;
+  --pencil-red: #cf6243;
+  --pencil-blue: #8fb0c8;
+  --pencil-green: #a3bb86;
+  --pencil-orange: #cf9a5a;
+
+  --desk: #16120d;
+  --desk-light: rgba(120, 96, 60, 0.18);
+  --desk-shadow: rgba(0, 0, 0, 0.6);
+
+  --binder: #3a3025;
+  --binder-dark: #1c160f;
+  --tab-recessed: color-mix(in oklab, var(--paper), black 16%);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    background: var(--desk);
+  }
+  body {
+    min-height: 100dvh;
+    color: var(--ink);
+    font-family: theme("fontFamily.serif");
+    font-size: 18px;
+    line-height: 1.55;
+    font-feature-settings: "kern", "liga", "onum";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+
+    /* muted desk: ambient top light, soft far-corner shadow, faint grain */
+    background-color: var(--desk);
+    background-image:
+      radial-gradient(1300px 850px at 28% -10%, var(--desk-light), transparent 60%),
+      radial-gradient(1100px 950px at 104% 112%, var(--desk-shadow), transparent 62%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-blend-mode: soft-light, multiply, normal;
+    background-attachment: fixed, fixed, fixed;
+  }
+  /* tame the grain layer */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+  }
+}
+
+/* ============================================================
+   NOTEBOOK MATERIAL
+   ============================================================ */
+@layer components {
+  /* the binder casing: a quiet leather/linen edge the paper sits inside */
+  .binder {
+    position: relative;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--binder-dark) 0, var(--binder) 14px, var(--binder) calc(100% - 4px), var(--binder-dark) 100%);
+    padding-left: 12px; /* the spine edge peeks on the left */
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.18) inset,
+      0 28px 50px -28px var(--desk-shadow),
+      0 60px 90px -50px var(--desk-shadow);
+  }
+
+  /* smooth, lamp-like surface fade on theme change (desk + paper only) */
+  body,
+  .paper,
+  .binder {
+    transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+  }
+
+  /* active folder tab: concave fillets so it reads as molded from the page,
+     not a 90° computerized corner */
+  .folder-tab::before,
+  .folder-tab::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease;
+  }
+  .folder-tab::before {
+    left: -8px;
+    border-bottom-right-radius: 9px;
+    box-shadow: 3px 3px 0 3px var(--paper);
+  }
+  .folder-tab::after {
+    right: -8px;
+    border-bottom-left-radius: 9px;
+    box-shadow: -3px 3px 0 3px var(--paper);
+  }
+  .folder-tab[data-state="active"]::before,
+  .folder-tab[data-state="active"]::after {
+    opacity: 1;
+  }
+
+  /* cream paper sheet */
+  .paper {
+    position: relative;
+    background: var(--paper);
+    border-radius: 2px 3px 3px 2px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.45) inset,
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0 12px 20px -6px rgba(0, 0, 0, 0.35),
+      0 32px 60px -22px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  /* structural binding gutter — a real crease down the inner left edge */
+  .paper::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 28px;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.16) 0,
+      rgba(0, 0, 0, 0.06) 12px,
+      transparent 28px
+    );
+  }
+  /* very faint paper grain */
+  .paper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+  }
+  /* ghost sheets peeking under the top sheet for stack depth */
+  .paper-stack::before,
+  .paper-stack::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--paper-2);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .paper-stack::before {
+    inset: 5px -3px -8px 5px;
+    transform: rotate(-0.25deg);
+    box-shadow: 0 14px 28px -16px var(--desk-shadow);
+  }
+  .paper-stack::after {
+    inset: 2px -1px -4px 3px;
+    background: color-mix(in oklab, var(--paper), var(--paper-2) 50%);
+  }
+
+  /* dot-grid ruling on interior pages */
+  .ruling-dots {
+    background-image: radial-gradient(circle, var(--rule) 0.7px, transparent 1.1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* ============================================================
+   SKETCH SVG DEFAULTS (hand-drawn marks)
+   ============================================================ */
+svg.sketch [data-stroke] {
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg.sketch text {
+  fill: currentColor;
+}
+
+/* trace-on-view: paths draw themselves when their page becomes the active panel.
+   ease-in-out gives a slight drag at the start, a quick middle, and a soft
+   finish — closer to a hand sketching than a linear progress bar. */
+[data-trace] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.95s cubic-bezier(0.65, 0, 0.35, 1);
+}
+[role="tabpanel"][data-state="active"] [data-trace] {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-trace] {
+    stroke-dashoffset: 0 !important;
+  }
+}
