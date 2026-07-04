@@ -1,4 +1,5 @@
-import { hero } from "@/lib/content";
+import Image from "next/image";
+import { hero, site } from "@/lib/content";
 
 /* Splits the statement around the accent phrase so it can be set in coral. */
 function AccentedStatement() {
@@ -17,9 +18,18 @@ function AccentedStatement() {
 export function Hero() {
   return (
     <section className="mx-auto max-w-content px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
-      <h1
-        className="fade-up font-serif text-[clamp(44px,7vw,68px)] leading-[1.08] tracking-tight"
+      <Image
+        src="/portrait.jpg"
+        alt={site.name}
+        width={88}
+        height={88}
+        priority
+        className="fade-up portrait-warm rounded-full"
         style={{ animationDelay: "0ms" }}
+      />
+      <h1
+        className="fade-up mt-10 font-serif text-[clamp(44px,7vw,68px)] leading-[1.08] tracking-tight"
+        style={{ animationDelay: "60ms" }}
       >
         <AccentedStatement />
       </h1>

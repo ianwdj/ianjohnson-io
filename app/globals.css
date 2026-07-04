@@ -90,6 +90,11 @@
     color: var(--putty);
   }
 
+  /* warm the B&W portrait so it sits in the cream palette, not against it */
+  .portrait-warm {
+    filter: sepia(0.22) contrast(0.97) brightness(1.02);
+  }
+
   /* entrance: used on hero at load and by <Reveal> below the fold */
   .fade-up {
     opacity: 0;

@@ -34,11 +34,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     type: "website",
+    images: [{ url: "/portrait.jpg", width: 800, height: 800 }],
   },
   twitter: {
     card: "summary",
     title: site.name,
     description: hero.statement,
+    images: ["/portrait.jpg"],
   },
 };
 
@@ -49,6 +51,7 @@ const personJsonLd = {
   jobTitle: "Founding Product Lead",
   email: `mailto:${site.email}`,
   url: site.url,
+  image: `${site.url}/portrait.jpg`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "San Francisco",
