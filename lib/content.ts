@@ -6,7 +6,7 @@
 
 export const site = {
   name: "Ian Johnson",
-  role: "Head of Product at Aida",
+  role: "Founding product lead at Aida",
   location: "San Francisco",
   url: "https://ianjohnson.io",
   email: "contact@ianjohnson.io",
@@ -21,7 +21,7 @@ export const hero = {
   // rendered with the phrase below set in coral
   accentPhrase: "actually adopt",
   detail:
-    "Head of Product at Aida. I work at the intersection of customer truth, workflow design, and GTM systems — because AI products are judged by the behavior they change.",
+    "Founding product lead at Aida. Builder first — I work where customer truth, workflow design, and GTM systems meet, because AI products are judged by the behavior they change.",
   byline: "Ian Johnson · San Francisco",
 };
 
