@@ -17,11 +17,12 @@ export const site = {
 };
 
 export const hero = {
-  statement: "I build AI products that revenue teams actually adopt.",
+  statement:
+    "Curious about how work gets done. I build AI that fits the way people already move.",
   // rendered with the phrase below set in coral
-  accentPhrase: "actually adopt",
+  accentPhrase: "the way people already move",
   detail:
-    "Founding product lead at Aida. Builder first — I work where customer truth, workflow design, and GTM systems meet, because AI products are judged by the behavior they change.",
+    "Founding product lead at Aida. Ten years across revenue workflows, commerce infrastructure, and customer data — because AI products are judged by the behavior they change.",
   byline: "Ian Johnson · San Francisco",
 };
 
@@ -39,7 +40,7 @@ export type Project = {
 };
 
 export const workIntro =
-  "Ten years building AI products that drive revenue. The last two companies were acquired.";
+  "Four products, one throughline: revenue. The last two companies were acquired.";
 
 export const projects: Project[] = [
   {
