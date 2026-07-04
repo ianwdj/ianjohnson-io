@@ -18,12 +18,11 @@ export const site = {
 
 export const hero = {
   statement:
-    "Curious about how work gets done. I build AI that fits the way people already move.",
+    "Enjoy building worlds small enough to trust and big enough to matter.",
   // rendered with the phrase below set in coral
-  accentPhrase: "the way people already move",
+  accentPhrase: "big enough to matter",
   detail:
     "Founding product lead at Aida. Ten years across revenue workflows, commerce infrastructure, and customer data — because AI products are judged by the behavior they change.",
-  mood: "Enjoy building worlds small enough to trust and big enough to matter.",
   byline: "Ian Johnson · San Francisco",
 };
 
