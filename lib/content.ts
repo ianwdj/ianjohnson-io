@@ -23,6 +23,7 @@ export const hero = {
   accentPhrase: "the way people already move",
   detail:
     "Founding product lead at Aida. Ten years across revenue workflows, commerce infrastructure, and customer data — because AI products are judged by the behavior they change.",
+  mood: "Enjoy building worlds small enough to trust and big enough to matter.",
   byline: "Ian Johnson · San Francisco",
 };
 

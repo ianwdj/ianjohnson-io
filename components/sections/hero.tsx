@@ -40,6 +40,12 @@ export function Hero() {
         {hero.detail}
       </p>
       <p
+        className="fade-up mt-5 text-[17px] leading-[1.5] text-ink-strong"
+        style={{ animationDelay: "180ms" }}
+      >
+        {hero.mood}
+      </p>
+      <p
         className="fade-up mt-4 font-serif text-[17px] italic text-putty"
         style={{ animationDelay: "240ms" }}
       >
