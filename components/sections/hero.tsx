@@ -1,4 +1,4 @@
-import { hero, site } from "@/lib/content";
+import { hero } from "@/lib/content";
 
 /* Splits the statement around the accent phrase so it can be set in coral. */
 function AccentedStatement() {
@@ -17,21 +17,15 @@ function AccentedStatement() {
 export function Hero() {
   return (
     <section className="mx-auto max-w-content px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
-      <p
-        className="fade-up meta"
-        style={{ animationDelay: "0ms" }}
-      >
-        {site.location}
-      </p>
       <h1
-        className="fade-up mt-6 font-serif text-[clamp(44px,7vw,68px)] leading-[1.08] tracking-tight"
-        style={{ animationDelay: "80ms" }}
+        className="fade-up font-serif text-[clamp(44px,7vw,68px)] leading-[1.08] tracking-tight"
+        style={{ animationDelay: "0ms" }}
       >
         <AccentedStatement />
       </h1>
       <p
         className="fade-up mt-8 text-[19px] leading-[1.65] text-ink"
-        style={{ animationDelay: "160ms" }}
+        style={{ animationDelay: "120ms" }}
       >
         {hero.detail}
       </p>
@@ -39,7 +33,7 @@ export function Hero() {
         className="fade-up mt-4 font-serif text-[17px] italic text-putty"
         style={{ animationDelay: "240ms" }}
       >
-        {site.name} · {site.role}
+        {hero.byline}
       </p>
     </section>
   );

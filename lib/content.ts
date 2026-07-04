@@ -17,11 +17,12 @@ export const site = {
 };
 
 export const hero = {
-  statement: "AI products are judged by the behavior they change.",
+  statement: "I build AI products that revenue teams actually adopt.",
   // rendered with the phrase below set in coral
-  accentPhrase: "behavior they change",
+  accentPhrase: "actually adopt",
   detail:
-    "I build products at the intersection of customer truth, workflow design, GTM systems, and measurable adoption.",
+    "Head of Product at Aida. I work at the intersection of customer truth, workflow design, and GTM systems — because AI products are judged by the behavior they change.",
+  byline: "Ian Johnson · San Francisco",
 };
 
 export type LogoId = "globale" | "shopify" | "alibaba";
