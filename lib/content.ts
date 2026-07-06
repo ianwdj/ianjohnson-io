@@ -10,9 +10,9 @@ export const site = {
   location: "San Francisco",
   url: "https://ianjohnson.io",
   email: "contact@ianjohnson.io",
-  // TODO(ian): confirm real profile URLs — placeholders pending
   substackUrl: "https://ianwdj.substack.com",
-  linkedinUrl: "#",
+  linkedinUrl: "https://www.linkedin.com/in/ianwdjohnson",
+  // TODO(ian): confirm Letterboxd URL — placeholder pending
   letterboxdUrl: "#",
 };
 
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     period: "2018–2021",
     teaser:
       "Growth, experimentation, merchant-of-record, and checkout at scale. The white-label engine behind Shopify Markets.",
-    proof: "Acquired by Global-e for $500M · Shopify Markets",
+    proof: "Principal PM · Acquired by Global-e for $500M",
     logos: ["globale", "shopify"],
     status: "past",
   },
@@ -73,8 +73,8 @@ export const projects: Project[] = [
     category: "Customer data foundations",
     period: "2014–2018",
     teaser:
-      "Entity resolution and marketable customer understanding across markets.",
-    proof: "Alibaba Pictures JV · 26 countries",
+      "Entity resolution and marketable customer understanding for cinemas across 26 countries.",
+    proof: "VP of Product · Alibaba Pictures JV",
     logos: ["alibaba"],
     status: "past",
   },
