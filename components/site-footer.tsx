@@ -1,10 +1,6 @@
-import { site } from "@/lib/content";
+import { site, socialLinks } from "@/lib/content";
 
-const elsewhere = [
-  { label: "Substack", href: site.substackUrl },
-  { label: "LinkedIn", href: site.linkedinUrl },
-  { label: "Letterboxd", href: site.letterboxdUrl },
-].filter((l) => l.href !== "#");
+const elsewhere = socialLinks;
 
 export function SiteFooter() {
   return (

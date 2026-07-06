@@ -22,8 +22,7 @@ export const hero = {
   // rendered with the phrase below set in coral
   accentPhrase: "do more with less",
   detail:
-    "Founding product lead at Aida. Ten years across revenue workflows, commerce infrastructure, and customer data.",
-  byline: "Ian Johnson · San Francisco",
+    "Founding product lead at Aida. Since 2014, across revenue workflows, commerce infrastructure, and customer data.",
 };
 
 export type LogoId = "globale" | "shopify" | "alibaba";
@@ -36,20 +35,25 @@ export type Project = {
   teaser: string;
   proof?: string;
   logos?: LogoId[]; // acquirer/partner marks rendered under the proof line
-  status: "current" | "acquired";
+  href?: string; // live product link, rendered as external link on the card
+  status: "current" | "past"; // drives only the "current" dot on the card
 };
 
+/* FACTS (do not drift): two acquisitions total — Lasso (Ian founded it,
+   acquired by Yard) and Flow (Ian was an employee, acquired by Global-e).
+   Showtime was never acquired; the Alibaba Pictures JV is a partnership. */
 export const workIntro =
-  "Four products, one throughline: revenue. The last two companies were acquired.";
+  "Four products since 2014. Two of the companies were acquired — one I founded, one I joined early.";
 
 export const projects: Project[] = [
   {
     slug: "aida",
     name: "Aida",
-    category: "Agentic revenue system of action",
+    category: "Deal execution AI",
     period: "2024–now",
     teaser:
-      "From account signals to next-best action, with durable usage as the test.",
+      "An AI chief of staff for sales reps — it catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+    href: "https://getaida.com",
     status: "current",
   },
   {
@@ -61,7 +65,7 @@ export const projects: Project[] = [
       "Growth, experimentation, merchant-of-record, and checkout at scale — the white-label engine behind Shopify Markets.",
     proof: "Acquired by Global-e for $500M · Shopify Markets",
     logos: ["globale", "shopify"],
-    status: "acquired",
+    status: "past",
   },
   {
     slug: "showtime",
@@ -72,7 +76,7 @@ export const projects: Project[] = [
       "Entity resolution and marketable customer understanding across markets.",
     proof: "Alibaba Pictures JV · 26 countries",
     logos: ["alibaba"],
-    status: "acquired",
+    status: "past",
   },
   {
     slug: "lasso",
@@ -80,36 +84,45 @@ export const projects: Project[] = [
     category: "Creator-economy matching",
     period: "2021–2023",
     teaser: "Bootstrapped matchmaking between brands and creators.",
-    proof: "Acquired by Yard",
-    status: "acquired",
+    proof: "Founded · Acquired by Yard",
+    status: "past",
   },
 ];
 
-/* "How I think" — scaffolded from the hero's themes.
-   TODO(ian): drafts in your direction — edit until they sound like you. */
+/* "How I think" — distilled from Ian's published essays (Lasso post-mortem,
+   Pre-Product Sales Sprint), not invented.
+   TODO(ian): these are drafts in your direction — edit until they sound like you. */
 export const principles: { title: string; body: string }[] = [
   {
-    title: "Customer truth over roadmap theater",
-    body: "The most expensive thing a team can build is a convincing answer to the wrong question. I spend my time where the customer's actual workflow disagrees with our assumptions about it.",
+    title: "Watch what customers do, not what they say",
+    body: "The real problem is usually different from the one people describe. If you can shadow someone in their actual workflow, you'll learn more than any interview will tell you.",
   },
   {
-    title: "Adoption is the only demo that counts",
-    body: "A launch is a hypothesis. Durable usage is the result. I instrument for the behavior change we claimed we'd cause, and I believe the data over the applause.",
+    title: "Ask for money early",
+    body: "LOIs and verbal commitments mean nothing. If someone won't put down payment details in some form, the problem probably isn't painful enough to build for.",
   },
   {
-    title: "GTM is part of the product",
-    body: "How something is sold, onboarded, and expanded shapes what gets built. The best products I've shipped were designed with the revenue motion, not handed to it.",
+    title: "Build with the sales motion, not ahead of it",
+    body: "How something gets sold shapes what should get built. The products I've seen work were designed alongside the people selling them, from the start.",
   },
 ];
 
 export const now = {
   lines: [
-    "Building Aida — agents that turn account signals into revenue actions.",
-    "Writing about how AI products earn (and lose) trust inside real workflows.",
+    "Building Aida — an AI chief of staff for sales reps.",
     "In San Francisco, mostly.",
   ],
   updated: "July 2026",
 };
+
+/* Single source of truth for outbound identity links (footer + JSON-LD).
+   TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are
+   filtered out everywhere until then. */
+export const socialLinks = [
+  { label: "Substack", href: site.substackUrl },
+  { label: "LinkedIn", href: site.linkedinUrl },
+  { label: "Letterboxd", href: site.letterboxdUrl },
+].filter((l) => l.href !== "#");
 
 /* Essays republished from Substack. Bodies live in content/essays/<slug>.mdx */
 export type Essay = {

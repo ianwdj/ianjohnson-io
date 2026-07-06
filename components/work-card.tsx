@@ -16,12 +16,29 @@ export function WorkCard({ project }: { project: Project }) {
     <article className="group rounded-lg border border-hairline bg-cream px-6 py-5 transition-colors duration-300 ease-slow can-hover:hover:border-coral/40 can-hover:hover:bg-cream-deep">
       <div className="flex items-baseline justify-between gap-4">
         <h3 className="font-serif text-[22px]">
-          {project.name}
+          {project.href ? (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline transition-colors duration-300 hover:text-coral-deep"
+            >
+              {project.name}
+              <span aria-hidden className="ml-1 text-[15px] text-putty">
+                ↗
+              </span>
+            </a>
+          ) : (
+            project.name
+          )}
           {project.status === "current" && (
-            <span
-              className="ml-2 inline-block h-[7px] w-[7px] rounded-full bg-coral align-middle"
-              title="Current"
-            />
+            <>
+              <span
+                aria-hidden
+                className="ml-2 inline-block h-[7px] w-[7px] rounded-full bg-coral align-middle"
+              />
+              <span className="sr-only">(current)</span>
+            </>
           )}
         </h3>
         <span className="meta shrink-0">{project.period}</span>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, JetBrains_Mono } from "next/font/google";
-import { site, hero } from "@/lib/content";
+import { site, hero, socialLinks } from "@/lib/content";
 import "./globals.css";
 
 // Newsreader is a variable font; the opsz axis gives a true display cut at
@@ -22,7 +22,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Product`,
+    default: site.name,
     template: `%s — ${site.name}`,
   },
   description: `${hero.statement} ${hero.detail}`,
@@ -57,7 +57,7 @@ const personJsonLd = {
     addressLocality: "San Francisco",
     addressRegion: "CA",
   },
-  sameAs: [site.substackUrl],
+  sameAs: socialLinks.map((l) => l.href),
   knowsAbout: [
     "AI product management",
     "Agentic workflows",
@@ -65,7 +65,11 @@ const personJsonLd = {
     "Commerce infrastructure",
     "Customer data platforms",
   ],
-  worksFor: { "@type": "Organization", name: "Aida" },
+  worksFor: {
+    "@type": "Organization",
+    name: "Aida",
+    url: "https://getaida.com",
+  },
 };
 
 export default function RootLayout({
@@ -76,6 +80,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${mono.variable}`}>
       <body className="antialiased">
+        {/* below-the-fold sections render opacity-0 until JS reveals them;
+            without JS they must simply be visible */}
+        <noscript>
+          <style>{`.reveal-pending{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
