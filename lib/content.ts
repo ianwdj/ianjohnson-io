@@ -43,7 +43,7 @@ export type Project = {
    acquired by Yard) and Flow (Ian was an employee, acquired by Global-e).
    Showtime was never acquired; the Alibaba Pictures JV is a partnership. */
 export const workIntro =
-  "Four products since 2014. Two of the companies were acquired — one I founded, one I joined early.";
+  "Four products since 2014. Two of the companies were acquired. One I founded, one I joined early.";
 
 export const projects: Project[] = [
   {
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     category: "Deal execution AI",
     period: "2024–now",
     teaser:
-      "An AI chief of staff for sales reps — it catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+      "An AI chief of staff for sales reps. It catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
     href: "https://getaida.com",
     status: "current",
   },
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     category: "Commerce infrastructure",
     period: "2018–2021",
     teaser:
-      "Growth, experimentation, merchant-of-record, and checkout at scale — the white-label engine behind Shopify Markets.",
+      "Growth, experimentation, merchant-of-record, and checkout at scale. The white-label engine behind Shopify Markets.",
     proof: "Acquired by Global-e for $500M · Shopify Markets",
     logos: ["globale", "shopify"],
     status: "past",
@@ -109,7 +109,7 @@ export const principles: { title: string; body: string }[] = [
 
 export const now = {
   lines: [
-    "Building Aida — an AI chief of staff for sales reps.",
+    "Building Aida, an AI chief of staff for sales reps.",
     "In San Francisco, mostly.",
   ],
   updated: "July 2026",
@@ -141,7 +141,7 @@ export const essays: Essay[] = [
     date: "2024-04-10",
     displayDate: "Apr 2024",
     summary:
-      "Closing $1,000-per-user sales with only a Notion page and phone calls — a five-day sprint for validating demand before building anything.",
+      "Closing $1,000-per-user sales with only a Notion page and phone calls. A five-day sprint for validating demand before building anything.",
     canonicalUrl: "https://ianwdj.substack.com/p/the-pre-product-sales-sprint",
   },
   {
@@ -150,7 +150,7 @@ export const essays: Essay[] = [
     date: "2023-12-05",
     displayDate: "Dec 2023",
     summary:
-      "A weighted scorecard for deciding what to build next — with a brutally honest worked example scoring my own AI-product idea.",
+      "A weighted scorecard for deciding what to build next, with a brutally honest worked example scoring my own AI-product idea.",
     canonicalUrl:
       "https://ianwdj.substack.com/p/a-concise-guide-to-shortlisting-startup",
   },
@@ -170,7 +170,7 @@ export const essays: Essay[] = [
     date: "2023-06-14",
     displayDate: "Jun 2023",
     summary:
-      "A candid post-mortem of building and selling Lasso — why LOIs mean nothing, and why a 10% better product dies in a platform-controlled market.",
+      "A candid post-mortem of building and selling Lasso. Why LOIs mean nothing, and why a 10% better product dies in a platform-controlled market.",
     canonicalUrl: "https://ianwdj.substack.com/p/lasso",
   },
 ];

@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="border-t border-hairline">
       <div className="mx-auto max-w-content px-6 py-16">
         <p className="font-serif text-[20px]">
-          Say hello —{" "}
+          Say hello:{" "}
           <a href={`mailto:${site.email}`} className="link">
             {site.email}
           </a>
@@ -26,7 +26,7 @@ export function SiteFooter() {
           ))}
         </div>
         <p className="meta mt-12">
-          Set in Newsreader · Built with Next.js · {site.location}
+          Set in Newsreader. Built with Next.js. {site.location}.
         </p>
       </div>
     </footer>

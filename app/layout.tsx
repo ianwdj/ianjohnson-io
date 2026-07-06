@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: site.name,
-    template: `%s — ${site.name}`,
+    template: `%s · ${site.name}`,
   },
   description: `${hero.statement} ${hero.detail}`,
   alternates: { canonical: "/" },
@@ -34,13 +34,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     type: "website",
-    images: [{ url: "/portrait.jpg", width: 800, height: 800 }],
+    // og:image comes from app/opengraph-image.tsx (1200×630, brand-set)
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: site.name,
     description: hero.statement,
-    images: ["/portrait.jpg"],
   },
 };
 

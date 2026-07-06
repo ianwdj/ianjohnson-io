@@ -17,13 +17,8 @@ export function SiteHeader() {
         <a href="/#writing" className="link">
           Writing
         </a>
-        <a
-          href={site.substackUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link"
-        >
-          Substack
+        <a href={`mailto:${site.email}`} className="link">
+          Say hello
         </a>
       </nav>
     </header>
