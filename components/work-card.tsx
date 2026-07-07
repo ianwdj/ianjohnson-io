@@ -23,10 +23,10 @@ const COMPANY_LOGOS: Record<
 > = {
   // logos are the primary mark now (no serif name beside them), so they
   // run larger; heights tuned per wordmark for even optical weight
-  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "logo-warm h-[30px] w-auto" },
-  flow: { src: "/logos/flow.png", w: 220, h: 48, className: "logo-warm-invert h-[30px] w-auto" },
-  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "logo-warm h-[26px] w-auto" },
-  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "logo-warm h-[26px] w-auto" },
+  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "logo-warm h-[28px] w-auto" },
+  flow: { src: "/logos/flow.png", w: 220, h: 48, className: "logo-warm-invert h-[24px] w-auto" },
+  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "logo-warm h-[30px] w-auto" },
+  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "logo-warm h-[28px] w-auto" },
 };
 
 /* Layout G: two-column spread. Name/dates/category left, story right. */
