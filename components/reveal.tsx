@@ -38,7 +38,13 @@ export function Reveal({
       { rootMargin: "0px 0px -10% 0px" }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    // belt and suspenders: if the observer never fires (throttled tab,
+    // broken IO), content must still appear — the fade is a nicety only
+    const fallback = window.setTimeout(() => setPhase("shown"), 2500);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   const phaseClass =
