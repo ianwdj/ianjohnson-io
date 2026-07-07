@@ -36,6 +36,7 @@ export type Project = {
   category: string;
   period: string;
   teaser: string;
+  featured?: string[]; // extra depth lines; also gives the card the raised treatment
   proof?: string;
   logos?: LogoId[]; // acquirer/partner marks rendered under the proof line
   href?: string; // live product link, rendered as external link on the card
@@ -56,6 +57,13 @@ export const projects: Project[] = [
     period: "2024–now",
     teaser:
       "Catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+    /* Depth lines drafted from getaida.com and Ian's own earlier copy
+       ("durable usage as the test" framing is his).
+       TODO(ian): make these yours, and add a traction fact when shareable. */
+    featured: [
+      "It watches calls, Slack, email, and the CRM for the commitments a deal depends on, then does the follow-through that usually slips.",
+      "As founding product lead I decide what gets built, and I'm judged by whether reps keep using it.",
+    ],
     // TODO(ian): add one traction fact here when shareable (design partners,
     // reps using it, team size) — e.g. "Founding product lead · N design partners"
     proof: "Founding product lead",
@@ -137,12 +145,15 @@ export const now = {
 };
 
 /* "Elsewhere" — what he's into outside work (goal: visitors get a sense of
-   what excites and interests him). Renders only when populated; no invented
-   tastes. TODO(ian): answer the one-message ask — Letterboxd username plus a
-   handful of real favorites (films / albums / cities / whatever you want
-   shown) — and this section appears. */
+   what excites and interests him). Both lines below trace to the bookmarks
+   on Ian's previous site (Letterboxd, volt.fm) — nothing invented.
+   TODO(ian): replace with real favorites and links — Letterboxd username,
+   a few films/albums/cities you'd actually name. */
 export type ElsewhereGroup = { label: string; items: string[] };
-export const elsewhere: ElsewhereGroup[] = [];
+export const elsewhere: ElsewhereGroup[] = [
+  { label: "Film", items: ["I keep a film diary on Letterboxd."] },
+  { label: "Music", items: ["What's on repeat lives on volt.fm."] },
+];
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).
    TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are

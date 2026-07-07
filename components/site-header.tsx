@@ -3,7 +3,7 @@ import { site } from "@/lib/content";
 
 export function SiteHeader() {
   return (
-    <header className="mx-auto flex max-w-content items-baseline justify-between px-6 pt-10">
+    <header className="mx-auto flex max-w-wide items-baseline justify-between px-6 pt-10">
       <Link
         href="/"
         className="font-serif text-[17px] font-medium text-ink-strong no-underline"

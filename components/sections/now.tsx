@@ -3,7 +3,7 @@ import { Reveal } from "@/components/reveal";
 
 export function NowSection() {
   return (
-    <section id="now" className="mx-auto max-w-content scroll-mt-16 px-6 py-24 sm:py-32">
+    <section id="now" className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32">
       <Reveal>
         <p className="meta">Now</p>
         <ul className="mt-8 flex flex-col gap-3">

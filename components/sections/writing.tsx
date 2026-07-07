@@ -6,7 +6,7 @@ export function WritingSection() {
   return (
     <section
       id="writing"
-      className="mx-auto max-w-content scroll-mt-16 px-6 py-24 sm:py-32"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32"
     >
       <Reveal>
         <p className="meta">Writing</p>

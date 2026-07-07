@@ -12,8 +12,15 @@ const LOGOS: Record<
 };
 
 export function WorkCard({ project }: { project: Project }) {
+  const featured = Boolean(project.featured?.length);
   return (
-    <article className="group rounded-lg border border-hairline bg-cream px-6 py-5 transition-colors duration-300 ease-slow can-hover:hover:border-coral/40 can-hover:hover:bg-cream-deep">
+    <article
+      className={`group rounded-lg border px-6 transition-colors duration-300 ease-slow can-hover:hover:border-coral/40 ${
+        featured
+          ? "border-coral/25 bg-cream-deep py-7"
+          : "border-hairline bg-cream py-5 can-hover:hover:bg-cream-deep"
+      }`}
+    >
       <div className="flex items-baseline justify-between gap-4">
         <h3 className="font-serif text-[22px]">
           {project.href ? (
@@ -45,6 +52,11 @@ export function WorkCard({ project }: { project: Project }) {
       </div>
       <p className="mt-1 text-[15px] text-putty">{project.category}</p>
       <p className="mt-3 leading-[1.65]">{project.teaser}</p>
+      {project.featured?.map((line) => (
+        <p key={line} className="mt-3 leading-[1.65] [text-wrap:pretty]">
+          {line}
+        </p>
+      ))}
       {project.proof && <p className="meta mt-4">{project.proof}</p>}
       {project.logos && project.logos.length > 0 && (
         <div className="mt-3 flex items-center gap-6 text-putty opacity-80">

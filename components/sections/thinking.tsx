@@ -5,7 +5,7 @@ export function ThinkingSection() {
   return (
     <section
       id="thinking"
-      className="mx-auto max-w-content scroll-mt-16 px-6 py-24 sm:py-32"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32"
     >
       <Reveal>
         <p className="meta">How I think</p>

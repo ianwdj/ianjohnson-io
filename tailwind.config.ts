@@ -34,7 +34,8 @@ const config: Config = {
         slow: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       maxWidth: {
-        content: "672px",
+        content: "672px", // reading measure: essay bodies
+        wide: "880px", // page column: home sections, header, footer
       },
     },
   },

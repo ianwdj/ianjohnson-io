@@ -17,7 +17,7 @@ function AccentedStatement() {
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-content px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
+    <section className="mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
       <Image
         src="/portrait.jpg"
         alt={site.name}
