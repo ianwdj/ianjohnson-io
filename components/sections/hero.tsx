@@ -30,7 +30,7 @@ export function Hero() {
   const { greeting, rest } = splitStatement();
   return (
     <section className="mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
-      <div className="grid gap-10 sm:grid-cols-[1fr_264px] sm:gap-16">
+      <div className="grid gap-10 sm:grid-cols-[1fr_300px] sm:gap-16">
         <div className="order-2 sm:order-1">
           {greeting && (
             <p
@@ -53,17 +53,21 @@ export function Hero() {
             {hero.detail}
           </p>
         </div>
-        {/* natural-aspect portrait, editorial treatment — a circle reads as
-            an avatar; at this scale the photo should read as a photograph */}
-        <Image
-          src="/portrait-full.jpg"
-          alt={site.name}
-          width={768}
-          height={900}
-          priority
-          className="fade-up portrait-duotone order-1 w-[200px] rounded-xl sm:order-2 sm:mt-3 sm:w-full"
+        {/* the portrait fills the full height of the text block so the two
+            columns read as one composed spread, not text with a picture */}
+        <div
+          className="fade-up relative order-1 aspect-[768/900] w-[200px] overflow-hidden rounded-xl sm:order-2 sm:aspect-auto sm:h-full sm:w-full"
           style={{ animationDelay: "0ms" }}
-        />
+        >
+          <Image
+            src="/portrait-full.jpg"
+            alt={site.name}
+            fill
+            priority
+            sizes="(min-width: 640px) 300px, 200px"
+            className="portrait-duotone object-cover"
+          />
+        </div>
       </div>
     </section>
   );
