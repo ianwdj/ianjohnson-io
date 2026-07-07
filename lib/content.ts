@@ -28,7 +28,7 @@ export const hero = {
     "Founding product lead at Aida, an AI chief of staff for sales reps. Building products since 2014, in revenue tools, commerce, and customer data.",
 };
 
-export type LogoId = "globale" | "shopify";
+export type LogoId = "globale" | "shopify" | "alibaba";
 
 export type Project = {
   slug: string; // reserves /work/[slug] for future case studies
@@ -71,6 +71,17 @@ export const projects: Project[] = [
     status: "current",
   },
   {
+    slug: "lasso",
+    name: "Lasso AI",
+    category: "Creator-economy matching",
+    period: "2021–2023",
+    // Metrics are Ian's own published claims from the previous ianjohnson.io.
+    teaser:
+      "Bootstrapped matchmaking between brands and creators. The engine matched 1M+ creator profiles a week at 97% accuracy.",
+    proof: "Founded · Acquired by Yard",
+    status: "past",
+  },
+  {
     slug: "flow",
     name: "Flow",
     category: "Commerce infrastructure",
@@ -86,24 +97,14 @@ export const projects: Project[] = [
   },
   {
     slug: "showtime",
-    name: "Showtime",
+    name: "Showtime Analytics",
     category: "Customer data foundations",
     period: "2014–2018",
     // Metrics are Ian's own published claims from the previous ianjohnson.io.
     teaser:
       "We helped cinemas understand who their customers were, growing from 2 cinemas to 80+ chains in 26 countries and taking customer identification from 3% to 78%.",
+    logos: ["alibaba"],
     proof: "VP of Product · Alibaba Pictures JV",
-    status: "past",
-  },
-  {
-    slug: "lasso",
-    name: "Lasso AI",
-    category: "Creator-economy matching",
-    period: "2021–2023",
-    // Metrics are Ian's own published claims from the previous ianjohnson.io.
-    teaser:
-      "Bootstrapped matchmaking between brands and creators. The engine matched 1M+ creator profiles a week at 97% accuracy.",
-    proof: "Founded · Acquired by Yard",
     status: "past",
   },
 ];
@@ -120,6 +121,14 @@ export type Principle = {
 };
 
 export const principles: Principle[] = [
+  {
+    title: "Ask why now",
+    body: "Customer inertia kills most new products. An inflection point, new technology or a rule change, is what makes a 10x solution possible where it wasn't before. If an idea has no answer to why now, it can wait.",
+    receipt: {
+      label: "From the idea shortlisting scorecard",
+      href: "/writing/shortlisting-startup-ideas",
+    },
+  },
   {
     title: "Watch what customers do, not what they say",
     body: "The real problem is usually different from the one people describe. If you can shadow someone in their actual workflow, you'll learn more than any interview will tell you.",
