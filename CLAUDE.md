@@ -9,7 +9,7 @@ finishes this page wanting to work with Ian.** Precision and plainness ARE the p
 
 | Company | Years | Ian's role | Outcome |
 |---|---|---|---|
-| Aida (getaida.com) | 2024–now | Founding product lead | Current. "AI chief of staff for sales reps" / deal execution AI |
+| Aida (getaida.com) | 2024–now | Founding product lead | Current. Ian's framing: "an agentic-native revenue system" — use this on his site, NOT getaida.com's "AI chief of staff" marketing line (Ian rejected it, July 2026) |
 | Lasso AI | 2021–2023 | **Founder** | Acquired by Yard |
 | Flow | 2018–2021 | **Principal PM** (employee, not founder) | Acquired by Global-e for $500M; white-label engine behind Shopify Markets |
 | Showtime Analytics | 2014–2018 | **VP of Product** | **Never acquired.** Alibaba Pictures JV, 26 countries |

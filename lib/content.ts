@@ -25,7 +25,7 @@ export const hero = {
      it goes in verbatim. */
   accentPhrase: "",
   detail:
-    "Founding product lead at Aida, an AI chief of staff for sales reps. Building products since 2014, in revenue tools, commerce, and customer data.",
+    "Founding product lead at Aida, an agentic-native revenue system. Building products since 2014, in revenue tools, commerce, and customer data.",
 };
 
 export type LogoId = "globale" | "shopify" | "alibaba";
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     slug: "aida",
     name: "Aida",
-    category: "AI chief of staff for sales reps",
+    category: "Agentic-native revenue system",
     period: "2024–now",
     teaser:
       "Catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
@@ -151,7 +151,7 @@ export const principles: Principle[] = [
 
 export const now = {
   lines: [
-    "Building Aida, an AI chief of staff for sales reps.",
+    "Building Aida, an agentic-native revenue system.",
     "In San Francisco, mostly.",
   ],
   updated: "July 2026",
