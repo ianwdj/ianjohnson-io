@@ -15,6 +15,7 @@ finishes this page wanting to work with Ian.** Precision and plainness ARE the p
 | Showtime Analytics | 2014–2018 | **VP of Product** | **Never acquired.** Alibaba Pictures JV, 26 countries |
 
 - Exactly TWO acquisitions (Lasso: founder; Flow: employee). Never say three. Never call Showtime an acquisition.
+- The four cards are four COMPANIES, not "four products" — Ian shipped many products within each. Count companies, never products (flagged by Ian July 2026).
 - Career span: "Since 2014" — never "ten years" (goes stale, and it's twelve+).
 - No claim ships without a source: Ian's word, his public bios, or this table.
 - Identity links: Substack ianwdj.substack.com · LinkedIn linkedin.com/in/ianwdjohnson · email contact@ianjohnson.io.

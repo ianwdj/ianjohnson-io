@@ -47,7 +47,7 @@ export type Project = {
    acquired by Yard) and Flow (Ian was an employee, acquired by Global-e).
    Showtime was never acquired; the Alibaba Pictures JV is a partnership. */
 export const workIntro =
-  "Four products since 2014. Two of the companies were acquired. One of those I founded.";
+  "Four companies since 2014. Two were acquired. One of those I founded.";
 
 export const projects: Project[] = [
   {
