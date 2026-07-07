@@ -21,10 +21,12 @@ const COMPANY_LOGOS: Record<
   string,
   { src: string; w: number; h: number; className: string }
 > = {
-  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "logo-warm h-[22px] w-auto" },
-  flow: { src: "/logos/flow.png", w: 220, h: 48, className: "logo-warm-invert h-[22px] w-auto" },
-  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "logo-warm h-[20px] w-auto" },
-  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "logo-warm h-[20px] w-auto" },
+  // logos are the primary mark now (no serif name beside them), so they
+  // run larger; heights tuned per wordmark for even optical weight
+  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "logo-warm h-[30px] w-auto" },
+  flow: { src: "/logos/flow.png", w: 220, h: 48, className: "logo-warm-invert h-[30px] w-auto" },
+  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "logo-warm h-[26px] w-auto" },
+  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "logo-warm h-[26px] w-auto" },
 };
 
 /* Layout G: two-column spread. Name/dates/category left, story right. */
@@ -33,43 +35,57 @@ export function WorkCard({ project }: { project: Project }) {
   return (
     <div className="grid gap-3 border-t border-hairline py-10 sm:grid-cols-[260px_1fr] sm:gap-10">
       <div>
-        {company && (
-          <Image
-            src={company.src}
-            alt={`${project.name} logo`}
-            width={company.w}
-            height={company.h}
-            loading="eager"
-            className={company.className}
-          />
-        )}
-        <h3 className="mt-4 font-serif text-[26px] leading-tight">
+        {/* the wordmark IS the name; the h3 keeps it readable for screen
+            readers and search without printing it twice */}
+        <h3 className="flex items-center gap-3">
+          <span className="sr-only">{project.name}</span>
           {project.href ? (
             <a
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="no-underline transition-colors duration-300 hover:text-coral-deep"
+              className="group/logo inline-flex items-center gap-2"
             >
-              {project.name}
-              <span aria-hidden className="ml-1 text-[16px] text-putty">
+              {company && (
+                <Image
+                  src={company.src}
+                  alt={`${project.name} logo`}
+                  width={company.w}
+                  height={company.h}
+                  loading="eager"
+                  className={company.className}
+                />
+              )}
+              <span
+                aria-hidden
+                className="text-[16px] text-putty transition-colors duration-300 group-hover/logo:text-coral-deep"
+              >
                 ↗
               </span>
             </a>
           ) : (
-            project.name
+            company && (
+              <Image
+                src={company.src}
+                alt={`${project.name} logo`}
+                width={company.w}
+                height={company.h}
+                loading="eager"
+                className={company.className}
+              />
+            )
           )}
           {project.status === "current" && (
             <>
               <span
                 aria-hidden
-                className="ml-2 inline-block h-[7px] w-[7px] rounded-full bg-coral align-middle"
+                className="inline-block h-[7px] w-[7px] rounded-full bg-coral"
               />
               <span className="sr-only">(current)</span>
             </>
           )}
         </h3>
-        <p className="meta mt-2">{project.period}</p>
+        <p className="meta mt-4">{project.period}</p>
         <p className="mt-1 text-[15px] text-putty">{project.category}</p>
       </div>
       <div>
