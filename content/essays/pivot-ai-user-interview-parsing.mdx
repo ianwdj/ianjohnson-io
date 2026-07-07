@@ -1,0 +1,217 @@
+*From idea to pilots*
+
+I guess it is pivot #1 but idea number #2.   
+In my last ‘idea’ post, I talked about [trying to align software teams](https://ianwdj.substack.com/p/failed-project-1-aligning-product?s=w) and why it didn’t work out. The previous post was heavy on the data and research, but for this post, I will focus more on how we navigated through various milestones. 
+
+**TLDR** : I accidentally stumbled into what I thought was a big and frequent problem that UX researchers had. After running ten pilots, I learned it was neither. 
+
+![](/essays/pivot-ai-user-interview-parsing/01.jpg)
+
+* * *
+
+### 1. The Pivot
+
+#### The ice bath conversation that made us pivot
+
+My co-founder and I were in the FoundersBoost pre-accelerator programme in New York. We had 40 companies signed up to the platform but almost no active users. So we were conflicted between knowing if the product was the problem or if it was just the wrong problem to solve.
+
+It was during one of our mentoring sessions with Pardees Safizadeh that we were very candidly asked; 
+
+> **“Why you are you still working on this idea** , **the data is clear, this isn’t working”**. 
+
+If there were a physical experience representing hearing this, it would be along the same lines as being dunked into an ice bath. Instead, however, it was the wake-up call we needed.
+
+#### Same problem, a new approach
+
+We observed that PMs and Designers were solving for alignment by manually adding calendar events and reminders to follow up with the relevant people during our research. Therefore, our following hypothesis to test was if we could automate follow-ups and action tracking to help reduce the number of times miscommunication occurs on a team.
+
+#### New problem, a new approach
+
+After a round of interviews, we started validating a prototype that automatically took the critical points from a recorded call and automated the scheduling of those actions. In a feedback session with a product designer, it was then that we had the Aha moment. He asked whether he could use this tool for summarising what happens in his user interviews. That’s when we started to dig in more. 
+
+* * *
+
+### 2. Back to the research board
+
+#### Investigating the User Interview problem
+
+We did another round of interviews, except it targeted PMs, Designers and UX researchers who run frequent user interviews.
+
+**What we learned**
+
+  * For every one hour interview, it takes three more hours to synthesise insights.
+
+  * When an interviewer takes notes, it can distract the interviewee and prevent them from opening up with more intimate details of their problem.
+
+  * Taking notes during the call often leads to missing other essential data points, such as body language and facial expressions.
+
+  * Bigger teams often try to have two people on a call, one to take notes and one to ask questions.
+
+    * One additional challenge to adding a note-taker was if they were catching everything that the interviewer felt needed to be captured.
+
+  * Established research teams try to complete between 6-12 interviews per month, equating to 36 hours spent analysing interviews.
+
+  * Managing personal bias was considered one of the most prominent challenges interviewers faced
+
+Other pain points in the process
+
+  * Affordable recruitment of external candidates 
+
+  * Finding the right people to speak to from an existing customer base
+
+#### Why us, Why now?
+
+The problem founder fit was solid with this one. Although I am not a professional researcher, I have conducted over 1,000+ interviews. So I first-hand know the value and the pain of running qualitative interviews.
+
+In addition to personal experience, the two major change events that we felt would allow us to succeed here were
+
+  1. **Interviews are now happening remotely** - this meant that for the first time, companies had access to new rich (unstructured) data about users.
+
+  2. **Advancements in NLP** - The challenge with having unstructured data is the time it would take to parse insights; however, with the advancements in NLP and GPT3, it felt like a viable solution could be developed.
+
+* * *
+
+### 3. Speed bumps
+
+#### My first co-founder breakup 
+
+Although this new direction appeared promising, my co-founder didn’t have the same shared enthusiasm about the problem or space. Combine that with him receiving a dream job offer, and we have a founder breakup on our hands.
+
+I will write a post in the future about managing co-founder relationships. In short, this news was a massive blow, but I was still excited to find a way to solve this problem, co-founder or no co-founder.
+
+* * *
+
+### 4. Building 
+
+With this project, I began to apply a stage-gate process whereby I would not proceed to the next step of the idea if specific metrics or criteria were not met.
+
+#### Stage-gate 1 - Acquire X# of Pilot Users
+
+**Goal** : Get ten companies signed up to pilot a tool that would remove the need for post-interview analysis and note-takers. 
+
+If we couldn’t find ten people, the plan was to reevaluate; thankfully, we could round up companies using the leads from existing user interviews and combine forces with a [user research recruitment company](https://www.lightster.co/).   
+I wrote about how to leverage this approach here;
+
+[Using customer research to find your first 10 users](/writing/customer-research-first-10-users)
+
+#### No code MVP
+
+Learning from the past mistakes and being down a tech co-founder, I went with the low-no code approach. 
+
+The version we could have built vs what we built was very different, but necessity breeds creativity. Instead of creating a Zoom app that captured call recordings and analysed them in real-time, we used 
+
+  * Encrypted folder for submitting recorded calls
+
+  * Notion database managed via [Super](https://super.so/)
+
+  * Open source NLP/Sentiment models from [Hugging Face](https://huggingface.co/)/[OpenAI](https://openai.com/)
+
+  * Manual analysis and verification
+
+The projects evolved significantly during the pilots, but at one point, we created [this demo site demo as sample output](http://syncd.super.site/interviews-and-transcripts). The no-code approach allowed us to ship a v1 in one week instead of the four weeks it took for the last project. 
+
+![](/essays/pivot-ai-user-interview-parsing/02.jpg)
+
+#### Stage Gate 2 - Performance metrics
+
+Our success metric for this product was difficult to define in the early stages. In the end, we used the following measures;
+
+  1. Number of interviews uploaded to Google drive per month
+
+     * **Reason** : The goal was to establish a baseline of interviews and then set targets to increase that number. The logic is that our tool would help teams talk to users more frequently.
+
+  2. Number of page views of analysis
+
+     * **Reason** : Insights from research are a critical input to most business functions. Making these insights digestible and accessible is a crucial bridge that needs to be established.
+
+  3. NPS/Product Market Fit scoring
+
+     * **Reason:** We used a combo [Superhuman’s PMF questions](https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit) and NPS to understand how users actually felt outside of the metrics.
+
+#### The results
+
+  * 9/10 NPS
+
+  * An average of 4 interviews ran a month
+
+  * Average of 40 page views per research project
+
+Although the metrics were relatively positive, the four interviews a month became the biggest concern. Despite the baseline of what people said they did a month, the reality was much different.
+
+The infrequency of user interviews created two problems
+
+  1. Users started to forget to use our product (Potentially an indicator that this wasn’t as big of a problem as we had thought)
+
+  2. It became harder to establish feedback loops to find opportunities where it could become a must-have product
+
+I observed that everyone desired to speak to more customers; however, there was no internal pressure from the business to conduct research. I have no supporting data for this outside of observations, but I felt that the pressure to find a better solution to this problem may not have been there. 
+
+This correlates to my experience of seeing the pressure that startups have to ship value early and often. The challenge is when startups assume what they will ship will be valuable without researching and testing it first. Combine that with product inertia, and you have a lot of factors pushing against you.
+
+In a paper titled “[Eager Sellers & Stony Buyers](https://hbr.org/product/eager-sellers-and-stony-buyers-understanding-the-p/an/R0606F-PDF-ENG),” John T. Gourville presented the ‘9X Effect.’ John argues that consumers overvalue what they already have by a factor of 3, while companies overvalue their innovations by a factor of 3. Here’s what that looks like:
+
+![](/essays/pivot-ai-user-interview-parsing/03.png)
+
+This is why it can be argued that your product needs to be at least 10x better than existing solutions. 
+
+Another piece of feedback that we received from a small cohort of researchers was that they enjoyed the analysis part of the job and felt it was essential to have this process remain manual. So for this point, I think it could have been solved over time if you could prove higher accuracy of insights and remove bias introduced by humans.
+
+#### Conclusion
+
+Despite hitting most of our targetted performance metrics, the decision not to move forward was based on product intuition. The research indicated that this should be a frequent problem, but far less often than we had anticipated. There may well be an opportunity for others to innovate here but looking at the unit economics and the expected demand; it did not feel like this would be a feasible venture.
+
+* * *
+
+### 5. Pitching
+
+As we were onboarding pilot users, we also had to do a recorded pitch as part of the pre-accelerator. You would think that making a recorded pitch would make it easier, but for some reason, it felt a lot more unnatural. This may have also been because we were building the plane as we jumped off the cliff. 
+
+> I’ve often said that starting a company is like jumping off a cliff and assembling a plane on the way down.
+>
+> — [Reid Hoffman (@reidhoffman), October 19, 2018](https://twitter.com/reidhoffman/status/1053318682242252800)
+
+Overall I was glad to have done the recording. However, while rewatching it today, I can see where I have improved and where still needs work.
+
+[Watch: Syncd 3-minute pitch (YouTube)](https://www.youtube.com/watch?v=_hMYw5VXVC8)
+
+The Pitch Deck that I used to apply to other accelerator programs is [available here](https://docs.google.com/presentation/d/1ugVX8YcEg0cVCMMlSaTndSLoTMOAvU_AzuBf3TgVn9o/edit#slide=id.p2). I won’t go into all the details, but the main points of feedback I received from VCs were;
+
+  * Include more supporting data points about the impact of the problem on the business
+
+    * An example of good supporting data is companies X, Y & Z just hired X number of people to do the job that this tech would replace. 
+
+  * They prefer not to invest in solo founders, especially those who aren’t full-stack developers.
+
+  * European VCs said they don’t like to invest in Product people building for product teams due to them over-indexing on this signal in the past and getting burnt.
+
+  * US VCs did not have this opinion, but they felt that the space was already saturated, so the unique selling point would have to be more compelling than pitched.
+
+* * *
+
+### 6. Key takeaways
+
+After reviewing the signals from both users and VCs, it felt like this project was not worth pursuing further. The other sign that indicated that this was the right decision was that users thought they would only be ‘somewhat disappointed if they could not use the product again. Below are the top takeaways that I would bring into the next phase of iterations. 
+
+  * Running a closed pilot was immensely valuable, and I plan on repeating this process.
+
+  * I need to find a hair on fire problem; I understand that this isn’t always necessary, but for me, it is.
+
+  * Product Managers and Designers are some of the friendliest users to collaborate with.
+
+  * Vision AI will have enormous potential to bring new levels of analysis to recorded calls.
+
+  * There is a massive opportunity in the user research space and for those interested Jennifer Li wrote up an excellent piece about the[ landscape here](https://a16z.com/2021/04/06/the-market-for-user-research-platforms/).
+
+  * Get ‘Letters of Intent’ or receive payments before entering the build stage.
+
+  * You need a lot less than you think to launch your MVP.
+
+* * *
+
+### Shoutouts
+
+  * To all the early users and interviewees who gave their time to this project. Again the support you provide in sharing your valuable time means the world to us. 
+
+    * I also want to give a specific shoutout to [Igor Kochajkiewicz](http://kochajkiewi.cz/). He stayed with Syncd from the first idea into the pivot and has been incredibly supportive throughout this entire journey. 
+
+  * Pativet Sathiensamrit from [Lightster](https://www.lightster.co/) partnered with us for some of our pilots.

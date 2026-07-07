@@ -249,4 +249,44 @@ export const essays: Essay[] = [
       "A post-mortem of building and selling Lasso. Why LOIs mean nothing, and what platform dependence did to us.",
     canonicalUrl: "https://ianwdj.substack.com/p/lasso",
   },
+  {
+    slug: "creator-economy-100b-opportunity",
+    title: "Unleashing the Potential of Creators",
+    date: "2023-01-02",
+    displayDate: "Jan 2023",
+    summary:
+      "Why new platforms, generative AI, and fractional work make this the best time to build for creators. Based on research with 150+ of them.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/unleashing-the-potential-of-creators",
+  },
+  {
+    slug: "product-frameworks-for-ideation",
+    title: "Product Frameworks for Ideation",
+    date: "2022-06-22",
+    displayDate: "Jun 2022",
+    summary:
+      "The PM frameworks I use to vet new ideas. Viability quadrants, problem briefs, job stories, and hill charts.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/product-frameworks-for-ideation",
+  },
+  {
+    slug: "pivot-ai-user-interview-parsing",
+    title: "Pivot #1: AI User Interview Parsing",
+    date: "2022-04-26",
+    displayDate: "Apr 2022",
+    summary:
+      "A postmortem of the Syncd pivot into AI interview analysis. Ten pilots, metrics that looked good, and why I killed it anyway.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/pivot-2-ai-user-interview-parsing",
+  },
+  {
+    slug: "customer-research-first-10-users",
+    title: "Using Customer Research to Find Your First 10 Users",
+    date: "2022-03-28",
+    displayDate: "Mar 2022",
+    summary:
+      "Defining a research question, screening participants, and finding interviewees in communities, so those conversations become your first users.",
+    canonicalUrl:
+      "https://ianwdj.substack.com/p/using-customer-research-to-find-your",
+  },
 ];
