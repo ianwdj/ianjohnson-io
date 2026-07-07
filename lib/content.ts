@@ -75,10 +75,11 @@ export const projects: Project[] = [
     name: "Flow",
     category: "Commerce infrastructure",
     period: "2018–2021",
+    // Metrics are Ian's own published claims from the previous ianjohnson.io.
     // TODO(ian): confirm the Shopify Markets phrasing — "ran white-label
     // behind" is the defensible version; say the word if it undersells it.
     teaser:
-      "I ran growth, experimentation, merchant-of-record, and checkout. Flow ran white-label behind Shopify Markets.",
+      "I ran growth, experimentation, merchant-of-record, and checkout on $250M a week of cross-border volume. Flow ran white-label behind Shopify Markets.",
     proof: "Principal PM · Acquired by Global-e for $500M",
     logos: ["globale", "shopify"],
     status: "past",
@@ -88,8 +89,9 @@ export const projects: Project[] = [
     name: "Showtime",
     category: "Customer data foundations",
     period: "2014–2018",
+    // Metrics are Ian's own published claims from the previous ianjohnson.io.
     teaser:
-      "We helped cinemas in 26 countries understand who their customers were so they could market to them.",
+      "We helped cinemas understand who their customers were, growing from 2 cinemas to 80+ chains in 26 countries and taking customer identification from 3% to 78%.",
     proof: "VP of Product · Alibaba Pictures JV",
     status: "past",
   },
@@ -98,7 +100,9 @@ export const projects: Project[] = [
     name: "Lasso AI",
     category: "Creator-economy matching",
     period: "2021–2023",
-    teaser: "Bootstrapped matchmaking between brands and creators.",
+    // Metrics are Ian's own published claims from the previous ianjohnson.io.
+    teaser:
+      "Bootstrapped matchmaking between brands and creators. The engine matched 1M+ creator profiles a week at 97% accuracy.",
     proof: "Founded · Acquired by Yard",
     status: "past",
   },
@@ -145,14 +149,46 @@ export const now = {
 };
 
 /* "Elsewhere" — what he's into outside work (goal: visitors get a sense of
-   what excites and interests him). Both lines below trace to the bookmarks
-   on Ian's previous site (Letterboxd, volt.fm) — nothing invented.
-   TODO(ian): replace with real favorites and links — Letterboxd username,
-   a few films/albums/cities you'd actually name. */
+   what excites and interests him). Everything below is from Ian's previous
+   ianjohnson.io personal section — his own published words, nothing invented.
+   TODO(ian): add the Letterboxd URL and trim/reorder however you like. */
 export type ElsewhereGroup = { label: string; items: string[] };
 export const elsewhere: ElsewhereGroup[] = [
-  { label: "Film", items: ["I keep a film diary on Letterboxd."] },
-  { label: "Music", items: ["What's on repeat lives on volt.fm."] },
+  {
+    label: "Side builds",
+    items: [
+      "Artifax (AI ghostwriter)",
+      "Syncd (AI cross-interview analysis)",
+      "Wildfire (creator analytics)",
+      "BiG Deal (dynamic couponing)",
+      "Venice",
+    ],
+  },
+  {
+    label: "Food & drink",
+    items: [
+      "Co-founded THIQUE, a grilled cheese and natural wine bar",
+      "One.Six1, specialty coffee",
+    ],
+  },
+  {
+    label: "Film",
+    items: ["Huge movie buff. The diary lives on Letterboxd."],
+  },
+  {
+    label: "Places",
+    items: [
+      "Dublin",
+      "San Francisco",
+      "Japan",
+      "Paris",
+      "Barcelona",
+      "Lisbon",
+      "New York",
+      "Florence",
+      "Madrid",
+    ],
+  },
 ];
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).
