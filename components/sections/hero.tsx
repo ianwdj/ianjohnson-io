@@ -29,7 +29,18 @@ function Accented({ text }: { text: string }) {
 export function Hero() {
   const { greeting, rest } = splitStatement();
   return (
-    <section className="mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
+    <section className="relative mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
+      {/* the one ambient element beyond grain: still, warm light behind the
+          opening, so the cream reads as daylight instead of paper */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-x-24 -top-16 bottom-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 85% 65% at 28% 18%, rgba(232,80,58,0.065), rgba(250,245,238,0) 62%), radial-gradient(ellipse 65% 55% at 85% 95%, rgba(201,138,94,0.055), rgba(250,245,238,0) 55%)",
+        }}
+      />
+      <div className="relative">
       {/* modest avatar, US-tech register: the work leads, the face humanizes.
           (Reference sites for this audience use small avatars or none.) */}
       <Image
@@ -61,6 +72,7 @@ export function Hero() {
       >
         {hero.detail}
       </p>
+      </div>
     </section>
   );
 }
