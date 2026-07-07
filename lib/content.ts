@@ -12,8 +12,7 @@ export const site = {
   email: "contact@ianjohnson.io",
   substackUrl: "https://ianwdj.substack.com",
   linkedinUrl: "https://www.linkedin.com/in/ianwdjohnson",
-  // TODO(ian): confirm Letterboxd URL — placeholder pending
-  letterboxdUrl: "#",
+  letterboxdUrl: "https://letterboxd.com/ianwdj/",
 };
 
 export const hero = {
@@ -157,45 +156,52 @@ export const now = {
   updated: "July 2026",
 };
 
-/* "Elsewhere" — what he's into outside work (goal: visitors get a sense of
-   what excites and interests him). Everything below is from Ian's previous
-   ianjohnson.io personal section — his own published words, nothing invented.
-   TODO(ian): add the Letterboxd URL and trim/reorder however you like. */
-export type ElsewhereGroup = { label: string; items: string[] };
+/* "Things I have built for fun" — from Ian's previous ianjohnson.io personal
+   section, links included. FACT (Ian, July 2026): he built THIQUE himself —
+   not co-founded, whatever the old site said. Place links are his curated
+   Google Maps lists. */
+export const elsewhereTitle = "Things I have built for fun";
+export type ElsewhereItem = { label: string; href?: string };
+export type ElsewhereGroup = { label: string; items: ElsewhereItem[] };
 export const elsewhere: ElsewhereGroup[] = [
   {
-    label: "Side builds",
+    label: "Products",
     items: [
-      "Artifax (AI ghostwriter)",
-      "Syncd (AI cross-interview analysis)",
-      "Wildfire (creator analytics)",
-      "BiG Deal (dynamic couponing)",
-      "Venice",
+      { label: "Artifax (AI ghostwriter)" },
+      { label: "Syncd (AI cross-interview analysis)" },
+      { label: "Wildfire (creator analytics)" },
+      { label: "BiG Deal (dynamic couponing)" },
+      { label: "Venice", href: "https://www.producthunt.com/products/venice" },
     ],
   },
   {
     label: "Food & drink",
     items: [
-      "Co-founded THIQUE, a grilled cheese and natural wine bar",
-      "One.Six1, specialty coffee",
+      { label: "THIQUE, a grilled cheese and natural wine bar I built myself" },
+      { label: "One.Six1, specialty coffee" },
     ],
   },
   {
     label: "Film",
-    items: ["Huge movie buff. The diary lives on Letterboxd."],
+    items: [
+      {
+        label: "Huge movie buff. The diary lives on Letterboxd",
+        href: site.letterboxdUrl,
+      },
+    ],
   },
   {
     label: "Places",
     items: [
-      "Dublin",
-      "San Francisco",
-      "Japan",
-      "Paris",
-      "Barcelona",
-      "Lisbon",
-      "New York",
-      "Florence",
-      "Madrid",
+      { label: "Dublin", href: "https://maps.app.goo.gl/iWgg9vpNfeueoE1R9" },
+      { label: "San Francisco", href: "https://maps.app.goo.gl/6GQgTL1uerbon745A" },
+      { label: "Japan", href: "https://maps.app.goo.gl/Ft2Rcv5bkbEVHwjAA" },
+      { label: "Paris", href: "https://maps.app.goo.gl/x7VtAgC2pZtAXNB48" },
+      { label: "Barcelona", href: "https://maps.app.goo.gl/aUoEHGLRmxrs74Vk7" },
+      { label: "Lisbon", href: "https://maps.app.goo.gl/Pthrg8iTzP26rKjV7" },
+      { label: "New York", href: "https://maps.app.goo.gl/FMBWa9Cb8jr6GuJj7" },
+      { label: "Florence", href: "https://maps.app.goo.gl/PPKrBXhV1VGidKPU6" },
+      { label: "Madrid", href: "https://maps.app.goo.gl/yBWGaPpSfUH47pny7" },
     ],
   },
 ];

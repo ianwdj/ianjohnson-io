@@ -25,9 +25,7 @@ export function SiteFooter() {
             </a>
           ))}
         </div>
-        <p className="meta mt-12">
-          Set in Newsreader. Built with Next.js. {site.location}.
-        </p>
+        <p className="meta mt-12">{site.location}</p>
       </div>
     </footer>
   );
