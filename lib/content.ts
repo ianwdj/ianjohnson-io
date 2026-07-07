@@ -19,13 +19,16 @@ export const site = {
 export const hero = {
   statement:
     "I'm Ian. I build things, mostly AI, always trying to help people do more with less.",
-  // rendered with the phrase below set in coral
-  accentPhrase: "do more with less",
+  /* Audit note: the coral accent made "do more with less" read as a tagline,
+     so no phrase is accented now. Set this to a substring of statement to
+     re-enable. TODO(ian): if you want a different opening line, say it and
+     it goes in verbatim. */
+  accentPhrase: "",
   detail:
-    "Founding product lead at Aida. Since 2014, across revenue workflows, commerce infrastructure, and customer data.",
+    "Founding product lead at Aida, an AI chief of staff for sales reps. Building products since 2014, in revenue tools, commerce, and customer data.",
 };
 
-export type LogoId = "globale" | "shopify" | "alibaba";
+export type LogoId = "globale" | "shopify";
 
 export type Project = {
   slug: string; // reserves /work/[slug] for future case studies
@@ -43,16 +46,19 @@ export type Project = {
    acquired by Yard) and Flow (Ian was an employee, acquired by Global-e).
    Showtime was never acquired; the Alibaba Pictures JV is a partnership. */
 export const workIntro =
-  "Four products since 2014. Two of the companies were acquired. One I founded, one I joined early.";
+  "Four products since 2014. Two of the companies were acquired. One of those I founded.";
 
 export const projects: Project[] = [
   {
     slug: "aida",
     name: "Aida",
-    category: "Deal execution AI",
+    category: "AI chief of staff for sales reps",
     period: "2024–now",
     teaser:
-      "An AI chief of staff for sales reps. It catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+      "Catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+    // TODO(ian): add one traction fact here when shareable (design partners,
+    // reps using it, team size) — e.g. "Founding product lead · N design partners"
+    proof: "Founding product lead",
     href: "https://getaida.com",
     status: "current",
   },
@@ -61,8 +67,10 @@ export const projects: Project[] = [
     name: "Flow",
     category: "Commerce infrastructure",
     period: "2018–2021",
+    // TODO(ian): confirm the Shopify Markets phrasing — "ran white-label
+    // behind" is the defensible version; say the word if it undersells it.
     teaser:
-      "Growth, experimentation, merchant-of-record, and checkout at scale. The white-label engine behind Shopify Markets.",
+      "I ran growth, experimentation, merchant-of-record, and checkout. Flow ran white-label behind Shopify Markets.",
     proof: "Principal PM · Acquired by Global-e for $500M",
     logos: ["globale", "shopify"],
     status: "past",
@@ -73,9 +81,8 @@ export const projects: Project[] = [
     category: "Customer data foundations",
     period: "2014–2018",
     teaser:
-      "Entity resolution and marketable customer understanding for cinemas across 26 countries.",
-    proof: "VP of Product · Alibaba Pictures JV",
-    logos: ["alibaba"],
+      "We helped cinemas in 26 countries understand who their customers were so they could market to them.",
+    proof: "VP of Product · Alibaba Pictures JV",
     status: "past",
   },
   {
@@ -90,20 +97,34 @@ export const projects: Project[] = [
 ];
 
 /* "How I think" — distilled from Ian's published essays (Lasso post-mortem,
-   Pre-Product Sales Sprint), not invented.
-   TODO(ian): these are drafts in your direction — edit until they sound like you. */
-export const principles: { title: string; body: string }[] = [
+   Pre-Product Sales Sprint), not invented. Each principle carries a receipt:
+   the essay where it was learned, so the claim and the evidence touch.
+   TODO(ian): titles 1 and 3 are still drafted, not yours — say them your way
+   and they go in verbatim. */
+export type Principle = {
+  title: string;
+  body: string;
+  receipt?: { label: string; href: string };
+};
+
+export const principles: Principle[] = [
   {
     title: "Watch what customers do, not what they say",
     body: "The real problem is usually different from the one people describe. If you can shadow someone in their actual workflow, you'll learn more than any interview will tell you.",
+    receipt: { label: "Learned at Lasso", href: "/writing/lasso" },
   },
   {
     title: "Ask for money early",
     body: "LOIs and verbal commitments mean nothing. If someone won't put down payment details in some form, the problem probably isn't painful enough to build for.",
+    receipt: { label: "Learned at Lasso, the hard way", href: "/writing/lasso" },
   },
   {
     title: "Build with the sales motion, not ahead of it",
     body: "How something gets sold shapes what should get built. The products I've seen work were designed alongside the people selling them, from the start.",
+    receipt: {
+      label: "How Artifax closed $1,000 sales with a Notion page",
+      href: "/writing/pre-product-sales-sprint",
+    },
   },
 ];
 
@@ -114,6 +135,14 @@ export const now = {
   ],
   updated: "July 2026",
 };
+
+/* "Elsewhere" — what he's into outside work (goal: visitors get a sense of
+   what excites and interests him). Renders only when populated; no invented
+   tastes. TODO(ian): answer the one-message ask — Letterboxd username plus a
+   handful of real favorites (films / albums / cities / whatever you want
+   shown) — and this section appears. */
+export type ElsewhereGroup = { label: string; items: string[] };
+export const elsewhere: ElsewhereGroup[] = [];
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).
    TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are
@@ -150,7 +179,7 @@ export const essays: Essay[] = [
     date: "2023-12-05",
     displayDate: "Dec 2023",
     summary:
-      "A weighted scorecard for deciding what to build next, with a brutally honest worked example scoring my own AI-product idea.",
+      "A weighted scorecard for deciding what to build next, with a worked example where I score my own idea and it comes up short.",
     canonicalUrl:
       "https://ianwdj.substack.com/p/a-concise-guide-to-shortlisting-startup",
   },
@@ -170,7 +199,7 @@ export const essays: Essay[] = [
     date: "2023-06-14",
     displayDate: "Jun 2023",
     summary:
-      "A candid post-mortem of building and selling Lasso. Why LOIs mean nothing, and why a 10% better product dies in a platform-controlled market.",
+      "A post-mortem of building and selling Lasso. Why LOIs mean nothing, and what platform dependence did to us.",
     canonicalUrl: "https://ianwdj.substack.com/p/lasso",
   },
 ];

@@ -18,6 +18,11 @@ export function ThinkingSection() {
               <div>
                 <h3 className="font-serif text-[20px]">{p.title}</h3>
                 <p className="mt-2 leading-[1.65]">{p.body}</p>
+                {p.receipt && (
+                  <a href={p.receipt.href} className="link meta mt-3 inline-block normal-case tracking-normal">
+                    {p.receipt.label} →
+                  </a>
+                )}
               </div>
             </li>
           </Reveal>

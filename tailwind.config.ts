@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // any border utility without a color class falls back to hairline,
+      // never Tailwind's cool-gray preflight default
+      borderColor: {
+        DEFAULT: "var(--hairline)",
+      },
       // the only colors on the site — warm daylight, no blue, no cool gray
       colors: {
         cream: "var(--cream)",

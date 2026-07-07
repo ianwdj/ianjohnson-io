@@ -30,22 +30,6 @@ export function WritingSection() {
             </Link>
           </Reveal>
         ))}
-        {essays.length === 0 && (
-          <Reveal>
-            <p className="leading-[1.65] text-putty">
-              Essays are moving in from{" "}
-              <a
-                href={site.substackUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link"
-              >
-                Substack
-              </a>
-              . In the meantime, that&rsquo;s where the writing lives.
-            </p>
-          </Reveal>
-        )}
       </div>
     </section>
   );

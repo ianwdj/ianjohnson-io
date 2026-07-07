@@ -1,14 +1,14 @@
 import type { LogoId, Project } from "@/lib/content";
-import { AlibabaLogo, GlobalELogo, ShopifyLogo } from "@/components/logos";
+import { GlobalELogo, ShopifyLogo } from "@/components/logos";
 
 const LOGOS: Record<
   LogoId,
   { Component: React.ComponentType<{ className?: string }>; className: string }
 > = {
   globale: { Component: GlobalELogo, className: "h-[18px] w-auto" },
-  shopify: { Component: ShopifyLogo, className: "h-[18px] w-auto" },
-  // square glyph needs a touch more height to sit level with the wordmarks
-  alibaba: { Component: AlibabaLogo, className: "h-[24px] w-auto" },
+  // Shopify's viewBox includes the bag glyph, so its wordmark x-height runs
+  // ~30% short of Global-e's at equal heights; 21px restores optical parity
+  shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto" },
 };
 
 export function WorkCard({ project }: { project: Project }) {

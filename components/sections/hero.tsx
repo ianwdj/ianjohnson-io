@@ -4,7 +4,7 @@ import { hero, site } from "@/lib/content";
 /* Splits the statement around the accent phrase so it can be set in coral. */
 function AccentedStatement() {
   const { statement, accentPhrase } = hero;
-  const i = statement.indexOf(accentPhrase);
+  const i = accentPhrase ? statement.indexOf(accentPhrase) : -1;
   if (i === -1) return <>{statement}</>;
   return (
     <>
@@ -34,7 +34,7 @@ export function Hero() {
         <AccentedStatement />
       </h1>
       <p
-        className="fade-up mt-8 text-[19px] leading-[1.65] text-ink"
+        className="fade-up mt-8 text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
         style={{ animationDelay: "120ms" }}
       >
         {hero.detail}
