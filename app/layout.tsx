@@ -79,11 +79,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${mono.variable}`}>
       <body className="antialiased">
-        {/* below-the-fold sections render opacity-0 until JS reveals them;
-            without JS they must simply be visible */}
-        <noscript>
-          <style>{`.reveal-pending{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
