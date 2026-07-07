@@ -89,9 +89,11 @@ export default function RootLayout({
           <filter id="warm-duotone" colorInterpolationFilters="sRGB">
             <feColorMatrix type="saturate" values="0" />
             <feComponentTransfer>
-              <feFuncR type="table" tableValues="0.239 0.980" />
-              <feFuncG type="table" tableValues="0.216 0.961" />
-              <feFuncB type="table" tableValues="0.200 0.933" />
+              {/* deeper shadow endpoint than ink text (#26211D) so the
+                  photo keeps real contrast; highlights stay cream */}
+              <feFuncR type="table" tableValues="0.149 0.980" />
+              <feFuncG type="table" tableValues="0.129 0.961" />
+              <feFuncB type="table" tableValues="0.114 0.933" />
             </feComponentTransfer>
           </filter>
         </svg>
