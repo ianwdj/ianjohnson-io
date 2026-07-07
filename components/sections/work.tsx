@@ -1,4 +1,4 @@
-import { projects, workIntro } from "@/lib/content";
+import { projects } from "@/lib/content";
 import { WorkCard } from "@/components/work-card";
 import { Reveal } from "@/components/reveal";
 
@@ -7,7 +7,6 @@ export function WorkSection() {
     <section id="work" className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32">
       <Reveal>
         <p className="meta">Selected work</p>
-        <p className="mt-6 font-serif text-[24px] leading-[1.4]">{workIntro}</p>
       </Reveal>
       <div className="mt-12 flex flex-col border-b border-hairline">
         {projects.map((project) => (

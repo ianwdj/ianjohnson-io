@@ -83,6 +83,18 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        {/* duotone filter for the portrait: greyscale, then map the tonal
+            range onto the site palette (ink 3D3733 -> cream FAF5EE) */}
+        <svg aria-hidden width="0" height="0" style={{ position: "absolute" }}>
+          <filter id="warm-duotone" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues="0.239 0.980" />
+              <feFuncG type="table" tableValues="0.216 0.961" />
+              <feFuncB type="table" tableValues="0.200 0.933" />
+            </feComponentTransfer>
+          </filter>
+        </svg>
         {children}
       </body>
     </html>

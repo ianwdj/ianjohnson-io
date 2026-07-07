@@ -95,6 +95,14 @@
     filter: sepia(0.22) contrast(0.97) brightness(1.02);
   }
 
+  /* true duotone: shadows map to ink #3D3733, highlights to cream #FAF5EE,
+     so the photo is built from the site's own palette (filter defined in
+     app/layout.tsx). Falls back to .portrait-warm sepia if unsupported. */
+  .portrait-duotone {
+    filter: sepia(0.22) contrast(0.97) brightness(1.02);
+    filter: url(#warm-duotone);
+  }
+
   /* company logo marks: unify mixed brand colors into the warm ink tone */
   .logo-warm {
     filter: grayscale(1) sepia(0.18) opacity(0.75);

@@ -61,7 +61,7 @@ export function Hero() {
           width={768}
           height={900}
           priority
-          className="fade-up portrait-warm order-1 w-[200px] rounded-xl sm:order-2 sm:mt-3 sm:w-full"
+          className="fade-up portrait-duotone order-1 w-[200px] rounded-xl sm:order-2 sm:mt-3 sm:w-full"
           style={{ animationDelay: "0ms" }}
         />
       </div>
