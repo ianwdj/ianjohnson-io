@@ -95,6 +95,15 @@
     filter: sepia(0.22) contrast(0.97) brightness(1.02);
   }
 
+  /* company logo marks: unify mixed brand colors into the warm ink tone */
+  .logo-warm {
+    filter: grayscale(1) sepia(0.18) opacity(0.75);
+  }
+  /* for white-on-transparent source logos (Flow): flip dark first */
+  .logo-warm-invert {
+    filter: invert(1) grayscale(1) sepia(0.18) opacity(0.75);
+  }
+
   /* entrance: used on hero at load and by <Reveal> below the fold */
   .fade-up {
     opacity: 0;

@@ -9,7 +9,7 @@ export function WorkSection() {
         <p className="meta">Selected work</p>
         <p className="mt-6 font-serif text-[24px] leading-[1.4]">{workIntro}</p>
       </Reveal>
-      <div className="mt-12 flex flex-col gap-4">
+      <div className="mt-12 flex flex-col border-b border-hairline">
         {projects.map((project) => (
           <Reveal key={project.slug}>
             <WorkCard project={project} />
