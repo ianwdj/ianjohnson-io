@@ -30,35 +30,39 @@ export function Hero() {
   const { greeting, rest } = splitStatement();
   return (
     <section className="mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
-      <Image
-        src="/portrait.jpg"
-        alt={site.name}
-        width={160}
-        height={160}
-        priority
-        className="fade-up portrait-warm rounded-full"
-        style={{ animationDelay: "0ms" }}
-      />
-      {greeting && (
-        <p
-          className="fade-up mt-12 font-serif text-[24px] italic text-putty"
-          style={{ animationDelay: "60ms" }}
-        >
-          {greeting}
-        </p>
-      )}
-      <h1
-        className="fade-up mt-4 font-serif text-[clamp(48px,8vw,84px)] font-normal leading-[1.04] tracking-[-0.01em]"
-        style={{ animationDelay: "120ms" }}
-      >
-        <Accented text={greeting ? rest : hero.statement} />
-      </h1>
-      <p
-        className="fade-up mt-8 text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
-        style={{ animationDelay: "180ms" }}
-      >
-        {hero.detail}
-      </p>
+      <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:gap-14">
+        <div className="order-2 sm:order-1">
+          {greeting && (
+            <p
+              className="fade-up font-serif text-[24px] italic text-putty"
+              style={{ animationDelay: "60ms" }}
+            >
+              {greeting}
+            </p>
+          )}
+          <h1
+            className="fade-up mt-4 font-serif text-[clamp(48px,8vw,84px)] font-normal leading-[1.04] tracking-[-0.01em]"
+            style={{ animationDelay: "120ms" }}
+          >
+            <Accented text={greeting ? rest : hero.statement} />
+          </h1>
+          <p
+            className="fade-up mt-8 text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
+            style={{ animationDelay: "180ms" }}
+          >
+            {hero.detail}
+          </p>
+        </div>
+        <Image
+          src="/portrait.jpg"
+          alt={site.name}
+          width={160}
+          height={160}
+          priority
+          className="fade-up portrait-warm order-1 h-[120px] w-[120px] rounded-full sm:order-2 sm:mt-2 sm:h-[160px] sm:w-[160px]"
+          style={{ animationDelay: "0ms" }}
+        />
+      </div>
     </section>
   );
 }
