@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -26,18 +27,27 @@ export default function MeetingStackCaseStudy() {
           href={meetingStack.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-8 block rounded-lg border border-hairline bg-cream-deep px-6 py-5 no-underline transition-colors duration-300 ease-slow can-hover:hover:border-coral/40"
+          className="group mt-8 block overflow-hidden rounded-lg border border-hairline no-underline transition-colors duration-300 ease-slow can-hover:hover:border-coral/40"
         >
-          <p className="font-serif text-[20px] transition-colors duration-300 group-hover:text-coral-deep">
-            Explore the interactive version
-            <span aria-hidden className="ml-2 text-[16px] text-putty">
-              ↗
+          <Image
+            src="/work/meeting-canvas.png"
+            alt="The interactive canvas: the full sales meeting journey, with layers for the decisions and the architecture"
+            width={1400}
+            height={875}
+            loading="eager"
+            className="w-full"
+          />
+          <span className="flex items-baseline justify-between gap-4 border-t border-hairline bg-cream-deep px-6 py-4">
+            <span className="font-serif text-[18px] transition-colors duration-300 group-hover:text-coral-deep">
+              Explore the interactive version
+              <span aria-hidden className="ml-2 text-[15px] text-putty">
+                ↗
+              </span>
             </span>
-          </p>
-          <p className="mt-1 text-[15px] text-putty">
-            The full canvas, with the anatomy of a meeting agent and the
-            architecture behind it.
-          </p>
+            <span className="meta hidden sm:inline">
+              Three layers · journey · decisions · architecture
+            </span>
+          </span>
         </a>
 
         <div className="mt-16 flex flex-col gap-16">
