@@ -33,8 +33,10 @@ Banned (he has flagged each of these specifically):
 
 ### Design system (approved, do not re-litigate)
 
-"Her" (2013) warmth: cream #FAF5EE bg, ink #3D3733, putty #8A7F73, coral #E8503A accent,
-hairline #E8E0D3. **No blue anywhere, no cool gray, no pure white/black.** Newsreader
+"Her" (2013) warmth, porcelain variant (Ian switched July 2026 — the original cream
+#FAF5EE read too close to Claude/Anthropic): porcelain #EFECE6 bg, cream-deep #E6E2D9,
+ink #33302B, ink-strong #242118, putty #8B857A, coral #E8503A accent, hairline #DCD6CB.
+**No blue anywhere, no cool gray, no pure white/black.** Newsreader
 serif (opsz) + JetBrains Mono for metadata labels. 672px column. Motion: 300–500ms,
 `cubic-bezier(0.22,1,0.36,1)`, fires once, must never be able to hide content
 (see components/reveal.tsx — progressive enhancement pattern, keep it that way).

@@ -7,14 +7,14 @@
    No blue. No cool gray. No pure white or black.
    ============================================================ */
 :root {
-  --cream: #faf5ee;       /* page background */
-  --cream-deep: #f5efe6;  /* raised cards, blockquotes */
-  --ink: #3d3733;         /* body text — warm charcoal */
-  --ink-strong: #2a2622;  /* headings */
-  --putty: #8a7f73;       /* secondary text, metadata */
+  --cream: #efece6;       /* page background — porcelain */
+  --cream-deep: #e6e2d9;  /* raised cards, blockquotes */
+  --ink: #33302b;         /* body text — warm charcoal */
+  --ink-strong: #242118;  /* headings */
+  --putty: #8b857a;       /* secondary text, metadata */
   --coral: #e8503a;       /* THE accent */
   --coral-deep: #c93f2c;  /* hover, active */
-  --hairline: #e8e0d3;    /* rules, borders */
+  --hairline: #dcd6cb;    /* rules, borders */
 
   --ease-out-slow: cubic-bezier(0.22, 1, 0.36, 1);
 }

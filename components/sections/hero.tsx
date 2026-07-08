@@ -37,7 +37,7 @@ export function Hero() {
         className="pointer-events-none absolute -inset-x-24 -top-16 bottom-0"
         style={{
           background:
-            "radial-gradient(ellipse 85% 65% at 28% 18%, rgba(232,80,58,0.065), rgba(250,245,238,0) 62%), radial-gradient(ellipse 65% 55% at 85% 95%, rgba(201,138,94,0.055), rgba(250,245,238,0) 55%)",
+            "radial-gradient(ellipse 85% 65% at 28% 18%, rgba(232,80,58,0.065), rgba(239,236,230,0) 62%), radial-gradient(ellipse 65% 55% at 85% 95%, rgba(201,138,94,0.055), rgba(239,236,230,0) 55%)",
         }}
       />
       <div className="relative">

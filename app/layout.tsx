@@ -84,16 +84,16 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {/* duotone filter for the portrait: greyscale, then map the tonal
-            range onto the site palette (ink 3D3733 -> cream FAF5EE) */}
+            range onto the site palette (deep ink -> porcelain #EFECE6) */}
         <svg aria-hidden width="0" height="0" style={{ position: "absolute" }}>
           <filter id="warm-duotone" colorInterpolationFilters="sRGB">
             <feColorMatrix type="saturate" values="0" />
             <feComponentTransfer>
-              {/* deeper shadow endpoint than ink text (#26211D) so the
-                  photo keeps real contrast; highlights stay cream */}
-              <feFuncR type="table" tableValues="0.149 0.980" />
-              <feFuncG type="table" tableValues="0.129 0.961" />
-              <feFuncB type="table" tableValues="0.114 0.933" />
+              {/* shadow endpoint (#221F17) sits deeper than ink text so the
+                  photo keeps real contrast; highlights stay porcelain */}
+              <feFuncR type="table" tableValues="0.133 0.937" />
+              <feFuncG type="table" tableValues="0.122 0.925" />
+              <feFuncB type="table" tableValues="0.090 0.902" />
             </feComponentTransfer>
           </filter>
         </svg>
