@@ -213,17 +213,20 @@ export const elsewhere: ElsewhereGroup[] = [
     ],
   },
   {
+    // "I built myself" dropped from THIQUE's label — redundant under a
+    // section titled "Things I have built for fun." Fact preserved above.
     label: "Food & drink",
     items: [
-      { label: "THIQUE, a grilled cheese and natural wine bar I built myself" },
+      { label: "THIQUE, a grilled cheese and natural wine bar" },
       { label: "One.Six1, specialty coffee" },
+      { label: "Soundcellar, a wine and podcast club with 200+ members" },
     ],
   },
   {
     label: "Film",
     items: [
       {
-        label: "Huge movie buff. The diary lives on Letterboxd",
+        label: "Huge movie buff. Logged on Letterboxd",
         href: site.letterboxdUrl,
       },
     ],
