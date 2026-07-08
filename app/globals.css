@@ -90,6 +90,28 @@
     color: var(--putty);
   }
 
+  /* essay list disclosure: quiet link, no triangle marker, label swaps.
+     The explicit closed-state rule doubles down on native behavior so the
+     collapse never depends on UA internals. */
+  .essay-more:not([open]) > *:not(summary) {
+    display: none;
+  }
+  .essay-more summary {
+    list-style: none;
+  }
+  .essay-more summary::-webkit-details-marker {
+    display: none;
+  }
+  .essay-more summary .when-open {
+    display: none;
+  }
+  .essay-more[open] summary .when-open {
+    display: inline;
+  }
+  .essay-more[open] summary .when-closed {
+    display: none;
+  }
+
   /* warm the B&W portrait so it sits in the cream palette, not against it */
   .portrait-warm {
     filter: sepia(0.22) contrast(0.97) brightness(1.02);
