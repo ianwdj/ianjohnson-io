@@ -1,0 +1,119 @@
+For 30 years, sales coaching has been an event, but now, with AI, you can make it an environment.
+
+The average B2B sales rep spends 28% of their week selling. They get coached by their manager about once a month. Around 84% of what they learned in their last training is gone within 90 days.
+
+None of these are training issues; they are coupling problems.
+
+The gap between knowing what to fix and doing the fix has always been the last mile of sales coaching. For three decades, the industry has tried to close that mile with more rubrics, more dashboards, more enablement sessions, more 1:1s, most of which arrive long after the moment they were supposed to influence has already passed.
+
+The same architectural shift Andreessen Horowitz framed in May as "From System of Record to System of Intelligence" is what's making the last mile, finally, closable. The orchestration layer that's eating the CRM is the same layer that places coaching at the exact moment of execution. That changes coaching from something a manager does to a rep on Tuesday at 9am into something the system does with the rep, continuously, every meeting.
+
+It's the shift from coaching as an event to coaching as an environment.
+
+## What changed
+
+For twenty years, the bet in GTM software was that owning the database meant owning the customer. Every call note, every pricing precedent, every account history flowed into one place because the human acting on that context could only look in one place at a time. That model produced two companies that mattered.
+
+In May, a16z argued the model is now upside-down:
+
+> "In the software era, the gravity in enterprise software came from data accumulation. In the AI era, gravity will come from orchestration."
+>
+> Steph Zhang, Gio Ahern, Alex Immerman, a16z, May 14 2026
+
+The CRM doesn't disappear in this world. It becomes infrastructure: a well-curated database with great integrations that the orchestration layer reads and writes to. What sits above it does the actual thinking: it listens to every call, watches the calendar, parses the inbox, reads the Slack DMs, and decides what should happen next.
+
+Counterintuitively, a16z's April 2026 GTM survey found CRM usage has actually risen since AI tools were widely adopted, because the data flowing into the CRM has become dramatically richer. The same survey found 39% of sales leaders expect headcount to increase over the next two years. The point isn't that fewer people sell; it's that the leverage per person changes shape entirely.
+
+Coaching is one of the orchestration layer's highest-value native behaviors. It has always been the act of reading what the rep did, thinking about it, and writing back guidance. That description happens to match exactly what the orchestration layer does for everything else. Coaching just moves into the same loop.
+
+## The mechanism
+
+There's a clean way to understand why this works, and it comes from BJ Fogg at Stanford's Behavior Design Lab.
+
+Fogg's model is B = MAP. A behavior happens when Motivation, Ability, and a Prompt converge at the same moment. If any of the three is missing, the behavior doesn't happen. The counterintuitive insight is that motivation is the least reliable lever; it fluctuates. Ability and prompts are engineerable. You can make a behavior easier, and you can place the prompt at the moment when ability is at its peak.
+
+Traditional sales coaching fails the Fogg test by design. The prompt (the manager's feedback) arrives long after the moment of execution. The rep already lost the deal. Motivation around it is dropping. Ability to apply the lesson is at its lowest, because the lesson is abstract again, no longer attached to the live situation that would have made it concrete.
+
+Embedded coaching inverts this. The prompt arrives at the moment ability is highest: right before the meeting, while the email is being drafted, in the middle of the call. The lesson isn't abstract; it's about the literal next action.
+
+The educational version of this insight is older. Vygotsky's Zone of Proximal Development described learning as the space between what someone can do alone and what they can do with the right help. Until now, providing that help at scale required a manager-to-rep ratio no sales org could afford. AI is the first technology that can sit next to every rep in their zone, every day.
+
+## The five moments where embedded coaching actually lands
+
+In practice, embedded coaching shows up at five distinct points in a rep's day:
+
+1. **Meeting prep.** A briefing arrives in the rep's inbox before the call: account history, deal status, last conversation summary, the three questions the AI suggests asking based on the prior call's gaps. The "I'm walking in unprepared" problem disappears for everyone, not just the top quartile that used to over-prepare.
+2. **In-call cues.** Real-time prompts surface objections the rep is missing, talk-time imbalances, qualifier questions skipped. The earpiece-coach metaphor isn't perfect but it's close.
+3. **Post-call follow-up.** The recap, the structured CRM update, and the follow-up email are drafted from the call. Including details "never written anywhere," a phrase we'll come back to.
+4. **Deal slippage.** When an account goes quiet, when a date slips, when an economic buyer hasn't been contacted in 14 days, the system flags it. The manager doesn't notice it in next week's 1:1. The rep gets pinged today.
+5. **Pipeline review.** The weekly 1:1 stops being forensics ("walk me through every deal") and becomes exception-based ("here are the four moments this week the AI flagged for your judgment"). The manager spends their time on the 20% the AI can't decide.
+
+Five moments. Each one is a Fogg prompt landing at peak ability. The last mile closes not because we found a better rubric, but because the prompt and the moment finally arrive together.
+
+## A working example: a rep's day at an AI legal tech unicorn
+
+This is what one of those moments actually looks like in practice. (Disclosure: I'm a product builder at Aida, one of several companies building this orchestration layer for sales reps. I'm using us as the working example because it's what I have the closest visibility into. But the pattern is bigger than any one tool.)
+
+And yes, general-purpose assistants like Claude or ChatGPT can do parts of this well at the individual-rep level. But the operational cost of governing a horizontal tool across an enterprise sales team (data residency, audit trails, CRM write integrity, consistent scoring across reps, longitudinal improvement on what actually wins) is where the false economy lives. The per-seat savings get eaten by the integration work, compliance gaps, and inconsistency that compound quarter over quarter.
+
+Maya is an account executive at one of the fastest-growing AI legal tech companies (a recent unicorn). Before Aida, her workflow looked roughly like every AE's. After every call, she'd spend 10–15 minutes drafting a follow-up email. Between meetings, she'd update CRM fields from memory. Her average response SLA was 15 hours. Prep for manager deal reviews ate a half-day.
+
+The visceral moment for me is one her colleague Marcus flagged. The AI drafted a follow-up email that referenced a specific technical detail from a recorded call:
+
+> "David and our engineering team were particularly excited about how well your S3 backup structure aligns. It's actually one of the most optimized setups we've seen."
+
+Marcus's reaction: "I remember our engineering team saying that over the call, but it was never written anywhere."
+
+That phrase, "never written anywhere", is what the orchestration layer makes possible. The detail wasn't in the CRM, the meeting notes, or the email thread. It was in the call. The system heard it, knew it mattered, and put it in the follow-up in the rep's voice. The rep sent it with minor tweaks.
+
+This is the closed loop in one sentence: call recording → AI extracts the insight → drafts contextual follow-up → rep sends in seconds. Aida sits across Slack, Zoom, Gmail, Salesforce, and Gong: exactly the multi-signal ingestion the system-of-intelligence thesis predicts. It's deliberately non-rip-and-replace: it layers on top of the CRM, not against it.
+
+## What this enables (and what it doesn't)
+
+The headline shift isn't "AI replaces sales reps." The data so far is the opposite. Gartner's September 2024 study of 1,026 B2B sellers found that sellers who effectively partner with AI are 3.7× more likely to meet quota. a16z's GTM survey found 39% of leaders expect headcount to grow. Bain estimates AI could roughly double a rep's selling time from ~25% to ~50% and lift win rates by more than 30%.
+
+What changes is the shape of the role. The AE becomes an agent-orchestrator: someone who prompts ten systems before, during, and after a meeting. The manager shifts from coach-of-everything to exception-handler: their judgment goes where the AI's reasoning runs out. New categories appear: Digital Sales Engineer, Agent Designer for GTM, Head of Agent Operations.
+
+The most underrated implication: institutional memory becomes something a company can actually ship. When a rep leaves today, their context goes with them: the texture of every relationship, the things "never written anywhere." When an orchestration layer has been ingesting that context for the rep's full tenure, the successor inherits the entire history on day one.
+
+> "Institutional memory becomes something a company can actually ship."
+>
+> a16z, "From System of Record to System of Intelligence"
+
+## The honest caveats
+
+A few things this thesis doesn't get to wave away.
+
+**Skill atrophy.** If AI drafts every follow-up and prompts every objection, do reps ever build the underlying muscle? The honest answer: most reps weren't building it anyway (the 84% forgetting curve, the once-a-month coaching). The real concern is for the top quartile, whose ceiling might lower if they lean on the system as a crutch.
+
+**Surveillance.** Continuous monitoring of every call, email, and Slack raises questions that won't go away. The line between coaching and surveillance is real, and the answer can't just be "trust us."
+
+**Bad-rubric scaling.** A bad scorecard applied to one rep is a bad 1:1. A bad scorecard applied automatically to 1,000 reps is institutional damage. Garbage in, garbage out is more dangerous, not less, at scale.
+
+**Lock-in.** The same "institutional memory you can ship" cuts both ways. Whoever owns the orchestration layer owns the reasoning, which is exactly the dynamic Salesforce built around the database, now reproduced one level up. The next decade's switching costs will live here.
+
+## Why I care about this one
+
+I was a visual learner who got forced through eighteen years of schooling built for a different brain. The thing I loved most about leaving was getting to design my own learning. It's why I picked startups. Nothing else compounds learning this fast.
+
+What's hit me hardest in the last year is that, for the first time, we can design that environment for everyone else too. Not just for me. For every rep who never quite fit the rubric, who never got coached on the thing they actually needed, who was told "just send a better follow-up" without anyone showing them how.
+
+Sales coaching is the first place I'm watching this happen at an industrial scale. It's the highest-leverage workflow inside the system of intelligence, because the gap between insight and action is so visible, so measurable, and (until now) so wide. Closing the last mile is what the system of intelligence is for. Whoever owns that moment owns the next decade of GTM software.
+
+The system of record was about logging what happened. The system of intelligence is about changing what happens next. Coaching is its native behavior.
+
+---
+
+## Sources & references
+
+- a16z, ["From System of Record to System of Intelligence"](https://a16z.com/from-system-of-record-to-system-of-intelligence/) (Ahern, Zhang, Immerman; May 14, 2026)
+- a16z, ["Is Software Losing Its Head?"](https://a16z.com/is-software-losing-its-head/) (Amble, May 13, 2026)
+- [Gartner Sales Survey](https://www.gartner.com/en/newsroom/press-releases/2024-09-16-gartner-sales-survey-reveals-sellers-who-partner-with-ai-re-three-point-seven-times-more-likely-to-meet-quota) (September 16, 2024, n=1,026)
+- [Salesforce State of Sales 2024–2026](https://www.salesforce.com/news/stories/state-of-sales-report-announcement-2026/)
+- MySalesCoach, [State of Sales Coaching 2026](https://www.mysalescoach.com/blog/sales-coaching-statistics-2026)
+- [Ardent Learning](https://www.ardentlearning.com/blog/what-is-the-forgetting-curve-in-sales-training) (the 84% forgotten in 90 days source)
+- [Murre & Dros, PLOS ONE 2015](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644) (Ebbinghaus replication)
+- BJ Fogg, [Tiny Habits](https://tinyhabits.com/) (2020)
+- Vygotsky, [Mind in Society](https://www.hup.harvard.edu/books/9780674576292) (1978, Harvard University Press)
+- [Bain Technology Report 2025](https://www.bain.com/insights/ai-transforming-productivity-sales-remains-new-frontier-technology-report-2025/) (the sales chapter)
+- McKinsey, ["The economic potential of generative AI"](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier) (June 2023)

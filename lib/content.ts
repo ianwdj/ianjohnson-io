@@ -39,6 +39,8 @@ export type Project = {
   proof?: string;
   logos?: LogoId[]; // acquirer/partner marks rendered under the proof line
   href?: string; // live product link, rendered as external link on the card
+  image?: { src: string; width: number; height: number; alt: string }; // product evidence
+  caseStudy?: { label: string; href: string }; // on-site case study link
   status: "current" | "past"; // drives only the "current" dot on the card
 };
 
@@ -64,6 +66,17 @@ export const projects: Project[] = [
     // reps using it, team size) — e.g. "Founding product lead · N design partners"
     proof: "Founding product lead",
     href: "https://getaida.com",
+    // from Ian's Aida Figma (Chat UI file, deal view with drafted follow-up)
+    image: {
+      src: "/work/aida.png",
+      width: 1200,
+      height: 723,
+      alt: "Aida deal view: AI-written deal overview, deal fields, and a drafted follow-up email",
+    },
+    caseStudy: {
+      label: "Case study. The sales meeting, end to end",
+      href: "/work/aida",
+    },
     status: "current",
   },
   {
@@ -223,6 +236,15 @@ export type Essay = {
 };
 
 export const essays: Essay[] = [
+  {
+    slug: "last-mile-sales-coaching",
+    title: "The Last Mile of Sales Coaching",
+    date: "2026-06-01",
+    displayDate: "Jun 2026",
+    summary:
+      "Coaching has always been an event that arrives too late. With AI it becomes an environment that shows up in the moment.",
+    // TODO(ian): paste the LinkedIn article URL for the canonical link
+  },
   {
     slug: "pre-product-sales-sprint",
     title: "The Pre-Product Sales Sprint",

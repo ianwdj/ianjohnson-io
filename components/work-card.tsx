@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { LogoId, Project } from "@/lib/content";
 import { AlibabaLogo, GlobalELogo, ShopifyLogo } from "@/components/logos";
 
@@ -96,6 +97,21 @@ export function WorkCard({ project }: { project: Project }) {
           </p>
         ))}
         {project.proof && <p className="meta mt-4">{project.proof}</p>}
+      {project.image && (
+        <Image
+          src={project.image.src}
+          alt={project.image.alt}
+          width={project.image.width}
+          height={project.image.height}
+          loading="eager"
+          className="mt-6 w-full rounded-lg border border-hairline"
+        />
+      )}
+      {project.caseStudy && (
+        <Link href={project.caseStudy.href} className="link mt-5 inline-block">
+          {project.caseStudy.label} →
+        </Link>
+      )}
         {project.logos && project.logos.length > 0 && (
           <div className="mt-4 flex items-center gap-6 text-putty opacity-80">
             {project.logos.map((id) => {
