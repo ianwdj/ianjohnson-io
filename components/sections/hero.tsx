@@ -1,37 +1,34 @@
 import Image from "next/image";
-import { hero, site } from "@/lib/content";
+import { hero, site, type Segment } from "@/lib/content";
 
-/* Editorial split: the greeting ("I'm Ian.") sits small and italic above,
-   the statement runs huge below. Split on the first sentence boundary so
-   the copy still lives as one string in lib/content.ts (and metadata uses
-   the full statement). */
-function splitStatement() {
-  const s = hero.statement;
-  const i = s.indexOf(". ");
-  if (i === -1) return { greeting: null, rest: s };
-  return { greeting: s.slice(0, i + 1), rest: s.slice(i + 2) };
-}
-
-/* Wraps the accent phrase (if configured) in coral. */
-function Accented({ text }: { text: string }) {
-  const { accentPhrase } = hero;
-  const i = accentPhrase ? text.indexOf(accentPhrase) : -1;
-  if (i === -1) return <>{text}</>;
+/* Renders copy segments, turning href-carrying segments into quiet links. */
+function Segments({ segs }: { segs: Segment[] }) {
   return (
     <>
-      {text.slice(0, i)}
-      <span className="text-coral">{accentPhrase}</span>
-      {text.slice(i + accentPhrase.length)}
+      {segs.map((s, i) =>
+        s.href ? (
+          <a
+            key={i}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link"
+          >
+            {s.text}
+          </a>
+        ) : (
+          <span key={i}>{s.text}</span>
+        )
+      )}
     </>
   );
 }
 
 export function Hero() {
-  const { greeting, rest } = splitStatement();
   return (
     <section className="relative mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
       {/* the one ambient element beyond grain: still, warm light behind the
-          opening, so the cream reads as daylight instead of paper */}
+          opening, so the ground reads as daylight instead of paper */}
       <div
         aria-hidden
         className="pointer-events-none absolute -inset-x-24 -top-16 bottom-0"
@@ -41,37 +38,37 @@ export function Hero() {
         }}
       />
       <div className="relative">
-      {/* modest avatar, US-tech register: the work leads, the face humanizes.
-          (Reference sites for this audience use small avatars or none.) */}
-      <Image
-        src="/portrait.jpg"
-        alt={site.name}
-        width={112}
-        height={112}
-        priority
-        className="fade-up portrait-duotone rounded-full"
-        style={{ animationDelay: "0ms" }}
-      />
-      {greeting && (
+        {/* modest avatar, US-tech register: the work leads, the face humanizes */}
+        <Image
+          src="/portrait.jpg"
+          alt={site.name}
+          width={112}
+          height={112}
+          priority
+          className="fade-up portrait-duotone rounded-full"
+          style={{ animationDelay: "0ms" }}
+        />
         <p
           className="fade-up mt-10 font-serif text-[24px] italic text-putty"
           style={{ animationDelay: "60ms" }}
         >
-          {greeting}
+          {hero.greeting}
         </p>
-      )}
-      <h1
-        className="fade-up mt-4 max-w-[820px] font-serif text-[clamp(48px,8vw,84px)] font-normal leading-[1.04] tracking-[-0.01em]"
-        style={{ animationDelay: "120ms" }}
-      >
-        <Accented text={greeting ? rest : hero.statement} />
-      </h1>
-      <p
-        className="fade-up mt-8 max-w-[640px] text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
-        style={{ animationDelay: "180ms" }}
-      >
-        {hero.detail}
-      </p>
+        <h1
+          className="fade-up mt-4 max-w-[820px] font-serif text-[clamp(48px,8vw,84px)] font-normal leading-[1.04] tracking-[-0.01em]"
+          style={{ animationDelay: "120ms" }}
+        >
+          <Segments segs={hero.statement} />
+        </h1>
+        {hero.detail.map((para, i) => (
+          <p
+            key={i}
+            className="fade-up mt-8 max-w-[640px] text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
+            style={{ animationDelay: `${180 + i * 60}ms` }}
+          >
+            <Segments segs={para} />
+          </p>
+        ))}
       </div>
     </section>
   );

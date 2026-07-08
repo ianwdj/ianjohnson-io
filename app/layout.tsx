@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, JetBrains_Mono } from "next/font/google";
-import { site, hero, socialLinks } from "@/lib/content";
+import { site, heroText, socialLinks } from "@/lib/content";
 import "./globals.css";
 
 // Newsreader is a variable font; the opsz axis gives a true display cut at
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     default: site.name,
     template: `%s · ${site.name}`,
   },
-  description: `${hero.statement} ${hero.detail}`,
+  description: heroText.short,
   alternates: { canonical: "/" },
   openGraph: {
     title: site.name,
-    description: hero.statement,
+    description: heroText.statement,
     url: site.url,
     siteName: site.name,
     locale: "en_US",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: site.name,
-    description: hero.statement,
+    description: heroText.statement,
   },
 };
 

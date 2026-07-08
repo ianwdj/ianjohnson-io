@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
-import { site, hero } from "@/lib/content";
+import { site, heroText } from "@/lib/content";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -61,7 +61,7 @@ export default async function OpengraphImage() {
             maxWidth: 900,
           }}
         >
-          {hero.detail}
+          {heroText.detail.split('. ').slice(0, 2).join('. ') + '.'}
         </div>
         <div
           style={{

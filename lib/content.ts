@@ -15,16 +15,47 @@ export const site = {
   letterboxdUrl: "https://letterboxd.com/ianwdj/",
 };
 
+/* Hero copy is Ian's, verbatim (July 2026). Segments with an href render as
+   inline links. */
+export type Segment = { text: string; href?: string };
+
 export const hero = {
-  statement:
-    "I'm Ian. I build things, mostly AI, always trying to help people do more with less.",
-  /* Audit note: the coral accent made "do more with less" read as a tagline,
-     so no phrase is accented now. Set this to a substring of statement to
-     re-enable. TODO(ian): if you want a different opening line, say it and
-     it goes in verbatim. */
-  accentPhrase: "",
-  detail:
-    "Founding product lead at Aida, an agentic-native revenue system. Building products since 2014, in revenue tools, commerce, and customer data.",
+  greeting: "Hi, I'm Ian.",
+  statement: [
+    { text: "I'm currently building " },
+    { text: "Aida", href: "https://getaida.com" },
+    { text: "." },
+  ] as Segment[],
+  detail: [
+    [
+      {
+        text: "My personal mission is to build tools that help millions to move faster toward theirs. I love taking messy, zero-to-one problems and turning them into scalable products people can't live without.",
+      },
+    ],
+    [
+      {
+        text: "I do the same thing offline, too. I love building real-world environments and experiences, from ",
+      },
+      {
+        text: "launching a natural wine and grilled cheese pop-up bar in Portugal",
+        href: "https://ianwdj.substack.com/p/launching-a-grilled-cheese-wine-bar",
+      },
+      { text: ", curating music for art exhibitions, to creating " },
+      {
+        text: "micro journaling tools",
+        href: "https://www.producthunt.com/products/venice",
+      },
+      { text: " for creating better relationships." },
+    ],
+  ] as Segment[][],
+};
+
+/* Plain-text flattening for metadata (title/description/OG card). */
+const flat = (segs: Segment[]) => segs.map((s) => s.text).join("");
+export const heroText = {
+  statement: `${hero.greeting} ${flat(hero.statement)}`,
+  detail: hero.detail.map(flat).join(" "),
+  short: `${hero.greeting} ${flat(hero.statement)} ${flat(hero.detail[0])}`,
 };
 
 export type LogoId = "globale" | "shopify" | "alibaba";
@@ -162,13 +193,6 @@ export const principles: Principle[] = [
   },
 ];
 
-export const now = {
-  lines: [
-    "Building Aida, an agentic-native revenue system.",
-    "In San Francisco, mostly.",
-  ],
-  updated: "July 2026",
-};
 
 /* "Things I have built for fun" — from Ian's previous ianjohnson.io personal
    section, links included. FACT (Ian, July 2026): he built THIQUE himself —
