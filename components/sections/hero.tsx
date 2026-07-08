@@ -28,13 +28,17 @@ export function Hero() {
   return (
     <section className="relative mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
       {/* the one ambient element beyond grain: still, warm light behind the
-          opening, so the ground reads as daylight instead of paper */}
+          opening, so the ground reads as daylight instead of paper.
+          multiply + very low alpha + wide falloff keeps it a soft cast,
+          not a visible patch of color (flagged: it read as a "red hue
+          breaking the page" at low alpha-but-hard-edged, over porcelain) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-x-24 -top-16 bottom-0"
+        className="pointer-events-none absolute -inset-x-24 -top-24 bottom-0"
         style={{
           background:
-            "radial-gradient(ellipse 85% 65% at 28% 18%, rgba(232,80,58,0.065), rgba(239,236,230,0) 62%), radial-gradient(ellipse 65% 55% at 85% 95%, rgba(201,138,94,0.055), rgba(239,236,230,0) 55%)",
+            "radial-gradient(ellipse 60% 50% at 18% 8%, rgba(196,90,60,0.05), rgba(239,236,230,0) 80%)",
+          mixBlendMode: "multiply",
         }}
       />
       <div className="relative">
