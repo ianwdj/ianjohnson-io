@@ -45,7 +45,7 @@ export function Hero() {
           {hero.greeting}
         </p>
         <h1
-          className="fade-up mt-4 max-w-[680px] font-serif text-[clamp(36px,5.5vw,60px)] font-normal leading-[1.08] tracking-[-0.01em]"
+          className="fade-up mt-4 max-w-[640px] font-serif text-[clamp(28px,4vw,44px)] font-normal leading-[1.15] tracking-[-0.005em]"
           style={{ animationDelay: "120ms" }}
         >
           <Segments segs={hero.statement} />
