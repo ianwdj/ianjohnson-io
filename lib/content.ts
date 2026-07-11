@@ -311,7 +311,7 @@ export type Film = { title: string; poster: string; href: string };
 const filmList: [string, string][] = [
   ["Everything Everywhere All at Once", "everything-everywhere-all-at-once"],
   ["12 Angry Men", "12-angry-men"],
-  ["About Time", "about-time"],
+  ["Parasite", "parasite-2019"],
   ["Interstellar", "interstellar"],
   ["Hamnet", "hamnet"],
   ["Prisoners", "prisoners"],
@@ -329,7 +329,7 @@ const filmList: [string, string][] = [
   ["Eternal Sunshine of the Spotless Mind", "eternal-sunshine-of-the-spotless-mind"],
   ["Chef", "chef"],
   ["Good Will Hunting", "good-will-hunting"],
-  ["Parasite", "parasite-2019"],
+  ["About Time", "about-time"],
   ["Call Me by Your Name", "call-me-by-your-name"],
   ["Up", "up"],
   ["Moonlight", "moonlight-2016"],
