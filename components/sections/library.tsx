@@ -9,7 +9,7 @@ export function LibrarySection() {
   return (
     <section
       id="reading"
-      className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-14 sm:py-20"
     >
       <Reveal>
         <div className="flex items-baseline justify-between gap-4">
@@ -26,7 +26,7 @@ export function LibrarySection() {
       </Reveal>
       {libraryGroups.map((group) => (
         <Reveal key={group.label}>
-          <p className="mt-12 font-serif text-[18px] italic text-putty">
+          <p className="mt-10 font-serif text-[18px] italic text-putty">
             {group.label}
           </p>
           <ul className="film-row -mx-6 mt-5 flex gap-5 overflow-x-auto px-6 pb-2">

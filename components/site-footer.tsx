@@ -5,7 +5,7 @@ const elsewhere = socialLinks;
 export function SiteFooter() {
   return (
     <footer className="border-t border-hairline">
-      <div className="mx-auto max-w-wide px-6 py-16">
+      <div className="mx-auto max-w-wide px-6 py-12">
         <p className="font-serif text-[20px]">
           Say hello:{" "}
           <a href={`mailto:${site.email}`} className="link">

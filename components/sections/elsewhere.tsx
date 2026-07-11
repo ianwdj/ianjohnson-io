@@ -8,12 +8,12 @@ export function ElsewhereSection() {
   return (
     <section
       id="elsewhere"
-      className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-14 sm:py-20"
     >
       <Reveal>
         <p className="meta">{elsewhereTitle}</p>
       </Reveal>
-      <div className="mt-10 flex flex-col gap-8">
+      <div className="mt-8 flex flex-col gap-8">
         {elsewhere.map((group) => (
           <Reveal key={group.label}>
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-5">

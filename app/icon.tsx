@@ -1,10 +1,21 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-/* Favicon: coral dot on cream — the site's palette in 32px. */
-export default function Icon() {
+/* Favicon: serif "ij" monogram, porcelain on coral. The coral ground makes
+   the tab findable; Newsreader ties it to the site's type. */
+export default async function Icon() {
+  const fontBuf = await readFile(
+    path.join(process.cwd(), "app/newsreader-medium.ttf")
+  );
+  const font = fontBuf.buffer.slice(
+    fontBuf.byteOffset,
+    fontBuf.byteOffset + fontBuf.byteLength
+  ) as ArrayBuffer;
+
   return new ImageResponse(
     (
       <div
@@ -14,20 +25,20 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#EFECE6",
-          borderRadius: 8,
+          background: "#E8503A",
+          borderRadius: 7,
+          fontFamily: "Newsreader",
+          fontSize: 22,
+          color: "#EFECE6",
+          paddingBottom: 3,
         }}
       >
-        <div
-          style={{
-            width: 14,
-            height: 14,
-            borderRadius: 9999,
-            background: "#E8503A",
-          }}
-        />
+        ij
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: "Newsreader", data: font, weight: 500, style: "normal" }],
+    }
   );
 }

@@ -14,7 +14,7 @@ export default function MeetingStackCaseStudy() {
   return (
     <div className="relative z-10">
       <SiteHeader />
-      <main className="mx-auto max-w-content px-6 pb-24 pt-20 sm:pb-32">
+      <main className="mx-auto max-w-content px-6 pb-16 pt-12 sm:pb-24">
         <p className="meta">Case study · Aida · 2024–now</p>
         <h1 className="mt-4 font-serif text-[clamp(30px,5vw,40px)] leading-[1.2] tracking-tight">
           {meetingStack.title}

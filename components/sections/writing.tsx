@@ -29,12 +29,12 @@ export function WritingSection() {
   return (
     <section
       id="writing"
-      className="mx-auto max-w-wide scroll-mt-16 px-6 py-24 sm:py-32"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-14 sm:py-20"
     >
       <Reveal>
         <p className="meta">Writing</p>
       </Reveal>
-      <div className="mt-10 flex flex-col">
+      <div className="mt-8 flex flex-col">
         {visible.map((essay) => (
           <Reveal key={essay.slug}>
             <EssayRow essay={essay} />

@@ -26,7 +26,7 @@ function Segments({ segs }: { segs: Segment[] }) {
 
 export function Hero() {
   return (
-    <section className="relative mx-auto max-w-wide px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
+    <section className="relative mx-auto max-w-wide px-6 pb-14 pt-16 sm:pb-20 sm:pt-24">
       <div className="relative">
         {/* modest avatar, US-tech register: the work leads, the face humanizes */}
         <Image
