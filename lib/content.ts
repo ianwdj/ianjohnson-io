@@ -29,7 +29,7 @@ export const hero = {
   detail: [
     [
       {
-        text: "My personal mission is to build tools that help millions to move faster toward theirs. I love taking messy, zero-to-one problems and turning them into scalable products people can't live without.",
+        text: "My personal mission is to build tools that help millions to move faster toward theirs. I love taking ambiguous, zero-to-one problems and turning them into scalable products people can't live without.",
       },
     ],
     [
@@ -40,12 +40,12 @@ export const hero = {
         text: "launching a natural wine and grilled cheese pop-up bar in Portugal",
         href: "https://ianwdj.substack.com/p/launching-a-grilled-cheese-wine-bar",
       },
-      { text: ", curating music for art exhibitions, to creating " },
+      { text: ", to curating music for art exhibitions and building " },
       {
         text: "micro journaling tools",
         href: "https://www.producthunt.com/products/venice",
       },
-      { text: " for creating better relationships." },
+      { text: " for better relationships." },
     ],
   ] as Segment[][],
 };
@@ -85,13 +85,13 @@ export const projects: Project[] = [
     category: "Agentic-native revenue system",
     period: "2024–now",
     teaser:
-      "Catches the follow-ups, updates the CRM, and preps the meeting so reps can spend their time selling.",
+      "Aida improves deal velocity and drives more revenue per headcount. It turns each rep's deal history, calls, emails, and CRM activity into a system of action.",
     /* Depth lines drafted from getaida.com and Ian's own earlier copy
        ("durable usage as the test" framing is his).
        TODO(ian): make these yours, and add a traction fact when shareable. */
     featured: [
-      "It watches calls, Slack, email, and the CRM for the commitments a deal depends on, then does the follow-through that usually slips.",
-      "As founding product lead I decide what gets built, and I'm judged by whether reps keep using it.",
+      "It also flags at-risk deals, prioritizes accounts, and tracks signals like MEDDPIC and rep behavior, so best practices hold through the whole quarter, not just the week before a review.",
+      "I set the roadmap and ship the product. If reps stop using it, that's on me.",
     ],
     // TODO(ian): add one traction fact here when shareable (design partners,
     // reps using it, team size) — e.g. "Founding product lead · N design partners"
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     // TODO(ian): confirm the Shopify Markets phrasing — "ran white-label
     // behind" is the defensible version; say the word if it undersells it.
     teaser:
-      "I ran growth, experimentation, merchant-of-record, and checkout on $250M a week of cross-border volume. Flow ran white-label behind Shopify Markets.",
+      "I ran growth, experimentation, merchant-of-record, and checkout on $250M a week of cross-border volume. Flow was chosen as Shopify Markets' exclusive white-label partner.",
     proof: "Principal PM · Acquired by Global-e for $500M",
     logos: ["globale", "shopify"],
     status: "past",
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     period: "2014–2018",
     // Metrics are Ian's own published claims from the previous ianjohnson.io.
     teaser:
-      "We helped cinemas understand who their customers were, growing from 2 cinemas to 80+ chains in 26 countries and taking customer identification from 3% to 78%.",
+      "We helped movie theatres and studios understand who their customers were, growing from 2 cinemas to 80+ chains in 26 countries and taking customer identification from 3% to 78%.",
     logos: ["alibaba"],
     proof: "VP of Product · Alibaba Pictures JV",
     status: "past",
