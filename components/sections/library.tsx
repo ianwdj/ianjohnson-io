@@ -1,11 +1,11 @@
-import { library, libraryTitle, site } from "@/lib/content";
+import { libraryGroups, libraryTitle, site } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
 
-/* A shelf of book covers from Ian's Goodreads "read" list. Covers are
-   self-hosted (public/library/), muted at rest and full color on hover,
-   aligned on their bottom edge so they read as a real shelf. */
+/* Two labeled shelves of book covers from Ian's Goodreads "read" list, each
+   a horizontally scrolling row (same treatment as the film row). Covers are
+   self-hosted (public/library/), muted at rest and full color on hover. */
 export function LibrarySection() {
-  if (library.length === 0) return null;
+  if (libraryGroups.length === 0) return null;
   return (
     <section
       id="reading"
@@ -24,30 +24,35 @@ export function LibrarySection() {
           </a>
         </div>
       </Reveal>
-      <Reveal>
-        <ul className="mt-10 flex flex-wrap items-end gap-x-5 gap-y-8">
-          {library.map((book) => (
-            <li key={book.cover}>
-              <a
-                href={book.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={book.title}
-                className="book-cover block"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/library/${book.cover}.jpg`}
-                  alt={book.title}
-                  height={132}
-                  loading="lazy"
-                  className="h-[116px] w-auto rounded-[3px] sm:h-[132px]"
-                />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+      {libraryGroups.map((group) => (
+        <Reveal key={group.label}>
+          <p className="mt-12 font-serif text-[18px] italic text-putty">
+            {group.label}
+          </p>
+          <ul className="film-row -mx-6 mt-5 flex gap-5 overflow-x-auto px-6 pb-2">
+            {group.books.map((book) => (
+              <li key={book.cover} className="shrink-0">
+                <a
+                  href={book.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={book.title}
+                  className="book-cover block"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/library/${book.cover}.jpg`}
+                    alt={book.title}
+                    height={160}
+                    loading="lazy"
+                    className="h-[140px] w-auto rounded-[3px] sm:h-[160px]"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      ))}
     </section>
   );
 }

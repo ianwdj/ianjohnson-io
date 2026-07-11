@@ -255,53 +255,100 @@ export const elsewhere: ElsewhereGroup[] = [
    To refresh: re-run the download and update this list. */
 export const libraryTitle = "Reading";
 export type Book = { title: string; cover: string; href: string };
-/* Hand-curated "books I'd hand you" set (July 2026). Ordered for cover-color
-   mix, not category. New titles link to Ian's Goodreads review (shows his
-   rating); pulled from his read shelf, low-rated/pop titles deliberately cut. */
-export const library: Book[] = [
-  { title: "Bad Blood", cover: "bad-blood", href: "https://www.goodreads.com/review/show/3652915613" },
-  { title: "7 Powers", cover: "7-powers", href: "https://www.goodreads.com/review/show/4179080789" },
-  { title: "Humankind", cover: "humankind", href: "https://www.goodreads.com/review/show/4134273221" },
-  { title: "The Republic", cover: "the-republic", href: "https://www.goodreads.com/book/show/30289.The_Republic" },
-  { title: "Shoe Dog", cover: "shoe-dog", href: "https://www.goodreads.com/book/show/48500580-shoe-dog" },
-  { title: "Why We Sleep", cover: "why-we-sleep", href: "https://www.goodreads.com/review/show/3641941129" },
-  { title: "The Prince", cover: "the-prince", href: "https://www.goodreads.com/review/show/3692985794" },
-  { title: "Educated", cover: "educated", href: "https://www.goodreads.com/book/show/35133922-educated" },
-  { title: "The Hard Thing About Hard Things", cover: "hard-thing", href: "https://www.goodreads.com/book/show/18176747-the-hard-thing-about-hard-things" },
-  { title: "1984", cover: "1984", href: "https://www.goodreads.com/review/show/3641934446" },
-  { title: "Meditations on First Philosophy", cover: "meditations-first-philosophy", href: "https://www.goodreads.com/review/show/3692984908" },
-  { title: "Empire of Pain", cover: "empire-of-pain", href: "https://www.goodreads.com/review/show/4300637431" },
-  { title: "The Culture Map", cover: "culture-map", href: "https://www.goodreads.com/review/show/3674012628" },
-  { title: "A Brief History of Time", cover: "brief-history-of-time", href: "https://www.goodreads.com/review/show/3641933267" },
-  { title: "Beyond Good and Evil", cover: "beyond-good-and-evil", href: "https://www.goodreads.com/review/show/3692982253" },
-  { title: "Predictably Irrational", cover: "predictably-irrational", href: "https://www.goodreads.com/review/show/3804020884" },
-  { title: "Inspired", cover: "inspired", href: "https://www.goodreads.com/review/show/3652913297" },
-  { title: "Animal Farm", cover: "animal-farm", href: "https://www.goodreads.com/review/show/3641934899" },
-  { title: "The Founder's Dilemmas", cover: "founders-dilemmas", href: "https://www.goodreads.com/review/show/3908767510" },
-  { title: "Billion Dollar Whale", cover: "billion-dollar-whale", href: "https://www.goodreads.com/book/show/38743564-billion-dollar-whale" },
-  { title: "The Five Dysfunctions of a Team", cover: "five-dysfunctions", href: "https://www.goodreads.com/review/show/3673953374" },
-  { title: "How to Change Your Mind", cover: "how-to-change-your-mind", href: "https://www.goodreads.com/book/show/36613747-how-to-change-your-mind" },
-  { title: "Man's Search for Meaning", cover: "mans-search-for-meaning", href: "https://www.goodreads.com/book/show/4069.Man_s_Search_for_Meaning" },
-  { title: "The Alchemist", cover: "the-alchemist", href: "https://www.goodreads.com/review/show/4115336492" },
-  { title: "Monetizing Innovation", cover: "monetizing-innovation", href: "https://www.goodreads.com/book/show/30121516-monetizing-innovation" },
-  { title: "Kitchen Confidential", cover: "kitchen-confidential", href: "https://www.goodreads.com/book/show/33313.Kitchen_Confidential" },
-  { title: "On the Suffering of the World", cover: "suffering-of-the-world", href: "https://www.goodreads.com/book/show/55574772-on-the-suffering-of-the-world" },
-  { title: "The Design of Everyday Things", cover: "design-of-everyday-things", href: "https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things" },
+/* Hand-curated "books I'd hand you" set (July 2026), split into Ian's two
+   categories, each rendered as a scrollable row. Titles with a review link
+   show his rating; low-rated/pop titles deliberately cut. */
+export const libraryGroups: { label: string; books: Book[] }[] = [
+  {
+    label: "For business",
+    books: [
+      { title: "Bad Blood", cover: "bad-blood", href: "https://www.goodreads.com/review/show/3652915613" },
+      { title: "7 Powers", cover: "7-powers", href: "https://www.goodreads.com/review/show/4179080789" },
+      { title: "Shoe Dog", cover: "shoe-dog", href: "https://www.goodreads.com/book/show/48500580-shoe-dog" },
+      { title: "The Hard Thing About Hard Things", cover: "hard-thing", href: "https://www.goodreads.com/book/show/18176747-the-hard-thing-about-hard-things" },
+      { title: "Empire of Pain", cover: "empire-of-pain", href: "https://www.goodreads.com/review/show/4300637431" },
+      { title: "The Culture Map", cover: "culture-map", href: "https://www.goodreads.com/review/show/3674012628" },
+      { title: "Inspired", cover: "inspired", href: "https://www.goodreads.com/review/show/3652913297" },
+      { title: "Billion Dollar Whale", cover: "billion-dollar-whale", href: "https://www.goodreads.com/book/show/38743564-billion-dollar-whale" },
+      { title: "The Five Dysfunctions of a Team", cover: "five-dysfunctions", href: "https://www.goodreads.com/review/show/3673953374" },
+      { title: "The Founder's Dilemmas", cover: "founders-dilemmas", href: "https://www.goodreads.com/review/show/3908767510" },
+      { title: "Monetizing Innovation", cover: "monetizing-innovation", href: "https://www.goodreads.com/book/show/30121516-monetizing-innovation" },
+      { title: "Predictably Irrational", cover: "predictably-irrational", href: "https://www.goodreads.com/review/show/3804020884" },
+      { title: "The Design of Everyday Things", cover: "design-of-everyday-things", href: "https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things" },
+    ],
+  },
+  {
+    label: "For the mind",
+    books: [
+      { title: "The Republic", cover: "the-republic", href: "https://www.goodreads.com/book/show/30289.The_Republic" },
+      { title: "Meditations on First Philosophy", cover: "meditations-first-philosophy", href: "https://www.goodreads.com/review/show/3692984908" },
+      { title: "Beyond Good and Evil", cover: "beyond-good-and-evil", href: "https://www.goodreads.com/review/show/3692982253" },
+      { title: "The Prince", cover: "the-prince", href: "https://www.goodreads.com/review/show/3692985794" },
+      { title: "On the Suffering of the World", cover: "suffering-of-the-world", href: "https://www.goodreads.com/book/show/55574772-on-the-suffering-of-the-world" },
+      { title: "Man's Search for Meaning", cover: "mans-search-for-meaning", href: "https://www.goodreads.com/book/show/4069.Man_s_Search_for_Meaning" },
+      { title: "Educated", cover: "educated", href: "https://www.goodreads.com/book/show/35133922-educated" },
+      { title: "1984", cover: "1984", href: "https://www.goodreads.com/review/show/3641934446" },
+      { title: "Animal Farm", cover: "animal-farm", href: "https://www.goodreads.com/review/show/3641934899" },
+      { title: "The Alchemist", cover: "the-alchemist", href: "https://www.goodreads.com/review/show/4115336492" },
+      { title: "Humankind", cover: "humankind", href: "https://www.goodreads.com/review/show/4134273221" },
+      { title: "How to Change Your Mind", cover: "how-to-change-your-mind", href: "https://www.goodreads.com/book/show/36613747-how-to-change-your-mind" },
+      { title: "Why We Sleep", cover: "why-we-sleep", href: "https://www.goodreads.com/review/show/3641941129" },
+      { title: "A Brief History of Time", cover: "brief-history-of-time", href: "https://www.goodreads.com/review/show/3641933267" },
+      { title: "Kitchen Confidential", cover: "kitchen-confidential", href: "https://www.goodreads.com/book/show/33313.Kitchen_Confidential" },
+    ],
+  },
 ];
 
-/* Films Ian thinks you should watch — one scrollable row, order is his.
-   Posters self-hosted (public/films/), links to Letterboxd film pages. */
+/* Films Ian thinks you should watch — his full Letterboxd movies-to-watch
+   list, one scrollable row. His named picks lead, the rest follow in list
+   order. Posters self-hosted (public/films/), slugs match Letterboxd. */
 export const filmsTitle = "Watching";
 export type Film = { title: string; poster: string; href: string };
-export const films: Film[] = [
-  { title: "Everything Everywhere All at Once", poster: "everything-everywhere", href: "https://letterboxd.com/film/everything-everywhere-all-at-once/" },
-  { title: "12 Angry Men", poster: "12-angry-men", href: "https://letterboxd.com/film/12-angry-men/" },
-  { title: "About Time", poster: "about-time", href: "https://letterboxd.com/film/about-time-2013/" },
-  { title: "Interstellar", poster: "interstellar", href: "https://letterboxd.com/film/interstellar/" },
-  { title: "Hamnet", poster: "hamnet", href: "https://letterboxd.com/film/hamnet/" },
-  { title: "Prisoners", poster: "prisoners", href: "https://letterboxd.com/film/prisoners/" },
-  { title: "The Game", poster: "the-game", href: "https://letterboxd.com/film/the-game/" },
+const filmList: [string, string][] = [
+  ["Everything Everywhere All at Once", "everything-everywhere-all-at-once"],
+  ["12 Angry Men", "12-angry-men"],
+  ["About Time", "about-time"],
+  ["Interstellar", "interstellar"],
+  ["Hamnet", "hamnet"],
+  ["Prisoners", "prisoners"],
+  ["The Game", "the-game"],
+  ["The Prestige", "the-prestige"],
+  ["Past Lives", "past-lives"],
+  ["Inception", "inception"],
+  ["The Dark Knight", "the-dark-knight"],
+  ["Arrival", "arrival-2016"],
+  ["The Truman Show", "the-truman-show"],
+  ["Fight Club", "fight-club"],
+  ["Logan", "logan-2017"],
+  ["Heat", "heat-1995"],
+  ["Crazy, Stupid, Love.", "crazy-stupid-love"],
+  ["Eternal Sunshine of the Spotless Mind", "eternal-sunshine-of-the-spotless-mind"],
+  ["Chef", "chef"],
+  ["Good Will Hunting", "good-will-hunting"],
+  ["Parasite", "parasite-2019"],
+  ["Call Me by Your Name", "call-me-by-your-name"],
+  ["Up", "up"],
+  ["Moonlight", "moonlight-2016"],
+  ["Drive", "drive-2011"],
+  ["Whiplash", "whiplash-2014"],
+  ["The Intouchables", "the-intouchables"],
+  ["Her", "her"],
+  ["Sound of Metal", "sound-of-metal"],
+  ["Palm Springs", "palm-springs-2020"],
+  ["Ex Machina", "ex-machina-2015"],
+  ["Memento", "memento"],
+  ["Donnie Darko", "donnie-darko"],
+  ["Moon", "moon"],
+  ["Mad Max: Fury Road", "mad-max-fury-road"],
+  ["One Battle After Another", "one-battle-after-another"],
+  ["Sinners", "sinners-2025"],
+  ["Project Hail Mary", "project-hail-mary"],
 ];
+export const films: Film[] = filmList.map(([title, slug]) => ({
+  title,
+  poster: slug,
+  href: `https://letterboxd.com/film/${slug}/`,
+}));
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).
    TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are
