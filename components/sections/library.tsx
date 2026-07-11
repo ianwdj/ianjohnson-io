@@ -25,7 +25,7 @@ export function LibrarySection() {
         </div>
       </Reveal>
       <Reveal>
-        <ul className="mt-10 flex flex-wrap items-end gap-x-4 gap-y-6">
+        <ul className="mt-10 flex flex-wrap items-end gap-x-5 gap-y-8">
           {library.map((book) => (
             <li key={book.cover}>
               <a
@@ -39,9 +39,9 @@ export function LibrarySection() {
                 <img
                   src={`/library/${book.cover}.jpg`}
                   alt={book.title}
-                  height={96}
+                  height={132}
                   loading="lazy"
-                  className="h-[96px] w-auto rounded-[3px]"
+                  className="h-[116px] w-auto rounded-[3px] sm:h-[132px]"
                 />
               </a>
             </li>
