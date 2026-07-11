@@ -15,6 +15,7 @@ export const site = {
   letterboxdUrl: "https://letterboxd.com/ianwdj/",
   goodreadsUrl:
     "https://www.goodreads.com/review/list/101137073-ian?shelf=read",
+  letterboxdListUrl: "https://letterboxd.com/ianwdj/list/movies-to-watch/",
 };
 
 /* Hero copy is Ian's, verbatim (July 2026). Segments with an href render as
@@ -260,7 +261,7 @@ export type Book = { title: string; cover: string; href: string };
 export const library: Book[] = [
   { title: "Bad Blood", cover: "bad-blood", href: "https://www.goodreads.com/review/show/3652915613" },
   { title: "7 Powers", cover: "7-powers", href: "https://www.goodreads.com/review/show/4179080789" },
-  { title: "Sapiens", cover: "sapiens", href: "https://www.goodreads.com/review/show/3641933635" },
+  { title: "Humankind", cover: "humankind", href: "https://www.goodreads.com/review/show/4134273221" },
   { title: "The Republic", cover: "the-republic", href: "https://www.goodreads.com/book/show/30289.The_Republic" },
   { title: "Shoe Dog", cover: "shoe-dog", href: "https://www.goodreads.com/book/show/48500580-shoe-dog" },
   { title: "Why We Sleep", cover: "why-we-sleep", href: "https://www.goodreads.com/review/show/3641941129" },
@@ -273,10 +274,10 @@ export const library: Book[] = [
   { title: "The Culture Map", cover: "culture-map", href: "https://www.goodreads.com/review/show/3674012628" },
   { title: "A Brief History of Time", cover: "brief-history-of-time", href: "https://www.goodreads.com/review/show/3641933267" },
   { title: "Beyond Good and Evil", cover: "beyond-good-and-evil", href: "https://www.goodreads.com/review/show/3692982253" },
-  { title: "When Breath Becomes Air", cover: "when-breath-becomes-air", href: "https://www.goodreads.com/book/show/25899336-when-breath-becomes-air" },
+  { title: "Predictably Irrational", cover: "predictably-irrational", href: "https://www.goodreads.com/review/show/3804020884" },
   { title: "Inspired", cover: "inspired", href: "https://www.goodreads.com/review/show/3652913297" },
   { title: "Animal Farm", cover: "animal-farm", href: "https://www.goodreads.com/review/show/3641934899" },
-  { title: "The Art of War", cover: "the-art-of-war", href: "https://www.goodreads.com/review/show/3692985315" },
+  { title: "The Founder's Dilemmas", cover: "founders-dilemmas", href: "https://www.goodreads.com/review/show/3908767510" },
   { title: "Billion Dollar Whale", cover: "billion-dollar-whale", href: "https://www.goodreads.com/book/show/38743564-billion-dollar-whale" },
   { title: "The Five Dysfunctions of a Team", cover: "five-dysfunctions", href: "https://www.goodreads.com/review/show/3673953374" },
   { title: "How to Change Your Mind", cover: "how-to-change-your-mind", href: "https://www.goodreads.com/book/show/36613747-how-to-change-your-mind" },
@@ -286,6 +287,20 @@ export const library: Book[] = [
   { title: "Kitchen Confidential", cover: "kitchen-confidential", href: "https://www.goodreads.com/book/show/33313.Kitchen_Confidential" },
   { title: "On the Suffering of the World", cover: "suffering-of-the-world", href: "https://www.goodreads.com/book/show/55574772-on-the-suffering-of-the-world" },
   { title: "The Design of Everyday Things", cover: "design-of-everyday-things", href: "https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things" },
+];
+
+/* Films Ian thinks you should watch — one scrollable row, order is his.
+   Posters self-hosted (public/films/), links to Letterboxd film pages. */
+export const filmsTitle = "Watching";
+export type Film = { title: string; poster: string; href: string };
+export const films: Film[] = [
+  { title: "Everything Everywhere All at Once", poster: "everything-everywhere", href: "https://letterboxd.com/film/everything-everywhere-all-at-once/" },
+  { title: "12 Angry Men", poster: "12-angry-men", href: "https://letterboxd.com/film/12-angry-men/" },
+  { title: "About Time", poster: "about-time", href: "https://letterboxd.com/film/about-time-2013/" },
+  { title: "Interstellar", poster: "interstellar", href: "https://letterboxd.com/film/interstellar/" },
+  { title: "Hamnet", poster: "hamnet", href: "https://letterboxd.com/film/hamnet/" },
+  { title: "Prisoners", poster: "prisoners", href: "https://letterboxd.com/film/prisoners/" },
+  { title: "The Game", poster: "the-game", href: "https://letterboxd.com/film/the-game/" },
 ];
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).

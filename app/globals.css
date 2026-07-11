@@ -112,6 +112,14 @@
     display: none;
   }
 
+  /* film row: scrolls horizontally without a visible scrollbar */
+  .film-row {
+    scrollbar-width: none;
+  }
+  .film-row::-webkit-scrollbar {
+    display: none;
+  }
+
   /* book covers: muted and settled at rest, full color and lifted on hover
      — same "alive on interaction" language as links and the portrait */
   .book-cover img {
