@@ -4,6 +4,7 @@ import { WorkSection } from "@/components/sections/work";
 import { ThinkingSection } from "@/components/sections/thinking";
 import { WritingSection } from "@/components/sections/writing";
 import { ElsewhereSection } from "@/components/sections/elsewhere";
+import { LibrarySection } from "@/components/sections/library";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <ThinkingSection />
         <WritingSection />
         <ElsewhereSection />
+        <LibrarySection />
       </main>
       <SiteFooter />
     </div>

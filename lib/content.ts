@@ -13,6 +13,8 @@ export const site = {
   substackUrl: "https://ianwdj.substack.com",
   linkedinUrl: "https://www.linkedin.com/in/ianwdjohnson",
   letterboxdUrl: "https://letterboxd.com/ianwdj/",
+  goodreadsUrl:
+    "https://www.goodreads.com/review/list/101137073-ian?shelf=read",
 };
 
 /* Hero copy is Ian's, verbatim (July 2026). Segments with an href render as
@@ -91,7 +93,7 @@ export const projects: Project[] = [
        TODO(ian): make these yours, and add a traction fact when shareable. */
     featured: [
       "It also flags at-risk deals, prioritizes accounts, and tracks signals like MEDDPIC and rep behavior, so best practices hold through the whole quarter, not just the week before a review.",
-      "I set the roadmap and ship the product. If reps stop using it, that's on me.",
+      "I set the roadmap and ship the product.",
     ],
     // TODO(ian): add one traction fact here when shareable (design partners,
     // reps using it, team size) — e.g. "Founding product lead · N design partners"
@@ -245,6 +247,34 @@ export const elsewhere: ElsewhereGroup[] = [
       { label: "Madrid", href: "https://maps.app.goo.gl/yBWGaPpSfUH47pny7" },
     ],
   },
+];
+
+/* Library — covers from Ian's Goodreads "read" shelf, self-hosted under
+   public/library/ (no external Goodreads script or CDN dependency).
+   To refresh: re-run the download and update this list. */
+export const libraryTitle = "Reading";
+export type Book = { title: string; cover: string; href: string };
+export const library: Book[] = [
+  { title: "Long Island Compromise", cover: "long-island-compromise", href: "https://www.goodreads.com/book/show/55777544-long-island-compromise" },
+  { title: "The Secret", cover: "the-secret", href: "https://www.goodreads.com/book/show/52529.The_Secret" },
+  { title: "Attached", cover: "attached", href: "https://www.goodreads.com/book/show/9547888-attached" },
+  { title: "The Republic", cover: "the-republic", href: "https://www.goodreads.com/book/show/30289.The_Republic" },
+  { title: "The Happiness Project", cover: "happiness-project", href: "https://www.goodreads.com/book/show/6398634-the-happiness-project" },
+  { title: "Rich Dad Poor Dad", cover: "rich-dad-poor-dad", href: "https://www.goodreads.com/book/show/69571.Rich_Dad_Poor_Dad" },
+  { title: "The Tipping Point", cover: "tipping-point", href: "https://www.goodreads.com/book/show/2612.The_Tipping_Point" },
+  { title: "When Breath Becomes Air", cover: "when-breath-becomes-air", href: "https://www.goodreads.com/book/show/25899336-when-breath-becomes-air" },
+  { title: "Lost Connections", cover: "lost-connections", href: "https://www.goodreads.com/book/show/34921573-lost-connections" },
+  { title: "The School of Life", cover: "school-of-life", href: "https://www.goodreads.com/book/show/43264830-the-school-of-life" },
+  { title: "The Algebra of Wealth", cover: "algebra-of-wealth", href: "https://www.goodreads.com/book/show/150246211-the-algebra-of-wealth" },
+  { title: "How to Change Your Mind", cover: "how-to-change-your-mind", href: "https://www.goodreads.com/book/show/36613747-how-to-change-your-mind" },
+  { title: "The Zero Transaction Cost Entrepreneur", cover: "zero-transaction-cost", href: "https://www.goodreads.com/book/show/143372011-the-zero-transaction-cost-entrepreneur" },
+  { title: "The Course of Love", cover: "course-of-love", href: "https://www.goodreads.com/book/show/27845690-the-course-of-love" },
+  { title: "Kitchen Confidential", cover: "kitchen-confidential", href: "https://www.goodreads.com/book/show/33313.Kitchen_Confidential" },
+  { title: "On the Suffering of the World", cover: "suffering-of-the-world", href: "https://www.goodreads.com/book/show/55574772-on-the-suffering-of-the-world" },
+  { title: "What I Know About Running Coffee Shops", cover: "running-coffee-shops", href: "https://www.goodreads.com/book/show/40582817-what-i-know-about-running-coffee-shops" },
+  { title: "Build", cover: "build", href: "https://www.goodreads.com/book/show/59696349-build" },
+  { title: "Monetizing Innovation", cover: "monetizing-innovation", href: "https://www.goodreads.com/book/show/30121516-monetizing-innovation" },
+  { title: "$100M Offers", cover: "100m-offers", href: "https://www.goodreads.com/book/show/58612786-100m-offers" },
 ];
 
 /* Single source of truth for outbound identity links (footer + JSON-LD).
