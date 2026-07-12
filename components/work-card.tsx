@@ -57,12 +57,22 @@ export function WorkCard({ project }: { project: Project }) {
                   className={company.className}
                 />
               )}
-              <span
+              {/* inline SVG, not the ↗ character: mobile platforms render
+                  U+2197 as the boxy emoji variant */}
+              <svg
                 aria-hidden
-                className="text-[16px] text-putty transition-colors duration-300 group-hover/logo:text-coral-deep"
+                viewBox="0 0 12 12"
+                className="h-[11px] w-[11px] text-putty transition-colors duration-300 group-hover/logo:text-coral-deep"
               >
-                ↗
-              </span>
+                <path
+                  d="M3 9 9 3M4.5 3H9v4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </a>
           ) : (
             company && (

@@ -40,9 +40,21 @@ export default function MeetingStackCaseStudy() {
           <span className="flex items-baseline justify-between gap-4 border-t border-hairline bg-cream-deep px-6 py-4">
             <span className="font-serif text-[18px] transition-colors duration-300 group-hover:text-coral-deep">
               Explore the interactive version
-              <span aria-hidden className="ml-2 text-[15px] text-putty">
-                ↗
-              </span>
+              {/* inline SVG, not the ↗ character: mobile renders U+2197 as emoji */}
+              <svg
+                aria-hidden
+                viewBox="0 0 12 12"
+                className="ml-2 inline h-[11px] w-[11px] text-putty"
+              >
+                <path
+                  d="M3 9 9 3M4.5 3H9v4.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </span>
             <span className="meta hidden sm:inline">
               Three layers · journey · decisions · architecture
