@@ -24,11 +24,17 @@ export type Segment = { text: string; href?: string };
 
 export const hero = {
   greeting: "Hi, I'm Ian.",
+  /* "a founder and product lead" is identity (he founded Lasso and THIQUE),
+     not an Aida-founder claim — Aida role stays "founding product lead"
+     everywhere factual (cards, JSON-LD, footer). */
   statement: [
-    { text: "I'm currently building " },
+    { text: "I'm a founder and product lead, currently building " },
     { text: "Aida", href: "https://getaida.com" },
     { text: "." },
   ] as Segment[],
+  /* The grilled-cheese and Venice links moved out of the hero on purpose:
+     both live in "Things I have built for fun" below. The hero shouldn't be
+     the first thing people click away from. */
   detail: [
     [
       {
@@ -37,18 +43,8 @@ export const hero = {
     ],
     [
       {
-        text: "I do the same thing offline, too. I love building real-world environments and experiences, from ",
+        text: "I do the same thing offline, too. I love building real-world environments and experiences, from launching a natural wine and grilled cheese pop-up bar in Portugal, to curating music for art exhibitions and building micro journaling tools for better relationships.",
       },
-      {
-        text: "launching a natural wine and grilled cheese pop-up bar in Portugal",
-        href: "https://ianwdj.substack.com/p/launching-a-grilled-cheese-wine-bar",
-      },
-      { text: ", to curating music for art exhibitions and building " },
-      {
-        text: "micro journaling tools",
-        href: "https://www.producthunt.com/products/venice",
-      },
-      { text: " for better relationships." },
     ],
   ] as Segment[][],
 };
