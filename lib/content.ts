@@ -38,7 +38,7 @@ export const hero = {
   detail: [
     [
       {
-        text: "My personal mission is to build tools that help millions of people move faster towards theirs. I love taking ambiguous, zero-to-one problems and turning them into scalable products people can't live without.",
+        text: "My mission is to build tools that help millions of people make progress on the things that matter most to them. I love taking ambiguous, zero-to-one problems and turning them into scalable products people can't live without.",
       },
     ],
     [
