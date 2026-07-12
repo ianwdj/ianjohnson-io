@@ -51,9 +51,11 @@
     mix-blend-mode: multiply;
   }
 
+  /* selection: quiet warm neutral, not the coral accent (Ian: orange
+     highlight reads as bad contrast) */
   ::selection {
-    background: var(--coral);
-    color: var(--cream);
+    background: var(--hairline);
+    color: var(--ink-strong);
   }
 
   h1, h2, h3 {

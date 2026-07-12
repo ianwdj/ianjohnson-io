@@ -98,6 +98,7 @@ export function WorkCard({ project }: { project: Project }) {
         </h3>
         <p className="meta mt-4">{project.period}</p>
         <p className="mt-1 text-[15px] text-putty">{project.category}</p>
+        {project.role && <p className="meta mt-3">{project.role}</p>}
       </div>
       <div>
         <p className="leading-[1.65]">{project.teaser}</p>

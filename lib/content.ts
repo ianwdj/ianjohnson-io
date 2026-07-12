@@ -70,6 +70,8 @@ export type Project = {
   period: string;
   teaser: string;
   featured?: string[]; // extra depth lines; also gives the card the raised treatment
+  role?: string; // shown with dates/category in the left column (for current work
+  // with no outcome yet; past cards carry role inside the proof line instead)
   proof?: string;
   logos?: LogoId[]; // acquirer/partner marks rendered under the proof line
   href?: string; // live product link, rendered as external link on the card
@@ -94,11 +96,10 @@ export const projects: Project[] = [
        TODO(ian): make these yours, and add a traction fact when shareable. */
     featured: [
       "It also flags at-risk deals, prioritizes accounts, and tracks signals like MEDDPIC and rep behavior, so best practices hold through the whole quarter, not just the week before a review.",
-      "I set the roadmap and ship the product.",
     ],
-    // TODO(ian): add one traction fact here when shareable (design partners,
-    // reps using it, team size) — e.g. "Founding product lead · N design partners"
-    proof: "Founding product lead",
+    // TODO(ian): add one traction fact as `proof` when shareable (design
+    // partners, reps using it, team size)
+    role: "Founding product lead",
     href: "https://getaida.com",
     // from Ian's Aida Figma (Chat UI file, deal view with drafted follow-up)
     image: {
@@ -145,7 +146,7 @@ export const projects: Project[] = [
   {
     slug: "showtime",
     name: "Showtime Analytics",
-    category: "Customer data foundations",
+    category: "Customer data platform",
     period: "2014–2018",
     // Metrics are Ian's own published claims from the previous ianjohnson.io.
     teaser:
