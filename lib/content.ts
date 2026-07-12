@@ -32,7 +32,7 @@ export const hero = {
   detail: [
     [
       {
-        text: "My personal mission is to build tools that help people move faster towards their missions. I love taking ambiguous, zero-to-one problems and turning them into scalable products people can't live without.",
+        text: "My personal mission is to build tools that help millions of people move faster towards theirs. I love taking ambiguous, zero-to-one problems and turning them into scalable products people can't live without.",
       },
     ],
     [
