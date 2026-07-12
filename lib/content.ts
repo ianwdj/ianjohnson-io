@@ -183,8 +183,8 @@ export const principles: Principle[] = [
     receipt: { label: "Learned at Lasso", href: "/writing/lasso" },
   },
   {
-    title: "Ask for money early",
-    body: "LOIs and verbal commitments mean nothing. If someone won't put down payment details in some form, the problem probably isn't painful enough to build for.",
+    title: "Talk about price before you build",
+    body: "Monetizing Innovation says it plainly: design the product around the price. That conversation is standard for founders validating an idea, but product teams skip it far too often. What customers will actually pay for should shape the roadmap, not get discovered after launch.",
     receipt: { label: "Learned at Lasso, the hard way", href: "/writing/lasso" },
   },
   {
