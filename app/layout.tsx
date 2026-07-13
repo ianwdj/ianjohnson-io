@@ -48,7 +48,6 @@ const personJsonLd = {
   "@type": "Person",
   name: site.name,
   jobTitle: "Founding Product Lead",
-  email: `mailto:${site.email}`,
   url: site.url,
   image: `${site.url}/portrait.jpg`,
   address: {

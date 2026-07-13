@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { hero, site, type Segment } from "@/lib/content";
+import { hero, type Segment } from "@/lib/content";
 
 /* Renders copy segments, turning href-carrying segments into quiet links. */
 function Segments({ segs }: { segs: Segment[] }) {
@@ -26,35 +25,24 @@ function Segments({ segs }: { segs: Segment[] }) {
 
 export function Hero() {
   return (
-    <section className="relative mx-auto max-w-wide px-6 pb-14 pt-16 sm:pb-20 sm:pt-24">
+    <section className="relative mx-auto max-w-wide px-6 pb-7 pt-10">
       <div className="relative">
-        {/* modest avatar, US-tech register: the work leads, the face humanizes */}
-        <Image
-          src="/portrait.jpg"
-          alt={site.name}
-          width={112}
-          height={112}
-          priority
-          className="fade-up portrait-duotone rounded-full"
-          style={{ animationDelay: "0ms" }}
-        />
+        {/* the visible identity line moved into the header; keep the page's
+            h1 for readers and crawlers without repeating it visually */}
+        <h1 className="sr-only">
+          {hero.statement.map((s) => s.text).join("")}
+        </h1>
         <p
-          className="fade-up mt-10 font-serif text-[24px] italic text-putty"
-          style={{ animationDelay: "60ms" }}
+          className="fade-up font-serif text-[18px] italic text-putty"
+          style={{ animationDelay: "0ms" }}
         >
           {hero.greeting}
         </p>
-        <h1
-          className="fade-up mt-4 max-w-[640px] font-serif text-[clamp(28px,4vw,44px)] font-normal leading-[1.15] tracking-[-0.005em]"
-          style={{ animationDelay: "120ms" }}
-        >
-          <Segments segs={hero.statement} />
-        </h1>
         {hero.detail.map((para, i) => (
           <p
             key={i}
-            className="fade-up mt-8 max-w-[640px] text-[19px] leading-[1.65] text-ink [text-wrap:pretty]"
-            style={{ animationDelay: `${180 + i * 60}ms` }}
+            className="fade-up mt-3 text-[16.5px] leading-[1.58] text-ink [text-wrap:pretty]"
+            style={{ animationDelay: `${120 + i * 60}ms` }}
           >
             <Segments segs={para} />
           </p>

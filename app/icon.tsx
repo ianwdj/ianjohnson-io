@@ -1,21 +1,13 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { ImageResponse } from "next/og";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-/* Favicon: serif "ij" monogram, porcelain on coral. The coral ground makes
-   the tab findable; Newsreader ties it to the site's type. */
-export default async function Icon() {
-  const fontBuf = await readFile(
-    path.join(process.cwd(), "app/newsreader-medium.ttf")
-  );
-  const font = fontBuf.buffer.slice(
-    fontBuf.byteOffset,
-    fontBuf.byteOffset + fontBuf.byteLength
-  ) as ArrayBuffer;
-
+/* Favicon: a pint of Guinness on the coral ground. The stout is the site's
+   own palette (ink body, porcelain head), the coral keeps the tab findable,
+   and the pint is Ian's pick (from Ireland, July 2026). Drawn with divs so
+   it needs no font or asset. */
+export default function Icon() {
   return new ImageResponse(
     (
       <div
@@ -27,18 +19,25 @@ export default async function Icon() {
           justifyContent: "center",
           background: "#E8503A",
           borderRadius: 7,
-          fontFamily: "Newsreader",
-          fontSize: 22,
-          color: "#EFECE6",
-          paddingBottom: 3,
         }}
       >
-        ij
+        <div
+          style={{
+            width: 15,
+            height: 22,
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: "2px 2px 4px 4px",
+            overflow: "hidden",
+          }}
+        >
+          {/* the head */}
+          <div style={{ height: 7, background: "#EFECE6" }} />
+          {/* the stout */}
+          <div style={{ flex: 1, background: "#242118" }} />
+        </div>
       </div>
     ),
-    {
-      ...size,
-      fonts: [{ name: "Newsreader", data: font, weight: 500, style: "normal" }],
-    }
+    size
   );
 }

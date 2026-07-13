@@ -16,29 +16,32 @@ const ACQUIRER_LOGOS: Record<
 };
 
 /* Company marks sourced from each company's own site (Lasso via the Wayback
-   Machine). Rendered warm-monochrome to sit inside the palette; Flow's
-   source file is white-on-transparent, hence the invert variant. */
+   Machine). Shown in their original brand colors (Ian, July 2026) — no
+   warm-mono filter. Flow is the 2021 lockup (woven mark + flow wordmark)
+   in its official black on-light variant, from the late flow.io site. */
 const COMPANY_LOGOS: Record<
   string,
   { src: string; w: number; h: number; className: string }
 > = {
-  // logos are the primary mark now (no serif name beside them), so they
-  // run larger; heights tuned per wordmark for even optical weight
-  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "logo-warm h-[28px] w-auto" },
-  flow: { src: "/logos/flow.png", w: 220, h: 48, className: "logo-warm-invert h-[24px] w-auto" },
-  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "logo-warm h-[30px] w-auto" },
-  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "logo-warm h-[28px] w-auto" },
+  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "h-[24px] w-auto" },
+  flow: { src: "/logos/flow-2021.svg", w: 292, h: 70, className: "h-[22px] w-auto" },
+  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "h-[26px] w-auto" },
+  lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "h-[24px] w-auto" },
 };
 
-/* Layout G: two-column spread. Name/dates/category left, story right. */
+/* Ledger row that expands: logo, outcome, and dates always visible;
+   the story, image, and case-study link unfold on click. Native
+   <details>, so everything stays in the DOM (same pattern as the
+   essay list and How I think). */
 export function WorkCard({ project }: { project: Project }) {
   const company = COMPANY_LOGOS[project.slug];
+  const outcome = project.proof ?? project.role;
   return (
-    <div className="grid gap-3 border-t border-hairline py-10 sm:grid-cols-[260px_1fr] sm:gap-10">
-      <div>
+    <details className="disclosure group border-t border-hairline">
+      <summary className="flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1.5 py-4">
         {/* the wordmark IS the name; the h3 keeps it readable for screen
             readers and search without printing it twice */}
-        <h3 className="flex items-center gap-3">
+        <h3 className="flex w-[128px] items-center gap-2.5">
           <span className="sr-only">{project.name}</span>
           {project.href ? (
             <a
@@ -96,33 +99,38 @@ export function WorkCard({ project }: { project: Project }) {
             </>
           )}
         </h3>
-        <p className="meta mt-4">{project.period}</p>
-        <p className="mt-1 text-[15px] text-putty">{project.category}</p>
-        {project.role && <p className="meta mt-3">{project.role}</p>}
-      </div>
-      <div>
-        <p className="leading-[1.65]">{project.teaser}</p>
+        {outcome && <p className="meta">{outcome}</p>}
+        <span className="ml-auto flex shrink-0 items-center gap-3">
+          <span className="meta">{project.period}</span>
+          <span aria-hidden className="meta">
+            <span className="when-closed">+</span>
+            <span className="when-open">−</span>
+          </span>
+        </span>
+      </summary>
+      <div className="pb-5">
+        <p className="text-[15px] text-putty">{project.category}</p>
+        <p className="mt-2 text-[16.5px] leading-[1.55]">{project.teaser}</p>
         {project.featured?.map((line) => (
-          <p key={line} className="mt-3 leading-[1.65] [text-wrap:pretty]">
+          <p key={line} className="mt-2.5 text-[16.5px] leading-[1.55] [text-wrap:pretty]">
             {line}
           </p>
         ))}
-        {project.proof && <p className="meta mt-4">{project.proof}</p>}
-      {project.image && (
-        <Image
-          src={project.image.src}
-          alt={project.image.alt}
-          width={project.image.width}
-          height={project.image.height}
-          loading="eager"
-          className="mt-6 w-full rounded-lg border border-hairline"
-        />
-      )}
-      {project.caseStudy && (
-        <Link href={project.caseStudy.href} className="link mt-5 inline-block">
-          {project.caseStudy.label} →
-        </Link>
-      )}
+        {project.image && (
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={project.image.width}
+            height={project.image.height}
+            loading="eager"
+            className="mt-3.5 w-full rounded-lg border border-hairline"
+          />
+        )}
+        {project.caseStudy && (
+          <Link href={project.caseStudy.href} className="link mt-3 inline-block text-[16.5px]">
+            {project.caseStudy.label} →
+          </Link>
+        )}
         {project.logos && project.logos.length > 0 && (
           <div className="mt-4 flex items-center gap-6 text-putty opacity-80">
             {project.logos.map((id) => {
@@ -132,6 +140,6 @@ export function WorkCard({ project }: { project: Project }) {
           </div>
         )}
       </div>
-    </div>
+    </details>
   );
 }

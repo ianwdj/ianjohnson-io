@@ -92,25 +92,31 @@
     color: var(--putty);
   }
 
-  /* essay list disclosure: quiet link, no triangle marker, label swaps.
-     The explicit closed-state rule doubles down on native behavior so the
-     collapse never depends on UA internals. */
-  .essay-more:not([open]) > *:not(summary) {
+  /* disclosure pattern (essay list, How I think): quiet trigger, no
+     triangle marker, label swaps. The explicit closed-state rule doubles
+     down on native behavior so the collapse never depends on UA internals. */
+  .essay-more:not([open]) > *:not(summary),
+  .disclosure:not([open]) > *:not(summary) {
     display: none;
   }
-  .essay-more summary {
+  .essay-more summary,
+  .disclosure summary {
     list-style: none;
   }
-  .essay-more summary::-webkit-details-marker {
+  .essay-more summary::-webkit-details-marker,
+  .disclosure summary::-webkit-details-marker {
     display: none;
   }
-  .essay-more summary .when-open {
+  .essay-more summary .when-open,
+  .disclosure summary .when-open {
     display: none;
   }
-  .essay-more[open] summary .when-open {
+  .essay-more[open] summary .when-open,
+  .disclosure[open] summary .when-open {
     display: inline;
   }
-  .essay-more[open] summary .when-closed {
+  .essay-more[open] summary .when-closed,
+  .disclosure[open] summary .when-closed {
     display: none;
   }
 

@@ -7,10 +7,14 @@
 export const site = {
   name: "Ian Johnson",
   role: "Founding product lead at Aida",
+  // header line under the name (Ian's wording, July 2026)
+  tagline: "Founder and Product Leader",
   location: "San Francisco",
   url: "https://ianjohnson.io",
   email: "contact@ianjohnson.io",
   substackUrl: "https://ianwdj.substack.com",
+  githubUrl: "https://github.com/ianwdj",
+  xUrl: "https://x.com/Ianwdj",
   linkedinUrl: "https://www.linkedin.com/in/ianwdjohnson",
   letterboxdUrl: "https://letterboxd.com/ianwdj/",
   goodreadsUrl:
@@ -205,11 +209,20 @@ export const elsewhere: ElsewhereGroup[] = [
   {
     label: "Products",
     items: [
-      { label: "Artifax (AI ghostwriter)" },
+      {
+        // same story as the Pre-Product Sales Sprint essay (canonical →
+        // Substack), so link the on-site copy
+        label: "Artifax (AI ghostwriter)",
+        href: "/writing/pre-product-sales-sprint",
+      },
       { label: "Syncd (AI cross-interview analysis)" },
       { label: "Wildfire (creator analytics)" },
       { label: "BiG Deal (dynamic couponing)" },
-      { label: "Venice", href: "https://www.producthunt.com/products/venice" },
+      {
+        // tagline from Ian's own Product Hunt launch
+        label: "Venice (micro journaling for singles and couples)",
+        href: "https://www.producthunt.com/products/venice",
+      },
     ],
   },
   {
@@ -217,7 +230,11 @@ export const elsewhere: ElsewhereGroup[] = [
     // section titled "Things I have built for fun." Fact preserved above.
     label: "Food & drink",
     items: [
-      { label: "THIQUE, a grilled cheese and natural wine bar" },
+      {
+        // links to his build-log essay: $300 budget, 80+ attendees, 9/10 NPS
+        label: "THIQUE, a grilled cheese and natural wine bar",
+        href: "https://ianwdj.substack.com/p/launching-a-grilled-cheese-wine-bar",
+      },
       { label: "One.Six1, specialty coffee" },
       { label: "Soundcellar, a wine and podcast club with 200+ members" },
     ],
@@ -366,9 +383,17 @@ export const films: Film[] = filmList.map(([title, slug]) => ({
 /* Single source of truth for outbound identity links (footer + JSON-LD).
    TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are
    filtered out everywhere until then. */
+/* Memberships: communities, not roles. On Deck came after Lasso and is a
+   membership, never a job (Ian, July 2026). */
+export const memberships: ElsewhereItem[] = [
+  { label: "On Deck, founder fellowship", href: "https://www.beondeck.com" },
+];
+
 export const socialLinks = [
-  { label: "Substack", href: site.substackUrl },
   { label: "LinkedIn", href: site.linkedinUrl },
+  { label: "X", href: site.xUrl },
+  { label: "Substack", href: site.substackUrl },
+  { label: "GitHub", href: site.githubUrl },
   { label: "Letterboxd", href: site.letterboxdUrl },
 ].filter((l) => l.href !== "#");
 

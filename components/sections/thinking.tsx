@@ -1,33 +1,51 @@
 import { principles } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
 
+/* Vertical accordion: titles always visible, bodies expand on click.
+   Native <details> so every principle stays in the DOM for readers,
+   crawlers, and no-JS visitors (same pattern as the essay list). */
 export function ThinkingSection() {
   return (
     <section
       id="thinking"
-      className="mx-auto max-w-wide scroll-mt-16 px-6 py-14 sm:py-20"
+      className="mx-auto max-w-wide scroll-mt-16 px-6 py-10"
     >
       <Reveal>
         <p className="meta">How I think</p>
       </Reveal>
-      <ol className="mt-8 flex flex-col gap-10">
+      <div className="mt-[18px] border-b border-hairline">
         {principles.map((p, i) => (
           <Reveal key={p.title}>
-            <li className="flex gap-5">
-              <span className="meta pt-[6px]">{String(i + 1).padStart(2, "0")}</span>
-              <div>
-                <h3 className="font-serif text-[20px]">{p.title}</h3>
-                <p className="mt-2 leading-[1.65]">{p.body}</p>
+            <details className="disclosure group border-t border-hairline">
+              <summary className="flex cursor-pointer items-baseline gap-3 py-3">
+                <span className="meta pt-[2px]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-serif text-[17px] transition-colors duration-300 group-hover:text-coral-deep">
+                  {p.title}
+                </h3>
+                <span aria-hidden className="meta ml-auto shrink-0 pt-[2px]">
+                  <span className="when-closed">+</span>
+                  <span className="when-open">−</span>
+                </span>
+              </summary>
+              <div className="pb-4 pl-8 pr-6">
+                <p className="max-w-[680px] text-[15.5px] leading-[1.55]">
+                  {p.body}
+                </p>
                 {p.receipt && (
-                  <a href={p.receipt.href} className="link meta mt-3 inline-block normal-case tracking-normal">
+                  <a
+                    href={p.receipt.href}
+                    className="link meta mt-2 inline-block normal-case tracking-normal"
+                  >
                     {p.receipt.label} →
                   </a>
                 )}
               </div>
-            </li>
+            </details>
           </Reveal>
         ))}
-      </ol>
+      </div>
     </section>
   );
 }

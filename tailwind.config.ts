@@ -35,7 +35,9 @@ const config: Config = {
       },
       maxWidth: {
         content: "672px", // reading measure: essay bodies
-        wide: "880px", // page column: home sections, header, footer
+        // page column: 720 outer − 48 padding = 672 content, the same
+        // centered measure as the ambrosino.io reference
+        wide: "720px",
       },
     },
   },
