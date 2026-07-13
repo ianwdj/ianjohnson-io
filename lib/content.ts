@@ -139,7 +139,9 @@ export const projects: Project[] = [
     // behind" is the defensible version; say the word if it undersells it.
     teaser:
       "I ran growth, experimentation, merchant-of-record, and checkout on $250M a week of cross-border volume. Flow was chosen as Shopify Markets' exclusive white-label partner.",
-    proof: "Principal PM · Acquired by Global-e for $500M",
+    // "by Global-e" lives in the logo beside this line, not the text —
+    // the words plus the mark overflowed the collapsed row
+    proof: "Principal PM · Acquired for $500M",
     logos: ["globale", "shopify"],
     status: "past",
   },

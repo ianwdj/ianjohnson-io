@@ -15,6 +15,14 @@ const ACQUIRER_LOGOS: Record<
   alibaba: { Component: AlibabaLogo, className: "h-[24px] w-auto" },
 };
 
+/* collapsed-row scale: same optical ratios, small enough to sit inline
+   beside the outcome meta without crowding the dates */
+const SUMMARY_ACQUIRER_SIZE: Record<LogoId, string> = {
+  globale: "h-[13px] w-auto",
+  shopify: "h-[15px] w-auto",
+  alibaba: "h-[16px] w-auto",
+};
+
 /* Company marks sourced from each company's own site (Lasso via the Wayback
    Machine). Shown in their original brand colors (Ian, July 2026) — no
    warm-mono filter. Flow is the 2021 lockup (woven mark + flow wordmark)
@@ -102,6 +110,16 @@ export function WorkCard({ project }: { project: Project }) {
           )}
         </h3>
         {outcome && <p className="meta">{outcome}</p>}
+        {/* acquirer/partner marks ride the collapsed row so the outcome
+            reads without a click; sized down from the expanded scale */}
+        {project.logos && project.logos.length > 0 && (
+          <span className="flex items-center gap-3.5 text-putty opacity-75">
+            {project.logos.map((id) => {
+              const { Component: Logo } = ACQUIRER_LOGOS[id];
+              return <Logo key={id} className={SUMMARY_ACQUIRER_SIZE[id]} />;
+            })}
+          </span>
+        )}
         <span className="ml-auto flex shrink-0 items-center gap-3">
           <span className="meta">{project.period}</span>
           <span aria-hidden className="meta">
@@ -132,14 +150,6 @@ export function WorkCard({ project }: { project: Project }) {
           <Link href={project.caseStudy.href} className="link mt-3 inline-block text-[16.5px]">
             {project.caseStudy.label} →
           </Link>
-        )}
-        {project.logos && project.logos.length > 0 && (
-          <div className="mt-4 flex items-center gap-6 text-putty opacity-80">
-            {project.logos.map((id) => {
-              const { Component: Logo, className } = ACQUIRER_LOGOS[id];
-              return <Logo key={id} className={className} />;
-            })}
-          </div>
         )}
       </div>
     </details>
