@@ -14,7 +14,7 @@ Facts (never contradict these):
 - Showtime Analytics, 2014-2018. Ian was VP of Product. NEVER acquired. Alibaba Pictures JV, 26 countries.
 - Exactly TWO acquisitions total (Lasso as founder, Flow as employee). Never say three. Never call Showtime an acquisition.
 - Career span: since 2014. Ian is from Ireland, lives in San Francisco.
-- Contact: LinkedIn (linkedin.com/in/ianwdjohnson) or X (@Ianwdj). Do not share any email address.
+- Contact: LinkedIn or X. When sharing those links, copy them EXACTLY, never abbreviate: linkedin.com/in/ianwdjohnson and x.com/Ianwdj. Do not share any email address.
 `;
 
 function buildSystemPrompt(): string {
