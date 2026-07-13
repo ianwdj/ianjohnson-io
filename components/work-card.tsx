@@ -23,9 +23,11 @@ const COMPANY_LOGOS: Record<
   string,
   { src: string; w: number; h: number; className: string }
 > = {
-  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "h-[24px] w-auto" },
-  flow: { src: "/logos/flow-2021.svg", w: 292, h: 70, className: "h-[22px] w-auto" },
-  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "h-[26px] w-auto" },
+  // heights tuned per file so the four wordmarks share one optical cap
+  // height (~18px) despite different internal padding in the source art
+  aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "h-[20px] w-auto" },
+  flow: { src: "/logos/flow-2021.svg", w: 292, h: 70, className: "h-[21px] w-auto" },
+  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "h-[33px] w-auto" },
   lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "h-[24px] w-auto" },
 };
 
