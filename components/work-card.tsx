@@ -48,10 +48,12 @@ export function WorkCard({ project }: { project: Project }) {
   const outcome = project.proof ?? project.role;
   return (
     <details className="disclosure group border-t border-hairline">
-      <summary className="flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1.5 py-4">
-        {/* the wordmark IS the name; the h3 keeps it readable for screen
+      <summary className="flex cursor-pointer flex-col gap-y-2 py-4 sm:flex-row sm:items-center sm:gap-x-4">
+        {/* mobile: logo left, dates top-right; desktop: ledger columns.
+            the wordmark IS the name; the h3 keeps it readable for screen
             readers and search without printing it twice */}
-        <h3 className="flex w-[128px] items-center gap-2.5">
+        <span className="flex w-full items-center justify-between sm:w-[128px]">
+        <h3 className="flex items-center gap-2.5">
           <span className="sr-only">{project.name}</span>
           {project.href ? (
             <a
@@ -109,18 +111,31 @@ export function WorkCard({ project }: { project: Project }) {
             </>
           )}
         </h3>
-        {outcome && <p className="meta">{outcome}</p>}
-        {/* acquirer/partner marks ride the collapsed row so the outcome
-            reads without a click; sized down from the expanded scale */}
-        {project.logos && project.logos.length > 0 && (
-          <span className="flex items-center gap-3.5 text-putty opacity-75">
-            {project.logos.map((id) => {
-              const { Component: Logo } = ACQUIRER_LOGOS[id];
-              return <Logo key={id} className={SUMMARY_ACQUIRER_SIZE[id]} />;
-            })}
+        {/* mobile-only dates, opposite the logo */}
+        <span className="flex items-center gap-3 sm:hidden">
+          <span className="meta">{project.period}</span>
+          <span aria-hidden className="meta">
+            <span className="when-closed">+</span>
+            <span className="when-open">−</span>
+          </span>
+        </span>
+        </span>
+        {(outcome || (project.logos && project.logos.length > 0)) && (
+          /* outcome + marks: second line on mobile, inline columns on
+             desktop (sm:contents flattens this wrapper away) */
+          <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 sm:contents">
+            {outcome && <p className="meta">{outcome}</p>}
+            {project.logos && project.logos.length > 0 && (
+              <span className="flex items-center gap-3.5 text-putty opacity-75">
+                {project.logos.map((id) => {
+                  const { Component: Logo } = ACQUIRER_LOGOS[id];
+                  return <Logo key={id} className={SUMMARY_ACQUIRER_SIZE[id]} />;
+                })}
+              </span>
+            )}
           </span>
         )}
-        <span className="ml-auto flex shrink-0 items-center gap-3">
+        <span className="ml-auto hidden shrink-0 items-center gap-3 sm:flex">
           <span className="meta">{project.period}</span>
           <span aria-hidden className="meta">
             <span className="when-closed">+</span>

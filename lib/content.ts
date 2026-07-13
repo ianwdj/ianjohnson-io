@@ -386,9 +386,14 @@ export const films: Film[] = filmList.map(([title, slug]) => ({
    TODO(ian): add real LinkedIn and Letterboxd URLs — "#" entries are
    filtered out everywhere until then. */
 /* Memberships: communities, not roles. On Deck came after Lasso and is a
-   membership, never a job (Ian, July 2026). */
-export const memberships: ElsewhereItem[] = [
-  { label: "On Deck, founder fellowship", href: "https://www.beondeck.com" },
+   membership, never a job. ODF19 is Ian's batch (his word, July 2026). */
+export type Membership = { label: string; href?: string; logo?: string };
+export const memberships: Membership[] = [
+  {
+    label: "On Deck founder fellowship, ODF19",
+    href: "https://www.beondeck.com",
+    logo: "/logos/ondeck.svg",
+  },
 ];
 
 export const socialLinks = [
