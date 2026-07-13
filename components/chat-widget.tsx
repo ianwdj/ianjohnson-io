@@ -81,12 +81,12 @@ export function ChatWidget() {
         >
           <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z" />
         </svg>
-        <span className="font-serif text-[14px]">Ask AI</span>
+        <span className="font-serif text-[14px]">Ask about Ian</span>
       </button>
       {open && (
         <div className="fixed bottom-[60px] right-4 z-50 flex w-[380px] max-w-[calc(100vw-32px)] flex-col overflow-hidden rounded-[10px] border border-hairline bg-cream shadow-[0_10px_32px_rgba(36,33,24,0.14)]">
           <div className="flex items-center justify-between border-b border-hairline px-4 py-3">
-            <span className="meta">Ask AI about Ian</span>
+            <span className="meta">Ask about Ian</span>
             <button
               type="button"
               aria-label="Close chat"
