@@ -5,22 +5,26 @@ import { GlobalELogo, ShopifyLogo } from "@/components/logos";
 
 /* Mono wordmark acquirer marks, drawn with currentColor so the putty
    treatment applies. Simple wordmarks that reduce cleanly at small size. */
+/* Wordmark acquirer marks in their own brand colors (to match the
+   full-color Alibaba Pictures lockup and the brand-colored company logos).
+   Global-e's #F15A2C sits right next to the site coral; Shopify's green
+   echoes Aida's tick, so nothing fights the palette. */
 const ACQUIRER_LOGOS: Partial<
   Record<
     LogoId,
     { Component: React.ComponentType<{ className?: string }>; className: string }
   >
 > = {
-  globale: { Component: GlobalELogo, className: "h-[18px] w-auto" },
+  globale: { Component: GlobalELogo, className: "h-[18px] w-auto text-[#F15A2C]" },
   // Shopify's viewBox includes the bag glyph, so its wordmark x-height runs
   // ~30% short of Global-e's at equal heights; 21px restores optical parity
-  shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto" },
+  shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto text-[#5E8E3E]" },
 };
 
-/* collapsed-row scale for the mono wordmarks */
+/* collapsed-row scale for the wordmarks, carrying the same brand colors */
 const SUMMARY_ACQUIRER_SIZE: Partial<Record<LogoId, string>> = {
-  globale: "h-[13px] w-auto",
-  shopify: "h-[15px] w-auto",
+  globale: "h-[13px] w-auto text-[#F15A2C]",
+  shopify: "h-[15px] w-auto text-[#5E8E3E]",
 };
 
 /* Full-color raster marks that can't reduce to a clean mono wordmark.
@@ -141,7 +145,7 @@ export function WorkCard({ project }: { project: Project }) {
           <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 sm:contents">
             {outcome && <p className="meta">{outcome}</p>}
             {project.logos && project.logos.some((id) => ACQUIRER_LOGOS[id]) && (
-              <span className="flex items-center gap-3.5 text-putty opacity-75">
+              <span className="flex items-center gap-3.5">
                 {project.logos.map((id) => {
                   const mark = ACQUIRER_LOGOS[id];
                   if (!mark) return null;
