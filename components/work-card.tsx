@@ -1,26 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LogoId, Project } from "@/lib/content";
-import { AlibabaLogo, GlobalELogo, ShopifyLogo } from "@/components/logos";
+import { GlobalELogo, ShopifyLogo } from "@/components/logos";
 
-const ACQUIRER_LOGOS: Record<
-  LogoId,
-  { Component: React.ComponentType<{ className?: string }>; className: string }
+/* Mono wordmark acquirer marks, drawn with currentColor so the putty
+   treatment applies. Simple wordmarks that reduce cleanly at small size. */
+const ACQUIRER_LOGOS: Partial<
+  Record<
+    LogoId,
+    { Component: React.ComponentType<{ className?: string }>; className: string }
+  >
 > = {
   globale: { Component: GlobalELogo, className: "h-[18px] w-auto" },
   // Shopify's viewBox includes the bag glyph, so its wordmark x-height runs
   // ~30% short of Global-e's at equal heights; 21px restores optical parity
   shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto" },
-  // Alibaba is now a wordmark like the others; match their cap height
-  alibaba: { Component: AlibabaLogo, className: "h-[15px] w-auto" },
 };
 
-/* collapsed-row scale: same optical ratios, small enough to sit inline
-   beside the outcome meta without crowding the dates */
-const SUMMARY_ACQUIRER_SIZE: Record<LogoId, string> = {
+/* collapsed-row scale for the mono wordmarks */
+const SUMMARY_ACQUIRER_SIZE: Partial<Record<LogoId, string>> = {
   globale: "h-[13px] w-auto",
   shopify: "h-[15px] w-auto",
-  alibaba: "h-[11px] w-auto",
+};
+
+/* Full-color raster marks that can't reduce to a clean mono wordmark.
+   Alibaba Pictures is the official stacked lockup (smile filmstrip + name),
+   kept in brand color and sized taller so the mark reads. Ian's pick. */
+const ACQUIRER_IMAGES: Partial<
+  Record<LogoId, { src: string; w: number; h: number; alt: string; className: string }>
+> = {
+  alibaba: {
+    src: "/logos/alibaba-pictures.png",
+    w: 600,
+    h: 600,
+    alt: "Alibaba Pictures logo",
+    className: "h-[34px] w-auto",
+  },
 };
 
 /* Company marks sourced from each company's own site (Lasso via the Wayback
@@ -125,14 +140,31 @@ export function WorkCard({ project }: { project: Project }) {
              desktop (sm:contents flattens this wrapper away) */
           <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 sm:contents">
             {outcome && <p className="meta">{outcome}</p>}
-            {project.logos && project.logos.length > 0 && (
+            {project.logos && project.logos.some((id) => ACQUIRER_LOGOS[id]) && (
               <span className="flex items-center gap-3.5 text-putty opacity-75">
                 {project.logos.map((id) => {
-                  const { Component: Logo } = ACQUIRER_LOGOS[id];
+                  const mark = ACQUIRER_LOGOS[id];
+                  if (!mark) return null;
+                  const { Component: Logo } = mark;
                   return <Logo key={id} className={SUMMARY_ACQUIRER_SIZE[id]} />;
                 })}
               </span>
             )}
+            {project.logos?.map((id) => {
+              const img = ACQUIRER_IMAGES[id];
+              if (!img) return null;
+              return (
+                <Image
+                  key={id}
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.w}
+                  height={img.h}
+                  loading="eager"
+                  className={img.className}
+                />
+              );
+            })}
           </span>
         )}
         <span className="ml-auto hidden shrink-0 items-center gap-3 sm:flex">
