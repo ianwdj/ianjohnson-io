@@ -1,45 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LogoId, Project } from "@/lib/content";
-import { GlobalELogo, ShopifyLogo } from "@/components/logos";
 
-/* Mono wordmark acquirer marks, drawn with currentColor so the putty
-   treatment applies. Simple wordmarks that reduce cleanly at small size. */
-/* Wordmark acquirer marks in their own brand colors (to match the
-   full-color Alibaba Pictures lockup and the brand-colored company logos).
-   Global-e's #F15A2C sits right next to the site coral; Shopify's green
-   echoes Aida's tick, so nothing fights the palette. */
-const ACQUIRER_LOGOS: Partial<
-  Record<
-    LogoId,
-    { Component: React.ComponentType<{ className?: string }>; className: string }
-  >
-> = {
-  globale: { Component: GlobalELogo, className: "h-[18px] w-auto text-[#F15A2C]" },
-  // Shopify's viewBox includes the bag glyph, so its wordmark x-height runs
-  // ~30% short of Global-e's at equal heights; 21px restores optical parity
-  shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto text-[#5E8E3E]" },
-};
-
-/* collapsed-row scale for the wordmarks, carrying the same brand colors */
-const SUMMARY_ACQUIRER_SIZE: Partial<Record<LogoId, string>> = {
-  globale: "h-[13px] w-auto text-[#F15A2C]",
-  shopify: "h-[15px] w-auto text-[#5E8E3E]",
-};
-
-/* Full-color raster marks that can't reduce to a clean mono wordmark.
-   Alibaba Pictures is the official stacked lockup (smile filmstrip + name),
-   kept in brand color and sized taller so the mark reads. Ian's pick. */
+/* Acquirer and partner marks, each the official brand asset in its real
+   colors and form: Global-e and Shopify from the companies' own logo
+   files, Alibaba Pictures the official lockup. Heights tuned per file for
+   a shared optical weight; Alibaba's stacked lockup runs taller so its
+   mark reads. */
 const ACQUIRER_IMAGES: Partial<
   Record<LogoId, { src: string; w: number; h: number; alt: string; className: string }>
 > = {
-  alibaba: {
-    src: "/logos/alibaba-pictures.png",
-    w: 600,
-    h: 600,
-    alt: "Alibaba Pictures logo",
-    className: "h-[34px] w-auto",
-  },
+  globale: { src: "/logos/globale.svg", w: 123, h: 27, alt: "Global-e logo", className: "h-[14px] w-auto" },
+  shopify: { src: "/logos/shopify.svg", w: 612, h: 192, alt: "Shopify logo", className: "h-[19px] w-auto" },
+  alibaba: { src: "/logos/alibaba-pictures.png", w: 600, h: 600, alt: "Alibaba Pictures logo", className: "h-[34px] w-auto" },
 };
 
 /* Company marks sourced from each company's own site (Lasso via the Wayback
@@ -144,31 +117,25 @@ export function WorkCard({ project }: { project: Project }) {
              desktop (sm:contents flattens this wrapper away) */
           <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 sm:contents">
             {outcome && <p className="meta">{outcome}</p>}
-            {project.logos && project.logos.some((id) => ACQUIRER_LOGOS[id]) && (
+            {project.logos && project.logos.length > 0 && (
               <span className="flex items-center gap-3.5">
                 {project.logos.map((id) => {
-                  const mark = ACQUIRER_LOGOS[id];
-                  if (!mark) return null;
-                  const { Component: Logo } = mark;
-                  return <Logo key={id} className={SUMMARY_ACQUIRER_SIZE[id]} />;
+                  const img = ACQUIRER_IMAGES[id];
+                  if (!img) return null;
+                  return (
+                    <Image
+                      key={id}
+                      src={img.src}
+                      alt={img.alt}
+                      width={img.w}
+                      height={img.h}
+                      loading="eager"
+                      className={img.className}
+                    />
+                  );
                 })}
               </span>
             )}
-            {project.logos?.map((id) => {
-              const img = ACQUIRER_IMAGES[id];
-              if (!img) return null;
-              return (
-                <Image
-                  key={id}
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.w}
-                  height={img.h}
-                  loading="eager"
-                  className={img.className}
-                />
-              );
-            })}
           </span>
         )}
         <span className="ml-auto hidden shrink-0 items-center gap-3 sm:flex">
