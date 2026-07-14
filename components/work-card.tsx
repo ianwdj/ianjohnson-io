@@ -11,8 +11,8 @@ const ACQUIRER_LOGOS: Record<
   // Shopify's viewBox includes the bag glyph, so its wordmark x-height runs
   // ~30% short of Global-e's at equal heights; 21px restores optical parity
   shopify: { Component: ShopifyLogo, className: "h-[21px] w-auto" },
-  // square glyph needs more height to sit level with the wordmarks
-  alibaba: { Component: AlibabaLogo, className: "h-[24px] w-auto" },
+  // Alibaba is now a wordmark like the others; match their cap height
+  alibaba: { Component: AlibabaLogo, className: "h-[15px] w-auto" },
 };
 
 /* collapsed-row scale: same optical ratios, small enough to sit inline
@@ -20,7 +20,7 @@ const ACQUIRER_LOGOS: Record<
 const SUMMARY_ACQUIRER_SIZE: Record<LogoId, string> = {
   globale: "h-[13px] w-auto",
   shopify: "h-[15px] w-auto",
-  alibaba: "h-[16px] w-auto",
+  alibaba: "h-[11px] w-auto",
 };
 
 /* Company marks sourced from each company's own site (Lasso via the Wayback
