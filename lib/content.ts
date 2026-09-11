@@ -42,7 +42,7 @@ export const hero = {
   detail: [
     [
       {
-        text: "My mission is to build tools that help millions of people make progress on what matters most to them. I believe the next generation of software will understand our goals, learn from our experience, and move work forward. I love taking ambiguous, zero-to-one problems and turning them into products people rely on.",
+        text: "My mission is to build tools that help millions of people make progress on what matters most to them. I believe the next generation of technology will make our ambitions less constrained by the time, resources, and expertise we have. I love taking ambiguous, zero-to-one problems and turning them into products people rely on.",
       },
     ],
     [
@@ -157,11 +157,8 @@ export const projects: Project[] = [
   },
 ];
 
-/* "How I think" — distilled from Ian's published essays (Lasso post-mortem,
-   Pre-Product Sales Sprint), not invented. Each principle carries a receipt:
-   the essay where it was learned, so the claim and the evidence touch.
-   TODO(ian): titles 1 and 3 are still drafted, not yours — say them your way
-   and they go in verbatim. */
+/* Current questions supplied by Ian, September 2026. */
+export const thinkingTitle = "Questions I’m thinking about";
 export type Principle = {
   title: string;
   body: string;
@@ -170,30 +167,20 @@ export type Principle = {
 
 export const principles: Principle[] = [
   {
-    title: "Ask why now",
-    body: "Customer inertia kills most new products. An inflection point, new technology or a rule change, is what makes a 10x solution possible where it wasn't before. If an idea has no answer to why now, it can wait.",
-    receipt: {
-      label: "From the idea shortlisting scorecard",
-      href: "/writing/shortlisting-startup-ideas",
-    },
+    title: "What becomes possible when an old constraint disappears?",
+    body: "I look for products built around something that used to be impossible, expensive, or slow. The interesting part of a technology shift is how it changes what people can expect. “Why now?” is the starting point. The next question is which assumptions we no longer have to accept.",
   },
   {
-    title: "Watch what customers do, not what they say",
-    body: "The real problem is usually different from the one people describe. If you can shadow someone in their actual workflow, you'll learn more than any interview will tell you.",
-    receipt: { label: "Learned at Lasso", href: "/writing/lasso" },
+    title: "Which parts of the workflow should stop existing?",
+    body: "A workflow is a record of past constraints: what the tools couldn’t do, where information got lost, what someone had to check manually. When I watch people work, I look for those inherited compromises. Sometimes the biggest product opportunity is removing the reason a task exists.",
   },
   {
-    title: "Talk about price before you build",
-    body: "Monetizing Innovation says it plainly: design the product around the price. That conversation is standard for founders validating an idea, but product teams skip it far too often. What customers will actually pay for should shape the roadmap, not get discovered after launch.",
-    receipt: { label: "Learned at Lasso, the hard way", href: "/writing/lasso" },
+    title: "What would make someone comfortable giving up control?",
+    body: "As software takes on more responsibility, trust becomes part of the product’s core design. People need to understand what it can handle, when it needs their judgment, and how to recover when it gets something wrong. I’m interested in how products earn greater responsibility through use.",
   },
   {
-    title: "Build with the sales motion, not ahead of it",
-    body: "How something gets sold shapes what should get built. The products I've seen work were designed alongside the people selling them, from the start.",
-    receipt: {
-      label: "How Artifax closed $1,000 sales with a Notion page",
-      href: "/writing/pre-product-sales-sprint",
-    },
+    title: "When capability becomes abundant, what stays valuable?",
+    body: "As more teams gain access to similar technology, where will a product’s lasting value come from? It might be context that deepens over time, a place in a critical workflow, or trust earned through reliable outcomes. This question shapes what I build and what I'd expect someone to pay for.",
   },
 ];
 

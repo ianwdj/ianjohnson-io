@@ -1,4 +1,4 @@
-import { principles } from "@/lib/content";
+import { principles, thinkingTitle } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
 
 /* Vertical accordion: titles always visible, bodies expand on click.
@@ -11,7 +11,7 @@ export function ThinkingSection() {
       className="mx-auto max-w-wide scroll-mt-16 px-6 py-10"
     >
       <Reveal>
-        <p className="meta">How I think</p>
+        <p className="meta">{thinkingTitle}</p>
       </Reveal>
       <div className="mt-[18px] border-b border-hairline">
         {principles.map((p, i) => (

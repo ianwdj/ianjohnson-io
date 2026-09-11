@@ -137,7 +137,7 @@ ${PM_DIGEST}
 
 About him, in his own words: ${heroWords}
 
-How he thinks (his principles):
+Questions he is currently thinking about:
 ${principleLines}
 
 His work:
