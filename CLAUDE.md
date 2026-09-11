@@ -9,7 +9,7 @@ finishes this page wanting to work with Ian.** Precision and plainness ARE the p
 
 | Company | Years | Ian's role | Outcome |
 |---|---|---|---|
-| Aida (getaida.com) | 2024–now | Founding product lead | Current. Ian's framing: "an agentic-native revenue system" — use this on his site, NOT getaida.com's "AI chief of staff" marketing line (Ian rejected it, July 2026) |
+| Aida (getaida.com) | 2024–now | Founding Head of Product | Current. Ian's framing: "an agentic-native revenue system" — use this on his site, NOT getaida.com's "AI chief of staff" marketing line (Ian rejected it, July 2026) |
 | Lasso AI | 2021–2023 | **Founder** | Acquired by Yard |
 | Flow | 2018–2021 | **Principal PM** (employee, not founder) | Acquired by Global-e for $500M; white-label engine behind Shopify Markets |
 | Showtime Analytics | 2014–2018 | **VP of Product** | **Never acquired.** Alibaba Pictures JV, 26 countries |
@@ -30,7 +30,7 @@ Banned (he has flagged each of these specifically):
 - Em-dashes in site copy (use periods or commas)
 - Coined accent phrases, aphorisms, thesis-statement openers
 - Overclaiming anything. For Ian, voice and accuracy are one complaint: "sounds like AI and it's also factually incorrect"
-- Never "Head of Product" — he's "founding product lead" / a builder
+- Aida title: "Founding Head of Product" (updated by Ian, September 2026). This supersedes the earlier preference for "founding product lead".
 
 ### Design system (approved, do not re-litigate)
 

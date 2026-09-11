@@ -6,7 +6,7 @@
 
 export const site = {
   name: "Ian Johnson",
-  role: "Founding product lead at Aida",
+  role: "Founding Head of Product at Aida",
   // header line under the name (Ian's wording, July 2026)
   tagline: "Founder and Product Leader",
   location: "San Francisco",
@@ -29,7 +29,7 @@ export type Segment = { text: string; href?: string };
 export const hero = {
   greeting: "Hi, I'm Ian.",
   /* "a founder and product lead" is identity (he founded Lasso and THIQUE),
-     not an Aida-founder claim — Aida role stays "founding product lead"
+     not an Aida-founder claim — Aida role stays "founding head of product"
      everywhere factual (cards, JSON-LD, footer). */
   statement: [
     { text: "I'm a founder and product lead, currently building " },
@@ -90,16 +90,14 @@ export const projects: Project[] = [
     category: "Agentic-native revenue system",
     period: "2024–now",
     teaser:
-      "Aida improves deal velocity and drives more revenue per headcount. It turns each rep's deal history, calls, emails, and CRM activity into a system of action.",
-    /* Depth lines drafted from getaida.com and Ian's own earlier copy
-       ("durable usage as the test" framing is his).
-       TODO(ian): make these yours, and add a traction fact when shareable. */
+      "Aida’s vision is to give sellers more time, better judgment, and greater capacity to act, while helping organizations decouple revenue growth from headcount growth.",
+    // Copy approved by Ian, September 2026.
     featured: [
-      "It also flags at-risk deals, prioritizes accounts, and tracks signals like MEDDPIC and rep behavior, so best practices hold through the whole quarter, not just the week before a review.",
+      "Its system of intelligent action gives revenue teams AI agents that understand their business, execute company playbooks, and learn from customer interactions and outcomes. That learning improves how agents work across people and accounts, so lessons from one deal can inform decisions and actions across the team.",
     ],
     // TODO(ian): add one traction fact as `proof` when shareable (design
     // partners, reps using it, team size)
-    role: "Founding product lead",
+    role: "Founding Head of Product",
     href: "https://getaida.com",
     // from Ian's Aida Figma (Chat UI file, deal view with drafted follow-up)
     image: {
