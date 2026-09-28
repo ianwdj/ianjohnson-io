@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="336" height="228" viewBox="0 0 336 228" role="img" aria-labelledby="title desc">
+<title id="title">Connections give information context</title><desc id="desc">The same five points appear isolated on the left and connected on the right. This is a conceptual illustration, not a performance chart.</desc>
+<rect width="336" height="228" fill="#E6E2D9"/>
+<path d="M168 40V188" stroke="#D0C9BD" stroke-width="2"/>
+<g fill="none" stroke="#33302B" stroke-width="2.5"><path d="m215 67 60 13-38 40 45 42-72 9 27-51-22-53M275 80l7 82M210 171l5-104"/></g>
+<g fill="#8B857A"><circle cx="59" cy="67" r="7"/><circle cx="119" cy="80" r="7"/><circle cx="81" cy="120" r="7"/><circle cx="126" cy="162" r="7"/><circle cx="54" cy="171" r="7"/></g>
+<g fill="#33302B"><circle cx="215" cy="67" r="7"/><circle cx="275" cy="80" r="7"/><circle cx="237" cy="120" r="10"/><circle cx="282" cy="162" r="7"/><circle cx="210" cy="171" r="7"/></g>
+</svg>

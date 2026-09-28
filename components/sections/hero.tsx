@@ -41,7 +41,7 @@ export function Hero() {
         {hero.detail.map((para, i) => (
           <p
             key={i}
-            className="fade-up mt-3 text-[16.5px] leading-[1.58] text-ink [text-wrap:pretty]"
+            className="fade-up mt-3 text-[15.5px] leading-[1.6] text-ink [text-wrap:pretty]"
             style={{ animationDelay: `${120 + i * 60}ms` }}
           >
             <Segments segs={para} />

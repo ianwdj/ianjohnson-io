@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Newsreader, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { site, heroText, socialLinks } from "@/lib/content";
 import "./globals.css";
 
-// Newsreader is a variable font; the opsz axis gives a true display cut at
-// hero sizes and a readable text cut at 18px from one family.
-const serif = Newsreader({
-  subsets: ["latin"],
+// Preserve the existing utility name while using one approved sans family.
+const serif = localFont({
+  src: "../public/fonts/inter-variable.woff2",
   display: "swap",
-  style: ["normal", "italic"],
-  axes: ["opsz"],
+  weight: "100 900",
   variable: "--font-serif",
 });
 const mono = JetBrains_Mono({

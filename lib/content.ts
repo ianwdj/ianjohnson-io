@@ -63,6 +63,33 @@ export const heroText = {
 
 export type LogoId = "globale" | "shopify" | "alibaba";
 
+export const aidaPortfolio = {
+  intro: "Aida is a system of intelligent action for revenue teams, built to help organizations decouple revenue growth from headcount growth.",
+  ownership: "I led product from pre-launch through commercialization, working with design partners to identify repeatable workflows and turn those insights into the product.",
+  entries: [
+    { title: "Product strategy", description: "Building a system of intelligent action. The product direction and priorities.", href: "/work/aida/strategy", image: "/work/aida/thumbnails/strategy.svg", alt: "Shared context supports several workflows" },
+    { title: "Product decisions", description: "The sales meeting, end to end. Workflow decisions and the architecture behind them.", href: "/work/aida", image: "/work/aida/thumbnails/decisions.svg", alt: "Prepared outputs converge at a human approval point" },
+    { title: "Product comparison", description: "How customer context changes the answer. Graphs and full Aida and Claude responses.", href: "/work/aida/comparison.html", image: "/work/aida/thumbnails/comparison.svg", alt: "The same information, isolated and connected" },
+    { title: "The Last Mile of Sales Coaching", description: "Why coaching belongs inside the workflow.", href: "/writing/last-mile-sales-coaching", image: "/work/aida/thumbnails/coaching.svg", alt: "Feedback reconnects with the next action in the workflow" },
+  ],
+};
+
+// User-supplied strategy narrative. Pending usage claims stay in private drafts.
+export const aidaStrategy = {
+  title: "Building a system of intelligent action",
+  introduction: "We built Aida to increase deal velocity and revenue capacity. Our ambition is to decouple revenue growth from headcount growth.",
+  investment: [
+    "We invested in the context graph from the start. Customer conversations, commitments and deal history needed to stay connected so Aida could understand where attention was needed and help across workflows.",
+    "Our initial discovery and design partnerships focused on the rep’s work. Removing administration could help the seller while improving the information the rest of the organization depended on. We then expanded how that context supported teams and execution.",
+  ],
+  chapters: [
+    { title: "Help the rep", job: "Understand and advance my deals without reconstructing context or losing selling time to administration.", capabilities: "Capture and recaps, extraction and CRM writeback, Ask and Assist, research, preparation, drafting and follow-through." },
+    { title: "Align the team", job: "Apply our standards consistently and identify where intervention will improve outcomes.", capabilities: "Mappings and playbooks, framework scoring, coaching and scoped rubrics, win/loss analysis, risk monitoring and relevant personalization." },
+    { title: "Get work done", job: "Delegate recurring work, arrive ready to act, and anticipate what happens next.", capabilities: "Scheduled workflows, recurring outputs, bulk activities, email drafting, agentic execution within supported boundaries and deal forecasting." },
+  ],
+  note: "These are overlapping chapters viewed retrospectively, not a predetermined three-phase roadmap.",
+};
+
 export type Project = {
   slug: string; // reserves /work/[slug] for future case studies
   name: string;

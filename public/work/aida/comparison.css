@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@font-face{font-family:Inter;src:url('/fonts/inter-variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
 /* Editorial portfolio, preserve: variance 5 / motion 1 / density 5.
    Original response wording and chart data are evidence, not new site copy. */
 :root{--paper:#EFECE6;--surface:#E6E2D9;--ink:#33302B;--secondary:#655F55;--line:#C9C1B4;--accent:#A84230;--aida:#23856b;--claude:#8B857A}
 *{box-sizing:border-box}
 html{scroll-padding-top:32px}
-body{margin:0;background:var(--paper);color:var(--ink);font:19px/1.55 Newsreader,Georgia,serif}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.7 Inter,Arial,sans-serif}
 [hidden]{display:none!important}
 a{color:inherit;text-underline-offset:4px;text-decoration-color:var(--secondary)}
 a:hover{color:var(--accent)}
@@ -14,8 +15,8 @@ a:hover{color:var(--accent)}
 .masthead{display:flex;justify-content:space-between;gap:16px;font:11px/1.5 'JetBrains Mono',monospace;color:var(--secondary);margin-bottom:14px}
 .portfolio-nav{display:flex;gap:26px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:34px;font-size:16px}
 .portfolio-nav a{padding:10px 0;text-decoration:none;min-height:44px}.portfolio-nav a[aria-current]{border-bottom:2px solid var(--ink)}
-.intro-title{max-width:780px;font-size:clamp(34px,4.5vw,50px);line-height:1.08;font-weight:500;letter-spacing:-.035em;text-wrap:balance;margin:14px 0 22px}
-.lede{max-width:672px;font-size:24px;line-height:1.4;margin:0 0 20px}
+.intro-title{max-width:780px;font-size:clamp(28px,4vw,36px);line-height:1.18;font-weight:500;letter-spacing:-.025em;text-wrap:balance;margin:14px 0 22px}
+.lede{max-width:672px;font-size:18px;line-height:1.7;margin:0 0 20px}
 .meta,.eyebrow{font:11px/1.6 'JetBrains Mono',monospace;color:var(--secondary)}
 .scope{max-width:740px;font:13px/1.65 'JetBrains Mono',monospace;color:var(--secondary);margin:0 0 28px}
 .jump-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-bottom:32px;font-size:16px}.jump-links a{min-height:44px;display:flex;align-items:center}
@@ -29,7 +30,7 @@ p{margin:0 0 18px}section>p{max-width:672px}
 .chart-note,.figure-note,.case-note,.source-note{font:12px/1.65 'JetBrains Mono',monospace;color:var(--secondary)}
 .chart-note{max-width:800px}
 .chart-choices,.question-tabs{display:flex;flex-wrap:wrap;gap:0 22px;border-bottom:1px solid var(--line);margin:22px 0}
-button{font:16px/1.4 Newsreader,Georgia,serif;color:var(--secondary);cursor:pointer;background:none;border:0;min-height:44px}
+button{font:16px/1.4 Inter,Arial,sans-serif;color:var(--secondary);cursor:pointer;background:none;border:0;min-height:44px}
 .chart-choice,[role=tab]{padding:12px 0;border-bottom:2px solid transparent;text-align:left}
 .chart-choice[aria-pressed=true],[role=tab][aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink)}
 button:hover{color:var(--accent)}
@@ -72,5 +73,5 @@ blockquote{margin:10px 0 0;font-size:23px;line-height:1.35}
 .editorial-points{max-width:780px}.editorial-points article{margin:24px 0}.editorial-points h3{font-size:23px}
 .footer{border-top:1px solid var(--line);padding-top:22px;font:12px/1.65 'JetBrains Mono',monospace;color:var(--secondary)}.footer p{max-width:780px}
 @media(max-width:680px){.evidence-figure>svg text{font-size:23px!important}}
+@media(max-width:680px){body .intro-title{font-size:28px}body .lede{font-size:18px}body h2{font-size:23px}}
 @media(max-width:680px){.shell{padding:22px 20px 36px}.masthead{font-size:10px}.intro-title{font-size:35px}.lede{font-size:22px}.scope{font-size:11px}h2{font-size:27px}section{margin-bottom:36px}.answers{grid-template-columns:1fr;gap:18px}.response-body{max-height:420px;padding:16px}.method-grid{grid-template-columns:1fr;gap:10px}.chart-choices,.question-tabs{gap:0 16px}.chart-choice,[role=tab]{font-size:15px}.chart-totals{gap:8px 20px}.chart-totals strong{font-size:23px}.evidence-figure>svg{min-height:160px}.evidence-figure>svg text{font-size:15px}.prompt{padding:18px}.prompt blockquote{font-size:21px}.response-toolbar{font-size:10px;align-items:start}.expand-responses{font-size:14px}.chart-data{overflow-x:auto}.portfolio-nav{gap:22px}}
-

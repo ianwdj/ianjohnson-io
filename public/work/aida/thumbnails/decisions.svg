@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="336" height="228" viewBox="0 0 336 228" role="img" aria-labelledby="title desc">
+<title id="title">Prepared work reaches a decision</title><desc id="desc">Three prepared outputs converge at one human approval point.</desc>
+<rect width="336" height="228" fill="#E6E2D9"/>
+<g fill="none" stroke="#8B857A" stroke-width="2.5"><path d="M115 57H157V171H115M115 114H217M115 171H157"/><path d="m207 105 10 9-10 9" stroke="#33302B"/></g>
+<g fill="#EFECE6" stroke="#33302B" stroke-width="2.5"><rect x="57" y="36" width="58" height="42" rx="4"/><rect x="57" y="93" width="58" height="42" rx="4"/><rect x="57" y="150" width="58" height="42" rx="4"/></g>
+<g stroke="#8B857A" stroke-width="3"><path d="M70 50H99M70 62H89M70 107H99M70 119H89M70 164H99M70 176H89"/></g>
+<circle cx="254" cy="114" r="29" fill="#33302B"/><path d="m242 114 8 8 16-18" fill="none" stroke="#EFECE6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

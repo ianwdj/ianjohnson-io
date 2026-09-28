@@ -32,9 +32,10 @@
     background: var(--cream);
     color: var(--ink);
     font-family: theme("fontFamily.serif");
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.65;
-    font-feature-settings: "kern", "liga", "onum";
+    font-feature-settings: "kern", "liga";
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }

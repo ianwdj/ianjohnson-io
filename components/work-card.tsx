@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { LogoId, Project } from "@/lib/content";
+import { AidaIndex } from "@/components/aida-index";
 
 /* Acquirer and partner marks, each the official brand asset in its real
    colors and form: Global-e and Shopify from the companies' own logo
@@ -27,7 +28,7 @@ const COMPANY_LOGOS: Record<
   // height (~18px) despite different internal padding in the source art
   aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "h-[20px] w-auto" },
   flow: { src: "/logos/flow-2021.svg", w: 292, h: 70, className: "h-[21px] w-auto" },
-  showtime: { src: "/logos/showtime.webp", w: 500, h: 163, className: "h-[33px] w-auto" },
+  showtime: { src: "/logos/showtime.png", w: 926, h: 302, className: "h-[33px] w-auto" },
   lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "h-[24px] w-auto" },
 };
 
@@ -146,6 +147,7 @@ export function WorkCard({ project }: { project: Project }) {
           </span>
         </span>
       </summary>
+      {project.slug === "aida" ? <AidaIndex /> : (
       <div className="pb-5">
         <p className="text-[15px] text-putty">{project.category}</p>
         <p className="mt-2 text-[16.5px] leading-[1.55]">{project.teaser}</p>
@@ -177,6 +179,7 @@ export function WorkCard({ project }: { project: Project }) {
           </p>
         ))}
       </div>
+      )}
     </details>
   );
 }

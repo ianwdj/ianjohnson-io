@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="336" height="228" viewBox="0 0 336 228" role="img" aria-labelledby="title desc">
+<title id="title">Feedback belongs inside the workflow</title><desc id="desc">A feedback loop reconnects with the next action on a continuous path.</desc>
+<rect width="336" height="228" fill="#E6E2D9"/>
+<g fill="none" stroke="#33302B" stroke-width="3"><path d="M45 147H291m-12-10 12 10-12 10"/><path d="M227 147V93c0-31-21-46-51-46s-51 15-51 46v31"/><path d="m115 113 10 11 10-11"/></g>
+<g fill="#E6E2D9" stroke="#33302B" stroke-width="3"><circle cx="65" cy="147" r="9"/><circle cx="125" cy="147" r="9"/><circle cx="227" cy="147" r="9"/></g>
+<circle cx="176" cy="47" r="12" fill="#33302B"/>
+</svg>
