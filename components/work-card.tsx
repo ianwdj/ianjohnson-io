@@ -169,6 +169,13 @@ export function WorkCard({ project }: { project: Project }) {
             {project.caseStudy.label} →
           </Link>
         )}
+        {project.additionalCaseStudies?.map((study) => (
+          <p key={study.href} className="mt-3">
+            <a href={study.href} className="link text-[16.5px]">
+              {study.label} →
+            </a>
+          </p>
+        ))}
       </div>
     </details>
   );

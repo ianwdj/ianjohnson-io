@@ -77,6 +77,7 @@ export type Project = {
   href?: string; // live product link, rendered as external link on the card
   image?: { src: string; width: number; height: number; alt: string }; // product evidence
   caseStudy?: { label: string; href: string }; // on-site case study link
+  additionalCaseStudies?: { label: string; href: string }[];
   status: "current" | "past"; // drives only the "current" dot on the card
 };
 
@@ -110,6 +111,12 @@ export const projects: Project[] = [
       label: "Case study. The sales meeting, end to end",
       href: "/work/aida",
     },
+    additionalCaseStudies: [
+      {
+        label: "How customer context changes the answer",
+        href: "/work/aida/comparison.html",
+      },
+    ],
     status: "current",
   },
   {
