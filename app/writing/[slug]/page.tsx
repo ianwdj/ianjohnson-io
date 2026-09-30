@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { essays, site } from "@/lib/content";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { AidaNav } from "@/components/aida-nav";
 
 export function generateStaticParams() {
   return essays.map((essay) => ({ slug: essay.slug }));
@@ -42,10 +43,11 @@ export default async function EssayPage({
     <div className="relative z-10">
       <SiteHeader />
       <main className="mx-auto max-w-content px-6 pb-16 pt-12 sm:pb-24">
+        {params.slug === "last-mile-sales-coaching" && <AidaNav current="/writing/last-mile-sales-coaching" />}
         <p className="meta">
           <time dateTime={essay.date}>{essay.displayDate}</time>
         </p>
-        <h1 className="mt-4 font-serif text-[clamp(30px,5vw,40px)] leading-[1.2] tracking-tight">
+        <h1 className="mt-4 font-serif text-[clamp(28px,4vw,36px)] leading-[1.18] tracking-tight">
           {essay.title}
         </h1>
         <div className="prose-letter mt-10">

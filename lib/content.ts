@@ -76,6 +76,29 @@ export const aidaPortfolio = {
 
 // User-supplied strategy narrative. Pending usage claims stay in private drafts.
 export const aidaStrategy = {
+  vision: "Decouple revenue growth from headcount growth.",
+  mission: "Help revenue teams move deals forward by removing friction between customer context, decisions and action.",
+  sections: [
+    { id: "customer", title: "Where we delight customers", paragraphs: [
+      "A rep finishes a customer call with several things to do. They need to record what changed, follow up on a commitment and prepare colleagues for the next conversation. The information exists, but someone still has to carry it from the call into each piece of work.",
+      "Our initial discovery and design partnerships focused on that burden. We built capture, extraction and CRM writeback alongside preparation and drafting. The useful moment is when a rep can review a follow-up that already contains the relevant detail, rather than reconstruct the conversation before they can begin.",
+      "That gave us a practical starting point for a broader system of intelligent action. Helping the rep also improved the information available for coaching, risk monitoring and team decisions."
+    ] },
+    { id: "advantage", title: "The hard-to-copy advantage we are building", paragraphs: [
+      "We invested in connected context from the beginning. A customer conversation is more useful when it is attached to the right account, people and opportunity, and can be understood alongside earlier commitments and later outcomes.",
+      "The strategic bet is that this history becomes useful across many kinds of work. The same context can help prepare a meeting, explain a risk and draft a follow-up. Each new workflow should benefit from what the organization already knows, without asking the rep to assemble it again.",
+      "A context graph is not a moat by itself. The advantage has to come from keeping that context accurate and current, applying the company’s playbooks, and earning trust in work that matters. If another product can deliver the same result just as reliably, the architecture alone gives the customer no reason to stay."
+    ] },
+    { id: "choices", title: "How that shaped our choices", paragraphs: [
+      "We looked for recurring jobs whose improvement mattered to both the rep and the organization. Frequency was important because small savings accumulate, but a frequent task was not automatically a priority. It also had to affect revenue, customer experience or time to value, and fit into the way people already worked.",
+      "A customer request could lead to a shared capability, a configuration change, an integration or no build. The question was whether we were solving a problem other customers would encounter, and what we would delay to solve it. Quality risk, dependencies and the ongoing cost of running the workflow belonged in that decision alongside engineering effort."
+    ] },
+    { id: "success", title: "Signals of success", paragraphs: [
+      "Shipping a capability tells us that it exists. It does not tell us whether people depend on it. For the rep workflows, the first meaningful signal is repeated use after the initial trial. For team workflows, it is whether managers use the outputs in coaching and deal reviews. For delegated work, it is whether people continue to entrust the task to Aida.",
+      "Those are adoption signals, not proof that revenue increased. The business outcomes need their own evidence: less work to advance a deal, greater revenue capacity, or more reliable forecasts. Forecast quality needs an evaluation with a defined sample and method, rather than a convincing example.",
+      "The comparison page shows where customer context changes an answer. It provides concrete examples of the mechanism, not an overall accuracy score or a causal measure of revenue impact."
+    ] },
+  ],
   title: "Building a system of intelligent action",
   introduction: "We built Aida to increase deal velocity and revenue capacity. Our ambition is to decouple revenue growth from headcount growth.",
   investment: [
@@ -88,6 +111,29 @@ export const aidaStrategy = {
     { title: "Get work done", job: "Delegate recurring work, arrive ready to act, and anticipate what happens next.", capabilities: "Scheduled workflows, recurring outputs, bulk activities, email drafting, agentic execution within supported boundaries and deal forecasting." },
   ],
   note: "These are overlapping chapters viewed retrospectively, not a predetermined three-phase roadmap.",
+};
+
+export const aidaDiagrams = {
+  context: {
+    src: "/work/aida/diagrams/deal-context.svg",
+    alt: "How an account, contact and opportunity connect to conversations, commitments and risks",
+    caption: "A fictional deal shows how calls and emails become connected context, with commitments and risks traceable to the conversation they came from.",
+  },
+  access: {
+    src: "/work/aida/diagrams/context-access.svg",
+    alt: "How connected context reaches Ask, read-only MCP access and controlled CRM writeback",
+    caption: "Reading context and updating a CRM follow different paths. Ask and Aida’s read-only MCP server use permission-scoped retrieval. CRM writeback has separate field settings and owner-connection checks.",
+  },
+};
+
+export const aidaDemos = {
+  title: "Preparing follow-up emails in Ask",
+  caption: "This recording uses fictional accounts to demonstrate drafting in Ask. It shows the review step, not emails being sent to customers.",
+  clips: [
+    { file: "loop1_one_request", label: "Requesting drafts", description: "Asking Aida to prepare follow-ups for a pilot, a technical discussion and a business case." },
+    { file: "loop2_three_situations", label: "Comparing emails", description: "Comparing how Aida uses the context provided for each email." },
+    { file: "loop3_stops_at_review", label: "Reviewing a draft", description: "Reviewing the proposed email before choosing a recipient." },
+  ],
 };
 
 export type Project = {

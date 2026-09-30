@@ -4,6 +4,10 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { meetingStack, meetingNodes } from "@/lib/case-studies";
+import { AidaNav } from "@/components/aida-nav";
+import { AidaDiagram } from "@/components/aida-diagram";
+import { AidaDemo } from "@/components/aida-demo";
+import { aidaDiagrams } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: meetingStack.title,
@@ -15,11 +19,13 @@ export default function MeetingStackCaseStudy() {
     <div className="relative z-10">
       <SiteHeader />
       <main className="mx-auto max-w-content px-6 pb-16 pt-12 sm:pb-24">
+        <Link href="/#work" className="link text-[14px]">Back to work</Link>
+        <AidaNav current="/work/aida" />
         <p className="meta">Case study · Aida · 2024–now</p>
-        <h1 className="mt-4 font-serif text-[clamp(30px,5vw,40px)] leading-[1.2] tracking-tight">
+        <h1 className="mt-4 font-serif text-[clamp(28px,4vw,36px)] leading-[1.18] tracking-tight">
           {meetingStack.title}
         </h1>
-        <p className="mt-6 text-[19px] leading-[1.65] [text-wrap:pretty]">
+        <p className="mt-6 text-[16px] leading-[1.8] [text-wrap:pretty]">
           {meetingStack.intro}
         </p>
 
@@ -64,19 +70,21 @@ export default function MeetingStackCaseStudy() {
 
         <div className="mt-16 flex flex-col gap-16">
           {meetingNodes.map((node) => (
-            <section key={node.id}>
+            <section key={node.id} id={node.id} className="scroll-mt-8">
               <p className="meta">
                 {String(node.index).padStart(2, "0")} · {node.kicker}
               </p>
-              <h2 className="mt-2 font-serif text-[26px] leading-tight">
+              <h2 className="mt-2 font-serif text-[23px] leading-tight">
                 {node.title}
               </h2>
-              <p className="mt-3 text-[19px] leading-[1.65]">{node.problem}</p>
+              <p className="mt-3 text-[16px] leading-[1.8]">{node.problem}</p>
               {node.whyHard.map((para) => (
                 <p key={para.slice(0, 24)} className="mt-4 leading-[1.65] text-ink">
                   {para}
                 </p>
               ))}
+              {node.id === "actions" && <AidaDiagram diagram={aidaDiagrams.access} />}
+              {node.id === "actions" && <AidaDemo />}
               <div className="mt-6 grid gap-8 sm:grid-cols-2">
                 <div>
                   <p className="meta">What worked</p>
