@@ -54,7 +54,7 @@ export const hero = {
     ],
     [
       {
-        text: "I founded Lasso (acquired by Yard), led product at Aida from pre-launch to its acquisition by Harvey, and ran growth and checkout at Flow through its $500M exit. Outside my full-time roles, I founded a wine bar and a coffee business as experiments, and co-founded a 200-member wine and podcast club.",
+        text: "I founded Lasso (acquired by Yard), led product at Aida from pre-launch to its acquisition by Harvey, and ran growth and checkout at Flow through its $500M exit. I’ve also launched projects like a wine bar, a coffee business, and a 200-member wine and podcast club.",
       },
     ],
   ] as Segment[][],
