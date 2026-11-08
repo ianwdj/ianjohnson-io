@@ -63,7 +63,7 @@ export const heroText = {
   short: `${hero.greeting} ${flat(hero.statement)} ${flat(hero.detail[0])}`,
 };
 
-export type LogoId = "globale" | "shopify" | "alibaba" | "harvey";
+export type LogoId = "globale" | "shopify" | "alibaba" | "harvey" | "yard";
 
 export const aidaPortfolio = {
   period: "2024–2026",
@@ -219,6 +219,7 @@ export const projects: Project[] = [
     teaser:
       "Bootstrapped matchmaking between brands and creators. The engine matched 1M+ creator profiles a week at 97% accuracy.",
     proof: "Founded · Acquired by Yard",
+    logos: ["yard"],
     caseStudy: {
       label: "Case study. Lasso, the problem we solved for",
       href: "/writing/lasso",
