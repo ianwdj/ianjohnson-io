@@ -27,17 +27,12 @@ export function Hero() {
   return (
     <section className="relative mx-auto max-w-wide px-6 pb-7 pt-10">
       <div className="relative">
-        {/* the visible identity line moved into the header; keep the page's
-            h1 for readers and crawlers without repeating it visually */}
-        <h1 className="sr-only">
-          {hero.statement.map((s) => s.text).join("")}
-        </h1>
-        <p
-          className="fade-up font-serif text-[18px] italic text-putty"
+        <h1
+          className="fade-up text-[15.5px] leading-[1.6] text-ink [text-wrap:pretty]"
           style={{ animationDelay: "0ms" }}
         >
-          {hero.greeting}
-        </p>
+          <Segments segs={hero.statement} />
+        </h1>
         {hero.detail.map((para, i) => (
           <p
             key={i}

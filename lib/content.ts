@@ -24,17 +24,17 @@ export const site = {
   letterboxdListUrl: "https://letterboxd.com/ianwdj/list/movies-to-watch/",
 };
 
-/* Hero detail is Ian's (July 2026); current role updated November 2026.
-   Segments with an href render as inline links. */
+/* Ian's approved bio, November 2026. The sweeping opening and career recap
+   are intentional. He confirmed the identification metric is from the
+   Alibaba JV in China. Segments with an href render as inline links. */
 export type Segment = { text: string; href?: string };
 
 export const hero = {
-  greeting: "Hi, I'm Ian.",
   /* "a founder and product lead" is identity (he founded Lasso and THIQUE),
      not an Aida-founder claim — Aida role stays "founding head of product"
      everywhere factual (cards, JSON-LD, footer). */
   statement: [
-    { text: "I'm a founder and product lead, now at " },
+    { text: "I’m a founder and product lead, now at " },
     { text: site.employer.name, href: site.employer.url },
     { text: "." },
   ] as Segment[],
@@ -44,12 +44,17 @@ export const hero = {
   detail: [
     [
       {
-        text: "My mission is to build tools that help millions of people make progress on what matters most to them. I believe the next generation of technology will make our ambitions less constrained by the time, resources, and expertise we have. I love taking ambiguous, zero-to-one problems and turning them into products people rely on.",
+        text: "Most software treats you like a stranger every time you open it. I’ve spent my career on the opposite problem. At Showtime, our JV with Alibaba in China helped cinemas go from identifying 3% of their customers to 78%. At Aida, we captured the context sales teams kept losing between systems. Harvey is bringing that same idea to law firms.",
       },
     ],
     [
       {
-        text: "I do the same thing offline, too. I love building real-world environments and experiences, from launching a natural wine and grilled cheese pop-up bar in Portugal, to curating music for art exhibitions and building micro journaling tools for better relationships.",
+        text: "I want to build products that get better the longer you use them, because they actually know the people and organizations they serve.",
+      },
+    ],
+    [
+      {
+        text: "I founded Lasso (acquired by Yard), led product at Aida from pre-launch to its acquisition by Harvey, and ran growth and checkout at Flow through its $500M exit. Offline, I’ve co-founded a wine bar, a coffee shop, and a 200-member wine and podcast club.",
       },
     ],
   ] as Segment[][],
@@ -58,9 +63,9 @@ export const hero = {
 /* Plain-text flattening for metadata (title/description/OG card). */
 const flat = (segs: Segment[]) => segs.map((s) => s.text).join("");
 export const heroText = {
-  statement: `${hero.greeting} ${flat(hero.statement)}`,
+  statement: flat(hero.statement),
   detail: hero.detail.map(flat).join(" "),
-  short: `${hero.greeting} ${flat(hero.statement)} ${flat(hero.detail[0])}`,
+  short: `${flat(hero.statement)} ${flat(hero.detail[0])}`,
 };
 
 export type LogoId = "globale" | "shopify" | "alibaba" | "harvey" | "yard";
