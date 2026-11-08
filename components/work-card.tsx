@@ -14,7 +14,8 @@ const ACQUIRER_IMAGES: Partial<
   // Official ink logotype: https://www.harvey.ai/press
   harvey: { src: "/logos/harvey.svg", w: 3022, h: 908, alt: "Harvey logo", className: "h-[19px] w-auto sepia-[.22]" },
   // Official wordmark from tryyard.com, linked by linkedin.com/company/tryyard.
-  yard: { src: "/logos/yard.svg", w: 600, h: 201, alt: "Yard logo", className: "h-[22px] w-auto logo-warm" },
+  // Map every part to warm ink; grayscale/opacity washes out the lighter petals.
+  yard: { src: "/logos/yard.svg", w: 600, h: 201, alt: "Yard logo", className: "h-[22px] w-auto [filter:brightness(0)_invert(.2)_sepia(.22)]" },
   globale: { src: "/logos/globale.svg", w: 123, h: 27, alt: "Global-e logo", className: "h-[14px] w-auto" },
   shopify: { src: "/logos/shopify.svg", w: 612, h: 192, alt: "Shopify logo", className: "h-[19px] w-auto" },
   alibaba: { src: "/logos/alibaba-pictures.png", w: 600, h: 600, alt: "Alibaba Pictures logo", className: "h-[34px] w-auto" },
