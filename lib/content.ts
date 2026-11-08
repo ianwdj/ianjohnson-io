@@ -24,8 +24,8 @@ export const site = {
   letterboxdListUrl: "https://letterboxd.com/ianwdj/list/movies-to-watch/",
 };
 
-/* Ian's approved bio, November 2026. The sweeping opening and career recap
-   are intentional. He confirmed the identification metric is from the
+/* Ian's approved bio, November 2026. The shared-understanding opening and
+   career recap are intentional. He confirmed the identification metric is from the
    Alibaba JV in China. Segments with an href render as inline links. */
 export type Segment = { text: string; href?: string };
 
@@ -44,12 +44,12 @@ export const hero = {
   detail: [
     [
       {
-        text: "Most software treats you like a stranger every time you open it. I’ve spent my career on the opposite problem. At Showtime, our JV with Alibaba in China helped cinemas go from identifying 3% of their customers to 78%. At Aida, we captured the context sales teams kept losing between systems. Harvey is bringing that same idea to law firms.",
+        text: "I’m interested in how people come to understand a situation well enough to act together. Each of us sees part of the picture, and a lot depends on whether we can make what we know useful to someone else. I believe we can now build software that helps us develop that shared understanding, while keeping the reasons behind it open to question.",
       },
     ],
     [
       {
-        text: "I want to build products that get better the longer you use them, because they actually know the people and organizations they serve.",
+        text: "At Showtime, our JV with Alibaba in China helped cinemas go from identifying 3% of their customers to 78%. At Aida, we captured the context sales teams kept losing between systems. Harvey is bringing that same idea to law firms.",
       },
     ],
     [
