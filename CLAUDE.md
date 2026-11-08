@@ -9,14 +9,16 @@ finishes this page wanting to work with Ian.** Precision and plainness ARE the p
 
 | Company | Years | Ian's role | Outcome |
 |---|---|---|---|
-| Aida (getaida.com) | 2024–now | Founding Head of Product | Current. Ian's framing: "an agentic-native revenue system" — use this on his site, NOT getaida.com's "AI chief of staff" marketing line (Ian rejected it, July 2026) |
+| Harvey (harvey.ai) | 2026–now | Product | Current. Use "Product at Harvey" (Ian, November 2026). |
+| Aida (getaida.com) | 2024–2026 | Founding Head of Product | Acquired by Harvey in 2026. Ian's framing: "an agentic-native revenue system" — use this on his site, NOT getaida.com's "AI chief of staff" marketing line (Ian rejected it, July 2026) |
 | Lasso AI | 2021–2023 | **Founder** | Acquired by Yard |
 | Flow | 2018–2021 | **Principal PM** (employee, not founder) | Acquired by Global-e for $500M; white-label engine behind Shopify Markets |
 | Showtime Analytics | 2014–2018 | **VP of Product** | **Never acquired.** Alibaba Pictures JV, 26 countries |
 
-- Exactly TWO acquisitions (Lasso: founder; Flow: employee). Never say three. Never call Showtime an acquisition.
+- Three acquisitions across companies Ian worked at (Aida: employee, acquired by Harvey; Lasso: founder, acquired by Yard; Flow: employee, acquired by Global-e). Never call Showtime an acquisition.
 - On Deck founder fellow: AFTER Lasso, and it's a membership, not a job (Ian, July 2026). Never present it as a role or tie it to building Lasso.
-- The four cards are four COMPANIES, not "four products" — Ian shipped many products within each. Count companies, never products (flagged by Ian July 2026).
+- The five cards are five COMPANIES, not "five products" — Ian shipped many products within each. Count companies, never products (flagged by Ian July 2026).
+- Acquisition source: https://www.harvey.ai/blog/aida-joins-harvey (October 29, 2026). Ian confirmed his move and role wording on November 8, 2026.
 - Career span: "Since 2014" — never "ten years" (goes stale, and it's twelve+).
 - No claim ships without a source: Ian's word, his public bios, or this table.
 - Identity links: Substack ianwdj.substack.com · LinkedIn linkedin.com/in/ianwdjohnson · email contact@ianjohnson.io.

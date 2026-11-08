@@ -7,7 +7,7 @@ import { meetingStack, meetingNodes } from "@/lib/case-studies";
 import { AidaNav } from "@/components/aida-nav";
 import { AidaDiagram } from "@/components/aida-diagram";
 import { AidaDemo } from "@/components/aida-demo";
-import { aidaDiagrams } from "@/lib/content";
+import { aidaDiagrams, aidaPortfolio } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: meetingStack.title,
@@ -21,7 +21,7 @@ export default function MeetingStackCaseStudy() {
       <main className="mx-auto max-w-content px-6 pb-16 pt-12 sm:pb-24">
         <Link href="/#work" className="link text-[14px]">Back to work</Link>
         <AidaNav current="/work/aida" />
-        <p className="meta">Case study · Aida · 2024–now</p>
+        <p className="meta">{aidaPortfolio.caseStudyLabel}</p>
         <h1 className="mt-4 font-serif text-[clamp(28px,4vw,36px)] leading-[1.18] tracking-tight">
           {meetingStack.title}
         </h1>

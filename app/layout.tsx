@@ -46,7 +46,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Founding Head of Product",
+  jobTitle: site.jobTitle,
   url: site.url,
   image: `${site.url}/portrait.jpg`,
   address: {
@@ -64,8 +64,8 @@ const personJsonLd = {
   ],
   worksFor: {
     "@type": "Organization",
-    name: "Aida",
-    url: "https://getaida.com",
+    name: site.employer.name,
+    url: site.employer.url,
   },
 };
 

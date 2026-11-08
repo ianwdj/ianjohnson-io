@@ -6,9 +6,11 @@
 
 export const site = {
   name: "Ian Johnson",
-  role: "Founding Head of Product at Aida",
-  // header line under the name (Ian's wording, July 2026)
-  tagline: "Founder and Product Leader",
+  role: "Product at Harvey",
+  jobTitle: "Product",
+  employer: { name: "Harvey", url: "https://www.harvey.ai" },
+  // Role wording confirmed by Ian, November 2026.
+  tagline: "Product at Harvey",
   location: "San Francisco",
   url: "https://ianjohnson.io",
   email: "contact@ianjohnson.io",
@@ -22,8 +24,8 @@ export const site = {
   letterboxdListUrl: "https://letterboxd.com/ianwdj/list/movies-to-watch/",
 };
 
-/* Hero copy is Ian's, verbatim (July 2026). Segments with an href render as
-   inline links. */
+/* Hero detail is Ian's (July 2026); current role updated November 2026.
+   Segments with an href render as inline links. */
 export type Segment = { text: string; href?: string };
 
 export const hero = {
@@ -32,8 +34,8 @@ export const hero = {
      not an Aida-founder claim — Aida role stays "founding head of product"
      everywhere factual (cards, JSON-LD, footer). */
   statement: [
-    { text: "I'm a founder and product lead, currently building " },
-    { text: "Aida", href: "https://getaida.com" },
+    { text: "I'm a founder and product lead, now at " },
+    { text: site.employer.name, href: site.employer.url },
     { text: "." },
   ] as Segment[],
   /* The grilled-cheese and Venice links moved out of the hero on purpose:
@@ -61,11 +63,13 @@ export const heroText = {
   short: `${hero.greeting} ${flat(hero.statement)} ${flat(hero.detail[0])}`,
 };
 
-export type LogoId = "globale" | "shopify" | "alibaba";
+export type LogoId = "globale" | "shopify" | "alibaba" | "harvey";
 
 export const aidaPortfolio = {
-  intro: "Aida is a system of intelligent action for revenue teams, built to help organizations decouple revenue growth from headcount growth.",
-  ownership: "I led product from pre-launch through commercialization, working with design partners to identify repeatable workflows and turn those insights into the product.",
+  period: "2024–2026",
+  caseStudyLabel: "Case study · Aida · 2024–2026",
+  intro: "Aida was an agentic-native revenue system, built to help organizations decouple revenue growth from headcount growth. Harvey acquired Aida in 2026.",
+  ownership: "As Founding Head of Product, I led product from pre-launch through commercialization, working with design partners to identify repeatable workflows and turn those insights into the product.",
   entries: [
     { title: "Product strategy", description: "Building a system of intelligent action. The product direction and priorities.", href: "/work/aida/strategy", image: "/work/aida/thumbnails/strategy.svg", alt: "Shared context supports several workflows" },
     { title: "Product decisions", description: "The sales meeting, end to end. Workflow decisions and the architecture behind them.", href: "/work/aida", image: "/work/aida/thumbnails/decisions.svg", alt: "Prepared outputs converge at a human approval point" },
@@ -154,24 +158,38 @@ export type Project = {
   status: "current" | "past"; // drives only the "current" dot on the card
 };
 
-/* FACTS (do not drift): two acquisitions total — Lasso (Ian founded it,
-   acquired by Yard) and Flow (Ian was an employee, acquired by Global-e).
+/* FACTS (do not drift): Aida acquired by Harvey, Lasso by Yard, Flow by Global-e.
+   Ian founded Lasso; he was an employee at Aida and Flow.
    Showtime was never acquired; the Alibaba Pictures JV is a partnership. */
 export const projects: Project[] = [
+  {
+    slug: "harvey",
+    name: site.employer.name,
+    category: "Legal AI",
+    period: "2026–now",
+    role: site.jobTitle,
+    teaser: "I joined Harvey following its acquisition of Aida.",
+    href: site.employer.url,
+    caseStudy: {
+      label: "Aida joins Harvey",
+      href: "https://www.harvey.ai/blog/aida-joins-harvey",
+    },
+    status: "current",
+  },
   {
     slug: "aida",
     name: "Aida",
     category: "Agentic-native revenue system",
-    period: "2024–now",
+    period: aidaPortfolio.period,
     teaser:
       "Aida’s vision is to give sellers more time, better judgment, and greater capacity to act, while helping organizations decouple revenue growth from headcount growth.",
     // Copy approved by Ian, September 2026.
     featured: [
       "Its system of intelligent action gives revenue teams AI agents that understand their business, execute company playbooks, and learn from customer interactions and outcomes. That learning improves how agents work across people and accounts, so lessons from one deal can inform decisions and actions across the team.",
     ],
-    // TODO(ian): add one traction fact as `proof` when shareable (design
-    // partners, reps using it, team size)
     role: "Founding Head of Product",
+    proof: "Acquired by Harvey",
+    logos: ["harvey"],
     href: "https://getaida.com",
     // from Ian's Aida Figma (Chat UI file, deal view with drafted follow-up)
     image: {
@@ -190,7 +208,7 @@ export const projects: Project[] = [
         href: "/work/aida/comparison.html",
       },
     ],
-    status: "current",
+    status: "past",
   },
   {
     slug: "lasso",

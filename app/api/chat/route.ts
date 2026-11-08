@@ -20,12 +20,13 @@ import archive from "@/lib/substack-archive.json";
 
 const FACT_SHEET = `
 Facts (never contradict these; where any archive text below conflicts with them on dates, roles, or outcomes, these win):
-- Aida (getaida.com), 2024-now. Ian is the founding head of product. Aida is an agentic-native revenue system.
+- Harvey (harvey.ai), 2026-now. Ian works in Product. Use "Product at Harvey"; do not infer a more specific title or responsibilities.
+- Aida (getaida.com), 2024-2026. Ian was Founding Head of Product. Aida was an agentic-native revenue system, acquired by Harvey in 2026. Announcement: https://www.harvey.ai/blog/aida-joins-harvey.
 - Lasso AI, 2021-2023. Ian FOUNDED it. Acquired by Yard.
 - After Lasso, Ian was an On Deck founder fellow, batch ODF19. That is a membership community, not a job; never present it as a role.
 - Flow, 2018-2021. Ian was Principal PM (an employee, not a founder). Acquired by Global-e for $500M. Flow was chosen as Shopify Markets' exclusive white-label partner.
 - Showtime Analytics, 2014-2018. Ian was VP of Product. NEVER acquired. Alibaba Pictures JV, 26 countries.
-- Exactly TWO acquisitions total (Lasso as founder, Flow as employee). Never say three. Never call Showtime an acquisition.
+- Three acquisitions across companies Ian worked at: Aida by Harvey (employee), Lasso by Yard (founder), and Flow by Global-e (employee). Never call Showtime an acquisition.
 - Career span: since 2014. Ian is from Ireland, lives in San Francisco.
 - Contact: LinkedIn or X. When sharing those links, copy them EXACTLY, never abbreviate: linkedin.com/in/ianwdjohnson and x.com/Ianwdj. Do not share any email address.
 `;
@@ -127,11 +128,11 @@ Plain text only. The chat window renders raw text. No markdown, no asterisks, no
 
 Never type an em-dash or en-dash anywhere in a reply. Ian bans them from his site. Rewrite the sentence with a comma, a period, or parentheses instead. Year ranges use a plain hyphen (2018-2021).
 
-Ian is a founder and product leader. His title at Aida is Founding Head of Product, as confirmed by Ian in September 2026.
+Ian is a founder and product leader. He now works in Product at Harvey. His previous title at Aida was Founding Head of Product.
 
 When the material genuinely does not cover something, say so in one plain sentence, then give the nearest thing it does cover if one exists. Never in the reverse order, and never a paragraph of pointers.
 
-THE PRODUCT MANAGEMENT LENS (important). Ian is a product manager first, not only a founder. Most of his career is PM work inside companies: Principal PM at Flow running growth, experimentation, merchant-of-record, and checkout on $250M a week; VP of Product at Showtime Analytics across 26 countries; founding head of product at Aida today. The archive skews toward his founder chapter (the FiP build-in-public series), so correct for that: when a question is about product management, prioritization, discovery, research, pricing, or working with teams, answer from the PM lens and draw on his PM-craft material first, starting with the operating system below. Frame his frameworks as practices a PM applies inside any product org, and connect them to Cagan, Biddle, and Lenny's frameworks where they touch. Reach for founder stories only when the question is about founding, or when the founder story is the best evidence for a practice.
+THE PRODUCT MANAGEMENT LENS (important). Ian is a product manager first, not only a founder. Most of his career is PM work inside companies: Principal PM at Flow running growth, experimentation, merchant-of-record, and checkout on $250M a week; VP of Product at Showtime Analytics across 26 countries; Founding Head of Product at Aida before its acquisition by Harvey; now Product at Harvey. The archive skews toward his founder chapter (the FiP build-in-public series), so correct for that: when a question is about product management, prioritization, discovery, research, pricing, or working with teams, answer from the PM lens and draw on his PM-craft material first, starting with the operating system below. Frame his frameworks as practices a PM applies inside any product org, and connect them to Cagan, Biddle, and Lenny's frameworks where they touch. Reach for founder stories only when the question is about founding, or when the founder story is the best evidence for a practice.
 
 ${PM_DIGEST}
 

@@ -11,6 +11,8 @@ import { AidaIndex } from "@/components/aida-index";
 const ACQUIRER_IMAGES: Partial<
   Record<LogoId, { src: string; w: number; h: number; alt: string; className: string }>
 > = {
+  // Official ink logotype: https://www.harvey.ai/press
+  harvey: { src: "/logos/harvey.svg", w: 3022, h: 908, alt: "Harvey logo", className: "h-[19px] w-auto sepia-[.22]" },
   globale: { src: "/logos/globale.svg", w: 123, h: 27, alt: "Global-e logo", className: "h-[14px] w-auto" },
   shopify: { src: "/logos/shopify.svg", w: 612, h: 192, alt: "Shopify logo", className: "h-[19px] w-auto" },
   alibaba: { src: "/logos/alibaba-pictures.png", w: 600, h: 600, alt: "Alibaba Pictures logo", className: "h-[34px] w-auto" },
@@ -24,9 +26,10 @@ const COMPANY_LOGOS: Record<
   string,
   { src: string; w: number; h: number; className: string }
 > = {
-  // heights tuned per file so the four wordmarks share one optical cap
+  // heights tuned per file so the company wordmarks share one optical cap
   // height (~18px) despite different internal padding in the source art
   aida: { src: "/logos/aida.svg", w: 72, h: 24, className: "h-[20px] w-auto" },
+  harvey: { src: "/logos/harvey.svg", w: 3022, h: 908, className: "h-[24px] w-auto sepia-[.22]" },
   flow: { src: "/logos/flow-2021.svg", w: 292, h: 70, className: "h-[21px] w-auto" },
   showtime: { src: "/logos/showtime.png", w: 926, h: 302, className: "h-[33px] w-auto" },
   lasso: { src: "/logos/lasso.png", w: 443, h: 175, className: "h-[24px] w-auto" },
@@ -47,7 +50,7 @@ export function WorkCard({ project }: { project: Project }) {
             readers and search without printing it twice */}
         <span className="flex w-full items-center justify-between sm:w-[128px]">
         <h3 className="flex items-center gap-2.5">
-          <span className="sr-only">{project.name}</span>
+          {company && <span className="sr-only">{project.name}</span>}
           {project.href ? (
             <a
               href={project.href}
@@ -55,7 +58,7 @@ export function WorkCard({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="group/logo inline-flex items-center gap-2"
             >
-              {company && (
+              {company ? (
                 <Image
                   src={company.src}
                   alt={`${project.name} logo`}
@@ -64,7 +67,7 @@ export function WorkCard({ project }: { project: Project }) {
                   loading="eager"
                   className={company.className}
                 />
-              )}
+              ) : <span className="text-[20px] font-medium leading-none text-ink-strong">{project.name}</span>}
               {/* inline SVG, not the ↗ character: mobile platforms render
                   U+2197 as the boxy emoji variant */}
               <svg
